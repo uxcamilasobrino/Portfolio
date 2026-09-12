@@ -46,16 +46,14 @@
     justify-content: space-between;
     padding: 18px 0;
   }
-  .avatar{
-    width: 38px; height:38px; border-radius:50%;
-    overflow:hidden;
-    flex-shrink:0;
-  }
-  .avatar img{
-    width:100%; height:100%; object-fit:cover; display:block;
-  }
   .header-left, .header-right{
     display:flex; gap:10px; align-items:center;
+  }
+  .brand-name{
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
   }
   .nav-link{
     font-size: 14px;
@@ -80,19 +78,35 @@
   .hero{
     padding: 90px 0 10px;
   }
+  .hero-heading{
+    display:flex;
+    align-items:center;
+    gap: 24px;
+    margin-bottom: 26px;
+  }
+  .hero-avatar{
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .hero-avatar img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
   .hero h1{
-    font-size: 60px;
-    font-weight: 600;
+    font-size: 52px;
+    font-weight: 800;
     letter-spacing: -0.02em;
-    margin: 0 0 16px;
-    line-height: 1.02;
+    margin: 0 0 10px;
+    line-height: 1.08;
   }
   .role{
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.14em;
     color: var(--accent);
-    margin: 0 0 26px;
+    margin: 0;
   }
   .bio{
     width: 100%;
@@ -113,11 +127,27 @@
   .skills{
     padding: 30px 0 60px;
   }
-  .skill-row{
+  .marquee{
+    overflow: hidden;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  }
+  .marquee-track{
     display:flex;
-    flex-wrap: wrap;
+    width: max-content;
     gap: 12px;
-    margin-bottom: 12px;
+    animation: marquee-scroll 32s linear infinite;
+  }
+  .marquee:hover .marquee-track{
+    animation-play-state: paused;
+  }
+  @keyframes marquee-scroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{ animation: none; }
   }
   .chip{
     display:flex; align-items:center; gap:9px;
@@ -127,6 +157,8 @@
     font-size: 15px;
     font-weight: 500;
     color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .chip svg{ width:17px; height:17px; color: var(--accent); flex-shrink:0; }
 
@@ -201,7 +233,7 @@
 
   @media (max-width: 900px){
     .work-grid{ grid-template-columns: 1fr; }
-    .hero h1{ font-size: 46px; }
+    .hero h1{ font-size: 40px; }
     .wrap{ padding: 0 24px; }
   }
 
@@ -218,7 +250,9 @@
 
   @media (max-width: 560px){
     .hero{ padding-top: 60px; }
-    .hero h1{ font-size: 36px; }
+    .hero h1{ font-size: 32px; }
+    .hero-heading{ gap: 16px; margin-bottom: 20px; }
+    .hero-avatar{ width: 60px; height: 60px; }
     .role{ font-size: 15px; }
     .bio{ font-size: 16px; }
     .wrap{ padding: 0 18px; }
@@ -233,9 +267,13 @@
   <header>
     <div class="wrap header-inner">
       <div class="header-left">
-        <div class="avatar"><img src="profile.jpg" alt="Camila Sobrino"></div>
+        <span class="brand-name">CS.</span>
       </div>
       <div class="header-right">
+        <a class="pill" href="Camila_Sobrino_resume.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span class="pill-text">Download CV</span>
+        </a>
         <a class="pill" href="mailto:camilasobrinov@icloud.com">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>
           <span class="pill-text">camilasobrinov@icloud.com</span>
@@ -251,8 +289,13 @@
   <main class="wrap">
 
     <section class="hero" id="about">
-      <h1>Hello, I'm Camila</h1>
-      <p class="role">PRODUCT DESIGNER @ EAE BUSINESS SCHOOL</p>
+      <div class="hero-heading">
+        <div class="hero-avatar"><img src="profile.jpg" alt="Camila Sobrino"></div>
+        <div>
+          <h1>Hello, I'm Camila</h1>
+          <p class="role">PRODUCT DESIGNER @ EAE BUSINESS SCHOOL</p>
+        </div>
+      </div>
       <p class="bio">
         I am a digital native Product Designer with a strong interest in human behavior and
         learning processes. I hold a Master’s degree in Usability, Interaction Design, and User
@@ -264,19 +307,34 @@
     </section>
 
     <section class="skills">
-      <div class="skill-row">
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>UX Research</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Design Systems</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>User Interface Design</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>Accessibility Standards</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>Prototyping</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6M15 12h6M9 6v12M15 6v12"/></svg>Information Architecture</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="18" cy="8" r="2.5"/><path d="M15 21c0-2.8 1.8-5 4.2-5"/></svg>User-centered Design</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/><circle cx="12" cy="12" r="4"/></svg>User Behavior</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></svg>Design Thinking</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5c-4 2-4 12 0 14M16 5c4 2 4 12 0 14"/></svg>Interaction Design</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>Front-end</div>
-        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>DesignOps</div>
+      <div class="marquee">
+        <div class="marquee-track">
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>UX Research</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Design Systems</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>User Interface Design</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>Accessibility Standards</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>Prototyping</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6M15 12h6M9 6v12M15 6v12"/></svg>Information Architecture</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="18" cy="8" r="2.5"/><path d="M15 21c0-2.8 1.8-5 4.2-5"/></svg>User-centered Design</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/><circle cx="12" cy="12" r="4"/></svg>User Behavior</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></svg>Design Thinking</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5c-4 2-4 12 0 14M16 5c4 2 4 12 0 14"/></svg>Interaction Design</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>Front-end</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>DesignOps</div>
+
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>UX Research</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Design Systems</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>User Interface Design</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>Accessibility Standards</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>Prototyping</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6M15 12h6M9 6v12M15 6v12"/></svg>Information Architecture</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="18" cy="8" r="2.5"/><path d="M15 21c0-2.8 1.8-5 4.2-5"/></svg>User-centered Design</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/><circle cx="12" cy="12" r="4"/></svg>User Behavior</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></svg>Design Thinking</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5c-4 2-4 12 0 14M16 5c4 2 4 12 0 14"/></svg>Interaction Design</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>Front-end</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>DesignOps</div>
+        </div>
       </div>
     </section>
 
@@ -289,7 +347,7 @@
           </div>
           <div class="card-body">
             <h3>Improving the onboarding experience</h3>
-            <p class="card-desc">New students were expected to learn course content while simultaneously learning how to use the platform. Research showed that this dual learning created unnecessary cognitive load, causing hesitation, confusion, and increased support requests during the first learning experience.</p>
+            <p class="card-desc">Reducing cognitive load for new students learning a platform and coursework at the same time.</p>
             <span class="tag edtech">EAE</span>
           </div>
         </a>
@@ -300,7 +358,7 @@
           </div>
           <div class="card-body">
             <h3>Increasing user agency through intentional app</h3>
-            <p class="card-desc">Many young adults open apps automatically, without a clear purpose, leading to wasted time and distraction. Users often felt guilty or frustrated after mindless scrolling, yet rarely paused to reflect on these unconscious digital habits and their impact.</p>
+            <p class="card-desc">Designing a mindful interaction flow that helps users pause and set intention before opening apps.</p>
             <span class="tag health">Side Project</span>
           </div>
         </a>
