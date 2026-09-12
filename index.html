@@ -203,7 +203,13 @@
     .work-grid{ grid-template-columns: 1fr; }
     .hero h1{ font-size: 46px; }
     .wrap{ padding: 0 24px; }
-    .header-inner{ flex-wrap: wrap; gap:12px; }
+  }
+
+  @media (max-width: 700px){
+    .header-inner{ padding: 14px 0; gap:10px; }
+    .header-right{ gap:8px; }
+    .pill{ font-size: 13px; padding: 9px 10px; }
+    .pill span.pill-text{ display:none; }
   }
 
   @media (max-width: 560px){
@@ -212,8 +218,6 @@
     .role{ font-size: 15px; }
     .bio{ font-size: 16px; }
     .wrap{ padding: 0 18px; }
-    .pill{ font-size: 13px; padding: 9px 10px; }
-    .pill span.pill-text{ display:none; }
     .chip{ font-size: 13.5px; padding: 10px 14px; }
     .card-body{ padding: 18px 18px 22px; }
     .thumb{ height: 200px; }
@@ -286,7 +290,7 @@
           </div>
         </a>
 
-        <a class="card" href="#">
+        <a class="card" href="case-side-project.html">
           <div class="thumb">
             <img src="side_project.png" alt="Increasing user agency through intentional app — Side Project case study">
           </div>

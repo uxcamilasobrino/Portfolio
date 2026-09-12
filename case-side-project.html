@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Increasing user agency through intentional app — Camila Sobrino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --ink: #14161a;
+    --muted: #5b616b;
+    --line: #e7e6e2;
+    --accent: #5b6ee8;
+    --paper: #ffffff;
+    --card-bg: #fafafa;
+    --side-bg: #ece3fb; --side-fg: #6a46c9;
+  }
+
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* Header */
+  header{
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 22px 0;
+  }
+  .back-link{
+    display:flex; align-items:center; gap:8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .back-link:hover{ color: var(--accent); }
+  .back-link svg{ width:18px; height:18px; flex-shrink:0; }
+
+  .tag{
+    display:inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: var(--side-bg);
+    color: var(--side-fg);
+    white-space: nowrap;
+  }
+
+  /* Title */
+  .title-section{
+    padding: 70px 0 40px;
+  }
+  h1{
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.08;
+  }
+
+  /* Meta cards */
+  .meta-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding-bottom: 80px;
+  }
+  .meta-card{
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .meta-label{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .meta-value{
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* Cover image */
+  .cover{
+    padding-bottom: 80px;
+  }
+  .cover img{
+    width: 100%;
+    display: block;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+  }
+
+  /* Case sections */
+  .case-section{
+    padding-bottom: 70px;
+  }
+  .case-section h2{
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+  }
+  .case-section p{
+    font-size: 16px;
+    line-height: 1.7;
+    color: #2b2e33;
+    margin: 0 0 20px;
+  }
+  .case-section p:last-child{ margin-bottom: 0; }
+
+  /* HMW / callout box (purple theme) */
+  .box{
+    background: var(--side-bg);
+    border: 1px solid #d9c8f5;
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .box-label{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--side-fg);
+    margin: 0 0 12px;
+  }
+  .box-text{
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0;
+  }
+  .hmw-box{
+    margin: 8px 0 0;
+  }
+  .hmw-box .box-text{
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  /* Goals */
+  .goals-grid{
+    display:flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .goal-card{
+    display:grid;
+    grid-template-columns: 0.7fr 1fr 1fr;
+    gap: 24px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    background: var(--card-bg);
+  }
+  .goal-card .meta-label{ margin-bottom: 0; align-self: start; }
+  .goal-col .meta-label{ margin-bottom: 8px; }
+  .goal-col p{
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  /* Assumptions list */
+  .assumptions-list{
+    margin: 0;
+    padding-left: 20px;
+  }
+  .assumptions-list li{
+    font-size: 16px;
+    line-height: 1.7;
+    color: #2b2e33;
+    margin-bottom: 14px;
+  }
+  .assumptions-list li:last-child{ margin-bottom: 0; }
+
+  /* Personas */
+  .persona-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .persona-card{
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 24px;
+    background: var(--card-bg);
+  }
+  .persona-name{
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 18px;
+  }
+  .persona-field{
+    margin-bottom: 16px;
+  }
+  .persona-field:last-child{ margin-bottom: 0; }
+  .persona-field p{
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  /* Ideation lists */
+  .ideation-list{
+    margin: 0 0 20px;
+    padding-left: 20px;
+  }
+  .ideation-list li{
+    font-size: 16px;
+    line-height: 1.7;
+    color: #2b2e33;
+    margin-bottom: 10px;
+  }
+  .ideation-list li:last-child{ margin-bottom: 0; }
+
+  /* Data tables */
+  .data-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 28px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .data-table th{
+    text-align: left;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    background: var(--card-bg);
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .data-table td{
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .data-table tr:last-child td{ border-bottom: none; }
+  .data-table tr:nth-child(even) td{ background: #fbfbfa; }
+
+  /* Prototype button */
+  .proto-btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    background: var(--side-fg);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 24px;
+    border-radius: 12px;
+    transition: opacity .2s ease;
+  }
+  .proto-btn:hover{ opacity: 0.88; }
+  .proto-btn svg{ width:17px; height:17px; flex-shrink:0; }
+
+  /* Stat cards */
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .stat-card{
+    background: var(--side-bg);
+    border: 1px solid #d9c8f5;
+    border-radius: 12px;
+    padding: 26px 22px;
+    text-align: center;
+  }
+  .stat-number{
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--side-fg);
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+  }
+  .stat-label{
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  /* Footer */
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 28px 0;
+    font-size: 13px;
+    color: var(--muted);
+    text-align:center;
+  }
+
+  @media (max-width: 900px){
+    .meta-grid{ grid-template-columns: repeat(2, 1fr); }
+    h1{ font-size: 40px; }
+    .wrap{ padding: 0 24px; }
+  }
+
+  @media (max-width: 700px){
+    .goal-card{ grid-template-columns: 1fr; gap: 12px; }
+    .persona-grid{ grid-template-columns: 1fr; }
+    .data-table{ display:block; overflow-x:auto; white-space:nowrap; }
+    .stat-grid{ grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px){
+    .meta-grid{ grid-template-columns: 1fr; }
+    h1{ font-size: 32px; }
+    .title-section{ padding: 44px 0 30px; }
+    .back-link{ font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap header-inner">
+      <a class="back-link" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Portfolio
+      </a>
+      <span class="tag">Side Project</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="title-section">
+      <h1>Increasing user agency through intentional app</h1>
+    </section>
+
+    <section class="meta-grid">
+      <div class="meta-card">
+        <p class="meta-label">INDUSTRY</p>
+        <p class="meta-value">HealthTech</p>
+      </div>
+      <div class="meta-card">
+        <p class="meta-label">ROLE</p>
+        <p class="meta-value">UX Designer & Researcher</p>
+      </div>
+      <div class="meta-card">
+        <p class="meta-label">TEAM</p>
+        <p class="meta-value">Individual Project</p>
+      </div>
+      <div class="meta-card">
+        <p class="meta-label">TIMEFRAME</p>
+        <p class="meta-value">3 months</p>
+      </div>
+    </section>
+
+    <section class="cover">
+      <img src="side_project.png" alt="Intentional app case study cover">
+    </section>
+
+    <section class="case-section">
+      <h2>Introduction</h2>
+      <p>Many young adults and teenagers struggle with mindless phone use, often opening apps without a clear purpose. While this behavior may seem harmless at first, it frequently leads to wasted time, distraction, and reduced focus on meaningful tasks. Users reported feeling guilty or frustrated after prolonged, unconscious scrolling, but rarely paused to reflect on their digital habits.</p>
+      <p>This UX case study showcases my step-by-step journey to designing a mindful interaction flow that encourages users to pause, clarify their intentions, and make conscious choices every time they interact with their phone, helping them regain control over their digital wellbeing.</p>
+    </section>
+
+    <section class="case-section">
+      <h2>Problem Definition</h2>
+      <p>Users experience unconscious, mindless phone interactions because they often open apps without reflecting on their purpose. This habitual behavior leads to wasted time, distraction, and feelings of guilt or frustration, reducing focus and overall digital wellbeing.</p>
+
+      <div class="box hmw-box">
+        <p class="box-label">HOW MIGHT WE...</p>
+        <p class="box-text">How might we help young adults and teenagers pause, reflect, and act intentionally every time they interact with their phone?</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Goals</h2>
+      <div class="goals-grid">
+        <div class="goal-card">
+          <div class="goal-col"><p class="meta-label">PRIMARY GOAL</p></div>
+          <div class="goal-col">
+            <p class="meta-label">USER GOALS</p>
+            <p>Help users engage with their phone intentionally, reducing mindless interaction and promoting digital wellbeing.</p>
+          </div>
+          <div class="goal-col">
+            <p class="meta-label">BUSINESS GOALS</p>
+            <p>Promote healthier digital habits to position the app as a trusted wellbeing tool.</p>
+          </div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-col"><p class="meta-label">SECONDARY GOALS</p></div>
+          <div class="goal-col">
+            <p class="meta-label">USER GOALS</p>
+            <p>Encourage users to pause and reflect before opening any app. Support users in clarifying their intention, making each phone interaction purposeful.</p>
+          </div>
+          <div class="goal-col">
+            <p class="meta-label">BUSINESS GOALS</p>
+            <p>Track habits over time to build mindful, sustainable phone use patterns. Provide quick feedback and gentle nudges to maintain awareness.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Assumptions</h2>
+      <ul class="assumptions-list">
+        <li>Users often interact with their phones automatically, without pausing to consider their intention.</li>
+        <li>Users may underestimate the time or impact of mindless phone use on focus, productivity, and wellbeing.</li>
+        <li>Users don't have an established mental model for intentional digital habits; most phone interactions are habitual.</li>
+        <li>Reflection prompts and intentionality nudges can influence behavior, but effectiveness may vary across users depending on motivation and self-awareness.</li>
+        <li>Users may resist friction if prompts are too frequent or intrusive, potentially leading to disengagement.</li>
+        <li>Tracking habits and providing feedback will increase self-awareness, but only if presented in a simple, non-judgmental way.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>User Personas</h2>
+      <div class="persona-grid">
+        <div class="persona-card">
+          <p class="persona-name">Alex, High School Student</p>
+          <div class="persona-field">
+            <p class="meta-label">AGE</p>
+            <p>18</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">BACKGROUND</p>
+            <p>Final-year high school student juggling classes, exams, and friendships</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">GOALS</p>
+            <p>Stay focused on studying and hobbies without constant distraction</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">BEHAVIORS</p>
+            <p>Opens phone automatically when bored or stressed; jumps between apps without intent</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">PAIN POINTS</p>
+            <p>Feels frustrated after long scrolling sessions; struggles to stop once started</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">MOTIVATIONS</p>
+            <p>Wants better concentration and less stress before exams</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">NEEDS</p>
+            <p>Simple prompts that encourage pausing and thinking before opening apps</p>
+          </div>
+        </div>
+
+        <div class="persona-card">
+          <p class="persona-name">Maya, University Graduate</p>
+          <div class="persona-field">
+            <p class="meta-label">AGE</p>
+            <p>24</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">BACKGROUND</p>
+            <p>Recently graduated, adjusting to independent life and work/study routines</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">GOALS</p>
+            <p>Be more intentional with time and maintain healthy routines</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">BEHAVIORS</p>
+            <p>Unlocks phone out of habit during breaks, often losing track of time</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">PAIN POINTS</p>
+            <p>Feels guilty when phone use interferes with productivity or sleep</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">MOTIVATIONS</p>
+            <p>Wants balance, mental clarity, and a sense of control over daily life</p>
+          </div>
+          <div class="persona-field">
+            <p class="meta-label">NEEDS</p>
+            <p>A mindful system that helps reflect on intention without feeling restrictive</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Ideation</h2>
+      <ul class="ideation-list">
+        <li>Prompt users to pause before every app interaction.</li>
+        <li>Ask users to clarify their intention quickly (select from list or type short text).</li>
+        <li>Provide minimal, clear feedback on their choice to avoid frustration.</li>
+        <li>Track patterns over time and visualize progress to reinforce mindful use.</li>
+      </ul>
+
+      <p>To address this, I proposed and designed <strong>Intentional app</strong>. Each time users start to interact with their phone, they have to declare a mindful intention. The system prompts them to:</p>
+
+      <ul class="ideation-list">
+        <li>Identify their goal or intention for opening the app.</li>
+        <li>Reflect on time consumption and session per day.</li>
+        <li>Build a healthy relationship with their phone.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Solution: Intentional App</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>FEATURE</th>
+            <th>UI PATTERN</th>
+            <th>OUTCOME</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Intent Prompt</td>
+            <td>Overlay to set user's intention with quick-select options. User can add a customized intention</td>
+            <td>Users pause and reflect before each interaction, reducing mindless use</td>
+          </tr>
+          <tr>
+            <td>Suggested Time Session</td>
+            <td>Options: 5, 10 and 15 minutes</td>
+            <td>Reinforces short sessions and user's commitment</td>
+          </tr>
+          <tr>
+            <td>Timer</td>
+            <td>Timer running with a "stop" button</td>
+            <td>Gives users control to finish the session</td>
+          </tr>
+          <tr>
+            <td>Number of Session Tracking</td>
+            <td>Card showing number of daily sessions</td>
+            <td>Supports reduction of unconscious micro-sessions</td>
+          </tr>
+          <tr>
+            <td>Time Consumption</td>
+            <td>Card showing daily consumption time</td>
+            <td>Helps users understand total time interaction</td>
+          </tr>
+          <tr>
+            <td>Sessions Tracking</td>
+            <td>Mini session dashboard showing session time, time and status</td>
+            <td>Users are able to reflect on their actions</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="case-section">
+      <h2>Final Prototype</h2>
+      <a class="proto-btn" href="https://www.figma.com/proto/xwn0JlIzxupl7VQ7kjIOAY/Intentional-app?node-id=34-130&t=ByFSHRYt8pUgCVFO-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=34%3A130" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+        View Intentional App Prototype on Figma
+      </a>
+    </section>
+
+    <section class="case-section">
+      <h2>Conclusion</h2>
+      <p>After assessing Intentional app with real users, I observed that:</p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <p class="stat-number">100%</p>
+          <p class="stat-label">of sessions began with a clearly declared intention</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-number">30%</p>
+          <p class="stat-label">of users decreased total time spent on apps</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-number">18%</p>
+          <p class="stat-label">increase in self-reported satisfaction and sense of control</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Camila Sobrino. All rights reserved.
+  </footer>
+
+</body>
+</html>
