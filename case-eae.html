@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Improving the onboarding experience — Camila Sobrino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --ink: #14161a;
+    --muted: #5b616b;
+    --line: #e7e6e2;
+    --accent: #5b6ee8;
+    --paper: #ffffff;
+    --card-bg: #fafafa;
+    --edtech-bg: #fbe4e2; --edtech-fg: #b5453b;
+  }
+
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* Header */
+  header{
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 22px 0;
+  }
+  .back-link{
+    display:flex; align-items:center; gap:8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .back-link:hover{ color: var(--accent); }
+  .back-link svg{ width:18px; height:18px; }
+
+  .tag{
+    display:inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: var(--edtech-bg);
+    color: var(--edtech-fg);
+  }
+
+  /* Title */
+  .title-section{
+    padding: 70px 0 40px;
+  }
+  h1{
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.08;
+  }
+
+  /* Meta cards */
+  .meta-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding-bottom: 80px;
+  }
+  .meta-card{
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .meta-label{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .meta-value{
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  @media (max-width: 900px){
+    .meta-grid{ grid-template-columns: repeat(2, 1fr); }
+    h1{ font-size: 40px; }
+    .wrap{ padding: 0 24px; }
+  }
+
+  @media (max-width: 560px){
+    .meta-grid{ grid-template-columns: 1fr; }
+    h1{ font-size: 32px; }
+    .title-section{ padding: 44px 0 30px; }
+  }
+
+  /* Cover image */
+  .cover{
+    padding-bottom: 80px;
+  }
+  .cover img{
+    width: 100%;
+    display: block;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+  }
+
+  /* Case sections */
+  .case-section{
+    padding-bottom: 70px;
+  }
+  .case-section h2{
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+  }
+  .case-section p{
+    font-size: 16px;
+    line-height: 1.7;
+    color: #2b2e33;
+    margin: 0 0 20px;
+  }
+  .case-section p:last-child{ margin-bottom: 0; }
+
+  /* Ticket / insight / HMW / decision boxes (red theme) */
+  .box{
+    background: var(--edtech-bg);
+    border: 1px solid #f3c9c5;
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .box-label{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--edtech-fg);
+    margin: 0 0 12px;
+  }
+  .box-text{
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .ticket-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+  .ticket-quote{
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0 0 16px;
+  }
+  .ticket-divider{
+    border: none;
+    border-top: 1px solid #f3c9c5;
+    margin: 0 0 16px;
+  }
+
+  .insight-box, .hmw-box, .decision-box{
+    margin: 8px 0 28px;
+  }
+  .hmw-box .box-text, .decision-box .box-text{
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  /* Data tables */
+  .data-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 28px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .data-table th{
+    text-align: left;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    background: var(--card-bg);
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .data-table td{
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .data-table tr:last-child td{ border-bottom: none; }
+  .data-table tr:nth-child(even) td{ background: #fbfbfa; }
+
+  .status-pill{
+    display:inline-block;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status-pill.confirmed, .status-pill.selected{
+    background: #e2f4e7;
+    color: #23833f;
+  }
+  .status-pill.rejected{
+    background: var(--edtech-bg);
+    color: var(--edtech-fg);
+  }
+
+  /* Goals */
+  .goals-grid{
+    display:flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .goal-card{
+    display:grid;
+    grid-template-columns: 0.7fr 1fr 1fr;
+    gap: 24px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    background: var(--card-bg);
+  }
+  .goal-card .meta-label{ margin-bottom: 0; align-self: start; }
+  .goal-col .meta-label{ margin-bottom: 8px; }
+  .goal-col p{
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+    max-width: none;
+  }
+
+  @media (max-width: 700px){
+    .ticket-grid{ grid-template-columns: 1fr; }
+    .goal-card{ grid-template-columns: 1fr; gap: 12px; }
+    .data-table{ display:block; overflow-x:auto; white-space:nowrap; }
+    .proto-buttons{ flex-direction: column; }
+  }
+
+  /* Prototype buttons */
+  .proto-buttons{
+    display:flex;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .proto-btn{
+    flex: 1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    background: var(--edtech-fg);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 20px;
+    border-radius: 12px;
+    transition: opacity .2s ease;
+  }
+  .proto-btn:hover{ opacity: 0.88; }
+  .proto-btn svg{ width:17px; height:17px; flex-shrink:0; }
+
+  /* Outcomes list */
+  .outcomes-list{
+    margin: 0 0 28px;
+    padding-left: 20px;
+  }
+  .outcomes-list li{
+    font-size: 16px;
+    line-height: 1.7;
+    color: #2b2e33;
+    margin-bottom: 14px;
+  }
+  .outcomes-list li:last-child{ margin-bottom: 0; }
+
+  /* Footer */
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 28px 0;
+    font-size: 13px;
+    color: var(--muted);
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap header-inner">
+      <a class="back-link" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Portfolio
+      </a>
+      <span class="tag">EAE</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="title-section">
+      <h1>Improving the onboarding experience</h1>
+    </section>
+
+    <section class="meta-grid">
+      <div class="meta-card">
+        <p class="meta-label">INDUSTRY</p>
+        <p class="meta-value">EdTech</p>
+      </div>
+      <div class="meta-card">
+        <p class="meta-label">ROLE</p>
+        <p class="meta-value">UX Designer</p>
+      </div>
+      <div class="meta-card">
+        <p class="meta-label">TEAM</p>
+        <p class="meta-value">2 Instructional Designers<br>2 Designers<br>1 Researcher</p>
+      </div>
+      <div class="meta-card">
+        <p class="meta-label">TIMEFRAME</p>
+        <p class="meta-value">10 weeks</p>
+      </div>
+    </section>
+
+    <section class="cover">
+      <img src="eae.png" alt="EAE onboarding case study cover">
+    </section>
+
+    <section class="case-section">
+      <h2>Overview</h2>
+      <p>New students were expected to learn course content while simultaneously learning how to use the platform. Research showed that this dual learning created unnecessary cognitive load, causing hesitation, confusion, and increased support requests during the first learning experience.</p>
+    </section>
+
+    <section class="case-section">
+      <h2>Research</h2>
+      <p>The project began after the student support team reported a high volume of tickets during the first weeks of the course. Most requests were not related to course content but to navigating the platform, locating resources, understanding module progression, and completing basic actions such as submitting assignments.</p>
+
+      <div class="ticket-grid">
+        <div class="box">
+          <p class="box-label">STUDENT SUPPORT TICKET #1</p>
+          <p class="ticket-quote">“Hi, I'm on Module 1 and I've completed the lesson, but I don't know where I'm supposed to upload my assignment. Could someone point me to the right place? Idk which formats are allowed”</p>
+          <hr class="ticket-divider">
+          <p class="box-label" style="margin-bottom:6px;">INSIGHT</p>
+          <p class="box-text">Users lacked a clear mental model of the course structure and expected interactions.</p>
+        </div>
+        <div class="box">
+          <p class="box-label">STUDENT SUPPORT TICKET #2</p>
+          <p class="ticket-quote">“I wanted to start Module 2, but it's locked. I don't understand what I still need to complete before I can continue.”</p>
+          <hr class="ticket-divider">
+          <p class="box-label" style="margin-bottom:6px;">INSIGHT</p>
+          <p class="box-text">Users didn't understand progression rules.</p>
+        </div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width:42%;">RESEARCH HYPOTHESIS</th>
+            <th style="width:38%;">VALIDATION METHOD</th>
+            <th>OUTCOME</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Students spend significantly more time completing Module 1 than Module 2 due to onboarding friction.</td>
+            <td>Compared the average hours spent completing Module 1 versus Module 2 using platform analytics.</td>
+            <td><span class="status-pill confirmed">Confirmed</span></td>
+          </tr>
+          <tr>
+            <td>Unclear explanatory videos at the beginning of the course are the cause of student confusion.</td>
+            <td>Usability testing and student feedback sessions.</td>
+            <td><span class="status-pill rejected">Rejected</span></td>
+          </tr>
+          <tr>
+            <td>Students do not initially have a clear mental model of the platform structure or learning flow.</td>
+            <td>Moderated usability testing with first-time users performing navigation tasks.</td>
+            <td><span class="status-pill confirmed">Confirmed</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box insight-box">
+        <p class="box-label">KEY INSIGHT</p>
+        <p class="box-text">Users weren't struggling with the interface itself. They were struggling because they had to learn two things at once: the course content and platform functionality.</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Problem Definition</h2>
+      <p>Students entering Module 1 were introduced to a new platform while also beginning their coursework. Navigating unfamiliar interactions, understanding the course structure, and learning new content simultaneously created unnecessary cognitive load, reducing confidence and making the first learning experience more challenging than it needed to be.</p>
+    </section>
+
+    <section class="case-section">
+      <h2>Goals</h2>
+      <div class="goals-grid">
+        <div class="goal-card">
+          <div class="goal-col"><p class="meta-label">PRIMARY GOAL</p></div>
+          <div class="goal-col">
+            <p class="meta-label">USER GOALS</p>
+            <p>Reduce cognitive load and time completion in Module 1.</p>
+          </div>
+          <div class="goal-col">
+            <p class="meta-label">BUSINESS GOALS</p>
+            <p>Reduce support tickets or student requests regarding navigation and interaction.</p>
+          </div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-col"><p class="meta-label">SECONDARY GOALS</p></div>
+          <div class="goal-col">
+            <p class="meta-label">USER GOALS</p>
+            <p>Increase user confidence and platform familiarity.</p>
+          </div>
+          <div class="goal-col">
+            <p class="meta-label">BUSINESS GOALS</p>
+            <p>Increase learning efficiency across all courses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Ideation</h2>
+      <p>To guide the ideation process, we framed the challenge around this key question.</p>
+
+      <div class="box hmw-box">
+        <p class="box-label">HOW MIGHT WE...</p>
+        <p class="box-text">Help students feel confident using the platform before they begin learning course content?</p>
+      </div>
+
+      <p>We explored several approaches to reduce the friction students experienced when starting the course. The main challenge was finding a way to separate platform learning from course learning without adding unnecessary complexity.</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>OPTION</th>
+            <th>SOLUTION</th>
+            <th>PROS</th>
+            <th>CONS</th>
+            <th>DECISION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td>Simplify Module 1</td>
+            <td>Reduces initial complexity</td>
+            <td>Students still learn the platform and course content at the same time</td>
+            <td><span class="status-pill rejected">Rejected</span></td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td>Improve contextual guidance (tooltips, hints, inline instructions)</td>
+            <td>Makes navigation easier by providing support during tasks</td>
+            <td>Doesn't separate platform learning from course learning</td>
+            <td><span class="status-pill rejected">Rejected</span></td>
+          </tr>
+          <tr>
+            <td>C</td>
+            <td>Create a training module</td>
+            <td>Separates platform learning from course learning</td>
+            <td>Requires an additional onboarding step</td>
+            <td><span class="status-pill selected">Selected</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box decision-box">
+        <p class="box-label">KEY DECISION</p>
+        <p class="box-text">We ended up choosing Option C: Create a Training Module because students were trying to learn the platform and the course content at the same time. A training module lets them learn the platform first, making it easier to start the course.</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Solution: Module 0</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>FEATURE</th>
+            <th>UI PATTERN</th>
+            <th>OUTCOME</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Guided Step-by-Step Progression</td>
+            <td>Next/Previous buttons, step indicator</td>
+            <td>Users understand lesson flow</td>
+          </tr>
+          <tr>
+            <td>Progress Tracking</td>
+            <td>Progress bar, completion badges</td>
+            <td>Clear sense of advancement</td>
+          </tr>
+          <tr>
+            <td>Performance Summary Dashboard</td>
+            <td>KPI cards (score, attendance)</td>
+            <td>Transparency in evaluation</td>
+          </tr>
+          <tr>
+            <td>Assignment Submission</td>
+            <td>Upload card, file picker</td>
+            <td>Confidence with submissions</td>
+          </tr>
+          <tr>
+            <td>Instant Feedback</td>
+            <td>Success messages, state changes</td>
+            <td>Reduced uncertainty</td>
+          </tr>
+          <tr>
+            <td>Accessible Interaction Support</td>
+            <td>Focus states, ARIA labels</td>
+            <td>Inclusive experience</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="case-section">
+      <h2>Final Prototype</h2>
+      <div class="proto-buttons">
+        <a class="proto-btn" href="https://www.figma.com/proto/eCJuZvm5kDnPySDwiygR7V/EAE-DS?node-id=214-536&p=f&t=1BFAexGBjLAJiFLA-0&scaling=scale-down&content-scaling=fixed&page-id=4%3A2&starting-point-node-id=214%3A526" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+          View Mobile prototype
+        </a>
+        <a class="proto-btn" href="https://www.figma.com/proto/eCJuZvm5kDnPySDwiygR7V/EAE-DS?node-id=455-1840&t=skADPGkEoJYzCbuA-0&scaling=contain&content-scaling=fixed&page-id=455%3A1008&starting-point-node-id=455%3A1840" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+          View Desktop prototype
+        </a>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Outcomes and learnings</h2>
+      <ul class="outcomes-list">
+        <li>Module 1 average completion time decreased from 40 hours to 39 hours, bringing it closer to Module 2 (36 hours).</li>
+        <li>76% of students voluntarily completed the optional module 0 before starting the course.</li>
+        <li>Navigation-related student support tickets decreased from 21 to 17 requests within the first week, indicating a slight reduction in navigation issues.</li>
+      </ul>
+
+      <div class="box">
+        <p class="box-label">LEARNING</p>
+        <p class="box-text">I learned that helping users feel confident at the start can have a measurable impact on their overall experience.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Camila Sobrino. All rights reserved.
+  </footer>
+
+</body>
+</html>
