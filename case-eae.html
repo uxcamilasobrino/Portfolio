@@ -284,7 +284,7 @@
     align-items:center;
     justify-content:center;
     gap: 10px;
-    background: var(--edtech-fg);
+    background: #c0392b;
     color: #fff;
     font-size: 15px;
     font-weight: 700;
@@ -294,6 +294,36 @@
   }
   .proto-btn:hover{ opacity: 0.88; }
   .proto-btn svg{ width:17px; height:17px; flex-shrink:0; }
+
+  /* Image marquee */
+  .img-marquee{
+    overflow: hidden;
+    width: 100%;
+    border-radius: 16px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+  }
+  .img-marquee-track{
+    display:flex;
+    width: max-content;
+    animation: img-marquee-scroll 28s linear infinite;
+  }
+  .img-marquee-track img{
+    height: 260px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+  @keyframes img-marquee-scroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .img-marquee-track{ animation: none; }
+  }
+  @media (max-width: 560px){
+    .img-marquee-track img{ height: 180px; }
+  }
 
   /* Outcomes list */
   .outcomes-list{
@@ -565,6 +595,13 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
           View Desktop prototype
         </a>
+      </div>
+
+      <div class="img-marquee">
+        <div class="img-marquee-track">
+          <img src="eae-screens.png" alt="EAE onboarding app screens">
+          <img src="eae-screens.png" alt="" aria-hidden="true">
+        </div>
       </div>
     </section>
 
