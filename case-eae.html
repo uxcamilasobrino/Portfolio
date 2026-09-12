@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Improving the onboarding experience — Camila Sobrino</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -268,7 +269,6 @@
   @media (max-width: 700px){
     .ticket-grid{ grid-template-columns: 1fr; }
     .goal-card{ grid-template-columns: 1fr; gap: 12px; }
-    .data-table{ display:block; overflow-x:auto; white-space:nowrap; }
     .proto-buttons{ flex-direction: column; }
   }
 
@@ -385,32 +385,34 @@
         </div>
       </div>
 
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th style="width:42%;">RESEARCH HYPOTHESIS</th>
-            <th style="width:38%;">VALIDATION METHOD</th>
-            <th>OUTCOME</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Students spend significantly more time completing Module 1 than Module 2 due to onboarding friction.</td>
-            <td>Compared the average hours spent completing Module 1 versus Module 2 using platform analytics.</td>
-            <td><span class="status-pill confirmed">Confirmed</span></td>
-          </tr>
-          <tr>
-            <td>Unclear explanatory videos at the beginning of the course are the cause of student confusion.</td>
-            <td>Usability testing and student feedback sessions.</td>
-            <td><span class="status-pill rejected">Rejected</span></td>
-          </tr>
-          <tr>
-            <td>Students do not initially have a clear mental model of the platform structure or learning flow.</td>
-            <td>Moderated usability testing with first-time users performing navigation tasks.</td>
-            <td><span class="status-pill confirmed">Confirmed</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:42%;">RESEARCH HYPOTHESIS</th>
+              <th style="width:38%;">VALIDATION METHOD</th>
+              <th>OUTCOME</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Students spend significantly more time completing Module 1 than Module 2 due to onboarding friction.</td>
+              <td>Compared the average hours spent completing Module 1 versus Module 2 using platform analytics.</td>
+              <td><span class="status-pill confirmed">Confirmed</span></td>
+            </tr>
+            <tr>
+              <td>Unclear explanatory videos at the beginning of the course are the cause of student confusion.</td>
+              <td>Usability testing and student feedback sessions.</td>
+              <td><span class="status-pill rejected">Rejected</span></td>
+            </tr>
+            <tr>
+              <td>Students do not initially have a clear mental model of the platform structure or learning flow.</td>
+              <td>Moderated usability testing with first-time users performing navigation tasks.</td>
+              <td><span class="status-pill confirmed">Confirmed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div class="box insight-box">
         <p class="box-label">KEY INSIGHT</p>
@@ -462,40 +464,42 @@
 
       <p>We explored several approaches to reduce the friction students experienced when starting the course. The main challenge was finding a way to separate platform learning from course learning without adding unnecessary complexity.</p>
 
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>OPTION</th>
-            <th>SOLUTION</th>
-            <th>PROS</th>
-            <th>CONS</th>
-            <th>DECISION</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>A</td>
-            <td>Simplify Module 1</td>
-            <td>Reduces initial complexity</td>
-            <td>Students still learn the platform and course content at the same time</td>
-            <td><span class="status-pill rejected">Rejected</span></td>
-          </tr>
-          <tr>
-            <td>B</td>
-            <td>Improve contextual guidance (tooltips, hints, inline instructions)</td>
-            <td>Makes navigation easier by providing support during tasks</td>
-            <td>Doesn't separate platform learning from course learning</td>
-            <td><span class="status-pill rejected">Rejected</span></td>
-          </tr>
-          <tr>
-            <td>C</td>
-            <td>Create a training module</td>
-            <td>Separates platform learning from course learning</td>
-            <td>Requires an additional onboarding step</td>
-            <td><span class="status-pill selected">Selected</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>OPTION</th>
+              <th>SOLUTION</th>
+              <th>PROS</th>
+              <th>CONS</th>
+              <th>DECISION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A</td>
+              <td>Simplify Module 1</td>
+              <td>Reduces initial complexity</td>
+              <td>Students still learn the platform and course content at the same time</td>
+              <td><span class="status-pill rejected">Rejected</span></td>
+            </tr>
+            <tr>
+              <td>B</td>
+              <td>Improve contextual guidance (tooltips, hints, inline instructions)</td>
+              <td>Makes navigation easier by providing support during tasks</td>
+              <td>Doesn't separate platform learning from course learning</td>
+              <td><span class="status-pill rejected">Rejected</span></td>
+            </tr>
+            <tr>
+              <td>C</td>
+              <td>Create a training module</td>
+              <td>Separates platform learning from course learning</td>
+              <td>Requires an additional onboarding step</td>
+              <td><span class="status-pill selected">Selected</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div class="box decision-box">
         <p class="box-label">KEY DECISION</p>
@@ -505,47 +509,49 @@
 
     <section class="case-section">
       <h2>Solution: Module 0</h2>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>FEATURE</th>
-            <th>UI PATTERN</th>
-            <th>OUTCOME</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Guided Step-by-Step Progression</td>
-            <td>Next/Previous buttons, step indicator</td>
-            <td>Users understand lesson flow</td>
-          </tr>
-          <tr>
-            <td>Progress Tracking</td>
-            <td>Progress bar, completion badges</td>
-            <td>Clear sense of advancement</td>
-          </tr>
-          <tr>
-            <td>Performance Summary Dashboard</td>
-            <td>KPI cards (score, attendance)</td>
-            <td>Transparency in evaluation</td>
-          </tr>
-          <tr>
-            <td>Assignment Submission</td>
-            <td>Upload card, file picker</td>
-            <td>Confidence with submissions</td>
-          </tr>
-          <tr>
-            <td>Instant Feedback</td>
-            <td>Success messages, state changes</td>
-            <td>Reduced uncertainty</td>
-          </tr>
-          <tr>
-            <td>Accessible Interaction Support</td>
-            <td>Focus states, ARIA labels</td>
-            <td>Inclusive experience</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>FEATURE</th>
+              <th>UI PATTERN</th>
+              <th>OUTCOME</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Guided Step-by-Step Progression</td>
+              <td>Next/Previous buttons, step indicator</td>
+              <td>Users understand lesson flow</td>
+            </tr>
+            <tr>
+              <td>Progress Tracking</td>
+              <td>Progress bar, completion badges</td>
+              <td>Clear sense of advancement</td>
+            </tr>
+            <tr>
+              <td>Performance Summary Dashboard</td>
+              <td>KPI cards (score, attendance)</td>
+              <td>Transparency in evaluation</td>
+            </tr>
+            <tr>
+              <td>Assignment Submission</td>
+              <td>Upload card, file picker</td>
+              <td>Confidence with submissions</td>
+            </tr>
+            <tr>
+              <td>Instant Feedback</td>
+              <td>Success messages, state changes</td>
+              <td>Reduced uncertainty</td>
+            </tr>
+            <tr>
+              <td>Accessible Interaction Support</td>
+              <td>Focus states, ARIA labels</td>
+              <td>Inclusive experience</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="case-section">

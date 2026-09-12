@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Increasing user agency through intentional app — Camila Sobrino</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -235,10 +236,16 @@
   .ideation-list li:last-child{ margin-bottom: 0; }
 
   /* Data tables */
+  .table-scroll{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 28px;
+    border-radius: 12px;
+  }
   .data-table{
     width: 100%;
+    min-width: 620px;
     border-collapse: collapse;
-    margin-bottom: 28px;
     border: 1px solid var(--line);
     border-radius: 12px;
     overflow: hidden;
@@ -325,7 +332,6 @@
   @media (max-width: 700px){
     .goal-card{ grid-template-columns: 1fr; gap: 12px; }
     .persona-grid{ grid-template-columns: 1fr; }
-    .data-table{ display:block; overflow-x:auto; white-space:nowrap; }
     .stat-grid{ grid-template-columns: 1fr; }
   }
 
@@ -523,47 +529,49 @@
 
     <section class="case-section">
       <h2>Solution: Intentional App</h2>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>FEATURE</th>
-            <th>UI PATTERN</th>
-            <th>OUTCOME</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Intent Prompt</td>
-            <td>Overlay to set user's intention with quick-select options. User can add a customized intention</td>
-            <td>Users pause and reflect before each interaction, reducing mindless use</td>
-          </tr>
-          <tr>
-            <td>Suggested Time Session</td>
-            <td>Options: 5, 10 and 15 minutes</td>
-            <td>Reinforces short sessions and user's commitment</td>
-          </tr>
-          <tr>
-            <td>Timer</td>
-            <td>Timer running with a "stop" button</td>
-            <td>Gives users control to finish the session</td>
-          </tr>
-          <tr>
-            <td>Number of Session Tracking</td>
-            <td>Card showing number of daily sessions</td>
-            <td>Supports reduction of unconscious micro-sessions</td>
-          </tr>
-          <tr>
-            <td>Time Consumption</td>
-            <td>Card showing daily consumption time</td>
-            <td>Helps users understand total time interaction</td>
-          </tr>
-          <tr>
-            <td>Sessions Tracking</td>
-            <td>Mini session dashboard showing session time, time and status</td>
-            <td>Users are able to reflect on their actions</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>FEATURE</th>
+              <th>UI PATTERN</th>
+              <th>OUTCOME</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Intent Prompt</td>
+              <td>Overlay to set user's intention with quick-select options. User can add a customized intention</td>
+              <td>Users pause and reflect before each interaction, reducing mindless use</td>
+            </tr>
+            <tr>
+              <td>Suggested Time Session</td>
+              <td>Options: 5, 10 and 15 minutes</td>
+              <td>Reinforces short sessions and user's commitment</td>
+            </tr>
+            <tr>
+              <td>Timer</td>
+              <td>Timer running with a "stop" button</td>
+              <td>Gives users control to finish the session</td>
+            </tr>
+            <tr>
+              <td>Number of Session Tracking</td>
+              <td>Card showing number of daily sessions</td>
+              <td>Supports reduction of unconscious micro-sessions</td>
+            </tr>
+            <tr>
+              <td>Time Consumption</td>
+              <td>Card showing daily consumption time</td>
+              <td>Helps users understand total time interaction</td>
+            </tr>
+            <tr>
+              <td>Sessions Tracking</td>
+              <td>Mini session dashboard showing session time, time and status</td>
+              <td>Users are able to reflect on their actions</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="case-section">

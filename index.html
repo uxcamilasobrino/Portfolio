@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Camila Sobrino — Product Designer</title>
+<title>Camila Sobrino</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -50,8 +51,8 @@
     display:flex; gap:10px; align-items:center;
   }
   .brand-name{
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 800;
     letter-spacing: -0.01em;
     color: var(--ink);
   }
@@ -138,9 +139,6 @@
     width: max-content;
     gap: 12px;
     animation: marquee-scroll 32s linear infinite;
-  }
-  .marquee:hover .marquee-track{
-    animation-play-state: paused;
   }
   @keyframes marquee-scroll{
     from{ transform: translateX(0); }
@@ -238,7 +236,7 @@
   }
 
   @media (max-width: 700px){
-    .header-inner{ padding: 14px 0; gap:10px; }
+    .header-inner{ padding: 20px 0; gap:10px; }
     .header-right{ gap:8px; }
     .pill{
       width: 38px; height: 38px;
@@ -246,6 +244,16 @@
       justify-content: center;
     }
     .pill span.pill-text{ display:none; }
+    .pill.pill-cv{
+      width: auto;
+      height: 38px;
+      padding: 0 14px;
+      gap: 6px;
+    }
+    .pill.pill-cv span.pill-text{
+      display:inline;
+      font-size: 13px;
+    }
   }
 
   @media (max-width: 560px){
@@ -270,7 +278,7 @@
         <span class="brand-name">CS.</span>
       </div>
       <div class="header-right">
-        <a class="pill" href="Camila_Sobrino_resume.pdf" download>
+        <a class="pill pill-cv" href="Camila_Sobrino_resume.pdf" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
           <span class="pill-text">Download CV</span>
         </a>
@@ -297,7 +305,7 @@
         </div>
       </div>
       <p class="bio">
-        I am a digital native Product Designer with a strong interest in human behavior and
+        Digital native Product Designer with a strong interest in human behavior and
         learning processes. I hold a Master’s degree in Usability, Interaction Design, and User
         Experience. I’m currently working on creating intuitive interfaces and accessible user
         experiences for higher education courses. My work focuses on optimizing interactions,
