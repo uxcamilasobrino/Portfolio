@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agora Design System — Camila Sobrino</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --ink: #14161a;
+    --muted: #5b616b;
+    --line: #e7e6e2;
+    --accent: #5b6ee8;
+    --paper: #ffffff;
+    --edtech-bg: #fde2e4; --edtech-fg: #ee2737;
+  }
+
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; height:100%; }
+  body{
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+  }
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 40px;
+    width:100%;
+  }
+
+  header{ }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 22px 0;
+  }
+  .back-link{
+    display:flex; align-items:center; gap:8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .back-link:hover{ color: var(--accent); }
+  .back-link svg{ width:18px; height:18px; flex-shrink:0; }
+
+  .tag{
+    display:inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: var(--edtech-bg);
+    color: var(--edtech-fg);
+    white-space: nowrap;
+  }
+
+  main{
+    flex: 1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 40px 0;
+  }
+
+  .gate{
+    width: 100%;
+    max-width: 420px;
+    text-align:center;
+  }
+  .gate-icon{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--edtech-bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin: 0 auto 24px;
+  }
+  .gate-icon svg{ width:24px; height:24px; color: var(--edtech-fg); }
+  .gate h1{
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 0 0 10px;
+  }
+  .gate p{
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0 0 28px;
+  }
+
+  .gate-form{
+    display:flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .gate-input{
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    outline: none;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  .gate-input:focus{
+    border-color: var(--edtech-fg);
+  }
+  .gate-input.error{
+    border-color: var(--edtech-fg);
+    animation: shake 0.35s ease;
+  }
+  @keyframes shake{
+    0%, 100%{ transform: translateX(0); }
+    25%{ transform: translateX(-6px); }
+    75%{ transform: translateX(6px); }
+  }
+  .gate-submit{
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--edtech-fg);
+    border: none;
+    padding: 14px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity .2s ease;
+  }
+  .gate-submit:hover{ opacity: 0.88; }
+
+  .error-msg{
+    font-size: 13.5px;
+    color: var(--edtech-fg);
+    min-height: 18px;
+    margin: 2px 0 0;
+  }
+
+  .unlocked{
+    display:none;
+  }
+  .unlocked.show{
+    display:block;
+  }
+  .unlocked-icon{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #e2f4e7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin: 0 auto 24px;
+  }
+  .unlocked-icon svg{ width:26px; height:26px; color: #23833f; }
+
+  footer{
+    padding: 28px 0;
+    font-size: 13px;
+    color: var(--muted);
+    text-align:center;
+  }
+
+  @media (max-width: 560px){
+    .wrap{ padding: 0 24px; }
+    .gate h1{ font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap header-inner">
+      <a class="back-link" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Go back
+      </a>
+      <span class="tag">EAE</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="gate" id="gateLocked">
+      <div class="gate-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+      </div>
+      <h1>Agora Design System</h1>
+      <p>This case study is password protected. Enter the password to continue.</p>
+      <form class="gate-form" id="gateForm">
+        <input type="password" class="gate-input" id="gateInput" placeholder="Password" autocomplete="off">
+        <p class="error-msg" id="gateError"></p>
+        <button type="submit" class="gate-submit">Unlock</button>
+      </form>
+    </div>
+
+    <div class="gate unlocked" id="gateUnlocked">
+      <div class="unlocked-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h1>You're in!</h1>
+      <p>The full Agora Design System case study is coming soon — check back shortly.</p>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Camila Sobrino. All rights reserved.
+  </footer>
+
+  <script>
+    var CORRECT_PASSWORD = "agora2026";
+    var form = document.getElementById('gateForm');
+    var input = document.getElementById('gateInput');
+    var errorMsg = document.getElementById('gateError');
+    var locked = document.getElementById('gateLocked');
+    var unlocked = document.getElementById('gateUnlocked');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (input.value.trim() === CORRECT_PASSWORD) {
+        locked.style.display = 'none';
+        unlocked.classList.add('show');
+      } else {
+        errorMsg.textContent = 'Incorrect password, please try again.';
+        input.classList.remove('error');
+        void input.offsetWidth;
+        input.classList.add('error');
+        input.value = '';
+      }
+    });
+  </script>
+
+</body>
+</html>

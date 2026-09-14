@@ -50,7 +50,14 @@
     display:flex; gap:10px; align-items:center;
   }
   .brand-name{
-    font-size: 22px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 15px;
     font-weight: 800;
     letter-spacing: -0.01em;
     color: var(--ink);
@@ -165,7 +172,7 @@
   }
   .work-grid{
     display:grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 26px;
   }
   .card{
@@ -348,6 +355,17 @@
     <section class="work" id="work">
       <div class="work-grid">
 
+        <a class="card" href="case-agora.html">
+          <div class="thumb">
+            <img src="agora-design-system.png" alt="Agora Design System — EAE case study">
+          </div>
+          <div class="card-body">
+            <h3>Agora Design System</h3>
+            <p class="card-desc">Defines the foundations of user interfaces across EAE Business School ecosystem of products & services.</p>
+            <span class="tag edtech">EAE</span>
+          </div>
+        </a>
+
         <a class="card" href="case-eae.html">
           <div class="thumb">
             <img src="eae.png" alt="Improving the onboarding experience — EAE case study">
@@ -367,17 +385,6 @@
             <h3>Increasing user agency through intentional app</h3>
             <p class="card-desc">Designing a mindful interaction flow that helps users pause and set intention before opening apps.</p>
             <span class="tag health">Side Project</span>
-          </div>
-        </a>
-
-        <a class="card" href="#">
-          <div class="thumb">
-            <img src="agora-design-system.png" alt="Agora Design System — EAE case study">
-          </div>
-          <div class="card-body">
-            <h3>Agora Design System</h3>
-            <p class="card-desc">Agora design system defines the foundations of user interfaces across EAE Business School ecosystem of products & services.</p>
-            <span class="tag edtech">EAE</span>
           </div>
         </a>
 
