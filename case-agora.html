@@ -303,59 +303,6 @@
     flex-shrink: 0;
   }
 
-  .split-block{
-    display:grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 32px;
-    align-items:center;
-  }
-  .split-image img{
-    width: 100%;
-    display: block;
-    border-radius: 14px;
-    border: 1px solid var(--line);
-  }
-  .split-image.dark img{ background: #1c1d21; }
-  .split-text p{ margin: 0 0 16px; }
-  .split-text p:last-child{ margin-bottom: 0; }
-
-  .pill-group{
-    display:flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-  .mini-pill{
-    display:inline-block;
-    font-size: 13.5px;
-    font-weight: 600;
-    padding: 7px 16px;
-    border-radius: 999px;
-    background: var(--edtech-bg);
-    color: var(--edtech-fg);
-  }
-  .mini-pill.state{
-    background: var(--card-bg);
-    color: var(--ink);
-    border: 1px solid var(--line);
-  }
-
-  .doc-btn{
-    display:inline-flex;
-    align-items:center;
-    gap: 10px;
-    background: var(--edtech-fg);
-    color: #fff;
-    font-size: 15px;
-    font-weight: 700;
-    padding: 14px 22px;
-    border-radius: 12px;
-    margin-bottom: 24px;
-    transition: opacity .2s ease;
-  }
-  .doc-btn:hover{ opacity: 0.88; }
-  .doc-btn svg{ width:17px; height:17px; flex-shrink:0; }
-
   .full-image{
     margin: 4px 0 24px;
   }
@@ -406,7 +353,7 @@
     font-weight: 700;
     letter-spacing: 0.01em;
     color: var(--edtech-fg);
-    margin: 0 0 6px;
+    margin: 0 0 2px;
   }
   .box-text{
     font-size: 15px;
@@ -429,7 +376,6 @@
     .wrap{ padding: 0 24px; }
     .product-grid{ grid-template-columns: 1fr; }
     .foundation-grid{ grid-template-columns: 1fr; gap: 28px; }
-    .split-block{ grid-template-columns: 1fr; }
   }
 
   @media (max-width: 560px){
@@ -534,12 +480,11 @@
 
       <section class="case-section">
         <h2>Foundations</h2>
-        <p>The brand guidelines provided by Marketing established the visual identity. My role was to translate that identity into a digital foundation that could support multiple products and interfaces.</p>
 
         <div class="foundation-grid">
           <div class="foundation-block">
             <h3>Color</h3>
-            <p>The red palette is particularly important because red is central to EAE's visual identity. Rather than treating the brand red as the only red available in the interface, I created a broader scale that allows different values to be used according to context. This creates more flexibility for UI states, backgrounds or borders.</p>
+            <p>The red palette is central to EAE's visual identity. Rather than treating brand red as the only available red, I created a broader scale so different values can be used for UI states, backgrounds and borders depending on context.</p>
             <div class="full-image">
               <img src="agora-color-palette.png" alt="Agora color palette and gradients">
             </div>
@@ -547,7 +492,7 @@
 
           <div class="foundation-block">
             <h3>Typography</h3>
-            <p>The system uses Inter as its typeface. A structured hierarchy was established from H1 to H6, together with body text styles, creating consistent typographic relationships across products.</p>
+            <p>The system uses Inter as its typeface, with a structured hierarchy from H1 to H6 and dedicated body text styles. This creates consistent typographic relationships and sizing across every EAE product.</p>
             <div class="full-image">
               <img src="agora-typography.png" alt="Agora typography scale">
             </div>
@@ -555,7 +500,7 @@
 
           <div class="foundation-block">
             <h3>Icons</h3>
-            <p>Agora includes a broad icon library organized into categories such as Arrow, Menu, Edit, Environment or Shape. The goal is to give designers a consistent visual vocabulary instead of recreating or sourcing icons independently.</p>
+            <p>Agora includes a broad icon library organized into categories such as Arrow, Menu, Edit, Environment and Shape, giving designers a consistent visual vocabulary instead of recreating or sourcing icons independently.</p>
             <div class="full-image">
               <img src="agora-icons.png" alt="Agora icon library">
             </div>
@@ -563,7 +508,7 @@
 
           <div class="foundation-block">
             <h3>Logo</h3>
-            <p>The system also includes the EAE logo ecosystem, including the relevant light, dark, red and other variations.</p>
+            <p>The system includes the full EAE logo ecosystem, covering light, dark, red and other brand variations, ensuring the logo is applied consistently across every product, platform and touchpoint.</p>
             <div class="full-image">
               <img src="agora-logo.png" alt="Agora logo variations">
             </div>
@@ -573,7 +518,6 @@
 
       <section class="case-section">
         <h2>Token architecture</h2>
-        <p>Agora uses a three-level token structure that separates what a value is, what it means, and where it is used.</p>
 
         <div class="token-flow">
           <div class="token-box">
@@ -585,49 +529,25 @@
           <div class="token-box">
             <h4>Alias</h4>
             <code>primary/25</code>
-            <p>Contextual meaning — why a value is used.</p>
+            <p>Contextual meaning (why a value is used).</p>
           </div>
           <div class="token-arrow">→</div>
           <div class="token-box">
             <h4>Mapped</h4>
             <code>icons/default</code>
-            <p>Actual component usage — where it's applied.</p>
+            <p>Actual component usage (where it's applied).</p>
           </div>
         </div>
-
-        <p>Rather than directly connecting every component to a raw color value, this layering lets the system communicate <em>why</em> a value is being used, not just what it looks like — making it easier to maintain and giving future changes a clear path through the architecture.</p>
       </section>
 
       <section class="case-section">
         <h2>Components</h2>
-        <div class="split-block">
-          <div class="split-image dark">
-            <img src="agora-component-properties.png" alt="Agora component properties panel in Figma">
-          </div>
-          <div class="split-text">
-            <p>I prioritized components based on how frequently they appeared across the EAE ecosystem, starting with common building blocks like <strong>Button</strong>, <strong>Field</strong>, <strong>Menu</strong>, <strong>Checkbox</strong>, <strong>Switch</strong>, <strong>Tab Bar</strong> and <strong>Avatar</strong>, among others.</p>
-            <p>Each one is built with a set of shared properties — Status, Type, Icon Left, Icon Right, Label — so designers can create multiple configurations without needing a separate component for every variation.</p>
-          </div>
-        </div>
-      </section>
+        <p>I prioritized components based on how frequently they appeared across the EAE ecosystem, starting with common building blocks like <strong>Button</strong>, <strong>Field</strong>, <strong>Menu</strong>, <strong>Checkbox</strong>, <strong>Switch</strong>, <strong>Tab Bar</strong> and <strong>Avatar</strong>, among others.</p>
+        <p>Each one is built with a set of shared properties (<strong>Status</strong>, <strong>Type</strong>, <strong>Icon Left</strong>, <strong>Icon Right</strong>, <strong>Label</strong>) so designers can create multiple configurations without needing a separate component for every variation.</p>
 
-      <section class="case-section">
-        <h2>Component example: Button</h2>
-        <p>The Button component was one of the areas where the need for standardization was particularly visible. Agora defines a set of button <strong>types</strong> and interaction <strong>states</strong>, each treated as part of the system rather than a per-product decision:</p>
-
-        <div class="pill-group">
-          <span class="mini-pill">Default</span>
-          <span class="mini-pill">Outlined</span>
-          <span class="mini-pill">Text</span>
-        </div>
-        <div class="pill-group">
-          <span class="mini-pill state">Default</span>
-          <span class="mini-pill state">Hover</span>
-          <span class="mini-pill state">Focus</span>
-          <span class="mini-pill state">Disabled</span>
-        </div>
-
-        <p>It also supports icon variations, mobile configurations and button groups — instead of each product deciding independently how a button should behave, these decisions become part of the system.</p>
+        <p>The Button component was one of the areas where the need for standardization was particularly visible. Agora defines a set of button types and interaction states, each treated as part of the system rather than a per-product decision.</p>
+        <p><strong>Types:</strong> Default, Outlined, Text</p>
+        <p><strong>States:</strong> Default, Hover, Focus, Disabled</p>
         <div class="full-image">
           <img src="agora-button-states.png" alt="Agora button types and states">
         </div>
@@ -635,11 +555,7 @@
 
       <section class="case-section">
         <h2>Documentation</h2>
-        <p>The Figma library holds the foundations, tokens and components, while Zeroheight documents how and when to use them — purpose, variants, states, and do's and don'ts — bridging the visual library with the knowledge needed to use it correctly.</p>
-        <a class="doc-btn" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
-          View documentation (Zeroheight)
-        </a>
+        <p>The Figma library holds the foundations, tokens and components, while Zeroheight documents how and when to use them (purpose, variants, states, do's and don'ts), bridging the visual library with the knowledge needed to use it correctly.</p>
         <div class="full-image">
           <img src="agora-zeroheight.png" alt="Agora documentation in Zeroheight">
         </div>
@@ -647,21 +563,18 @@
 
       <section class="case-section">
         <h2>Outcomes and learnings</h2>
-        <p>The project has established:</p>
+        <p>The project established:</p>
         <ul class="bullet-list">
-          <li>A shared visual foundation</li>
-          <li>A structured token architecture</li>
-          <li>Reusable core components</li>
-          <li>Consistent component states and properties</li>
-          <li>EAE-specific components for educational workflows</li>
-          <li>A common approach to solving recurring interface problems</li>
-          <li>A foundation for future documentation and development</li>
+          <li>A <strong>shared visual foundation</strong> across every EAE product</li>
+          <li>A <strong>structured token architecture</strong> built to scale</li>
+          <li>A <strong>reusable component library</strong> with consistent states and properties</li>
+          <li>A <strong>foundation for documentation</strong> and future development</li>
         </ul>
-        <p>More importantly, design decisions that were previously made independently can now be represented as shared system decisions.</p>
+        <p>Design decisions that were once made independently can now be represented as <strong>shared system decisions</strong>.</p>
 
         <div class="box">
           <p class="box-label">Learning</p>
-          <p class="box-text">It was my first time building a Design System from scratch and having full ownership of the process. A Design System is much more than a component library.</p>
+          <p class="box-text">Building Agora from scratch, with full ownership of the process, was a turning point: a Design System is not a component library. It's a shared language that shapes how an entire organization designs and grows, together.</p>
         </div>
       </section>
 
