@@ -364,6 +364,7 @@
 
   /* Footer */
   footer{
+    border-top: 1px solid var(--line);
     padding: 28px 0;
     font-size: 13px;
     color: var(--muted);
@@ -420,7 +421,7 @@
             </button>
           </div>
           <p class="error-msg" id="gateError"></p>
-          <button type="submit" class="gate-submit">Unlock</button>
+          <button type="submit" class="gate-submit">Continue</button>
         </form>
       </div>
     </div>
@@ -542,12 +543,9 @@
 
       <section class="case-section">
         <h2>Components</h2>
-        <p>I prioritized components based on how frequently they appeared across the EAE ecosystem, starting with common building blocks like <strong>Button</strong>, <strong>Field</strong>, <strong>Menu</strong>, <strong>Checkbox</strong>, <strong>Switch</strong>, <strong>Tab Bar</strong> and <strong>Avatar</strong>, among others.</p>
-        <p>Each one is built with a set of shared properties (<strong>Status</strong>, <strong>Type</strong>, <strong>Icon Left</strong>, <strong>Icon Right</strong>, <strong>Label</strong>) so designers can create multiple configurations without needing a separate component for every variation.</p>
+        <p>I prioritized components based on how frequently they appeared across the EAE ecosystem, starting with common building blocks like <strong>Button</strong>, <strong>Field</strong>, <strong>Menu</strong>, <strong>Checkbox</strong>, <strong>Switch</strong>, <strong>Tab Bar</strong> and <strong>Avatar</strong>, among others. Each one is built with a set of shared properties (<strong>Status</strong>, <strong>Type</strong>, <strong>Icon Left</strong>, <strong>Icon Right</strong>, <strong>Label</strong>) so designers can create multiple configurations without needing a separate component for every variation.</p>
 
         <p>The Button component was one of the areas where the need for standardization was particularly visible. Agora defines a set of button types and interaction states, each treated as part of the system rather than a per-product decision.</p>
-        <p><strong>Types:</strong> Default, Outlined, Text</p>
-        <p><strong>States:</strong> Default, Hover, Focus, Disabled</p>
         <div class="full-image">
           <img src="agora-button-states.png" alt="Agora button types and states">
         </div>
@@ -563,14 +561,12 @@
 
       <section class="case-section">
         <h2>Outcomes and learnings</h2>
-        <p>The project established:</p>
         <ul class="bullet-list">
           <li>A <strong>shared visual foundation</strong> across every EAE product</li>
           <li>A <strong>structured token architecture</strong> built to scale</li>
           <li>A <strong>reusable component library</strong> with consistent states and properties</li>
           <li>A <strong>foundation for documentation</strong> and future development</li>
         </ul>
-        <p>Design decisions that were once made independently can now be represented as <strong>shared system decisions</strong>.</p>
 
         <div class="box">
           <p class="box-label">Learning</p>
