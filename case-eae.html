@@ -88,11 +88,11 @@
     padding: 20px 22px;
   }
   .meta-label{
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.01em;
     color: var(--muted);
-    margin: 0 0 10px;
+    margin: 0 0 5px;
   }
   .meta-value{
     font-size: 17px;
@@ -152,11 +152,11 @@
     padding: 22px 24px;
   }
   .box-label{
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.01em;
     color: var(--edtech-fg);
-    margin: 0 0 12px;
+    margin: 0 0 6px;
   }
   .box-text{
     font-size: 15px;
@@ -204,9 +204,9 @@
   }
   .data-table th{
     text-align: left;
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.01em;
     color: var(--muted);
     background: var(--card-bg);
     padding: 14px 18px;
@@ -256,7 +256,7 @@
     background: var(--card-bg);
   }
   .goal-card .meta-label{ margin-bottom: 0; align-self: start; }
-  .goal-col .meta-label{ margin-bottom: 8px; }
+  .goal-col .meta-label{ margin-bottom: 5px; }
   .goal-col p{
     font-size: 15px;
     line-height: 1.6;
@@ -278,8 +278,10 @@
     margin-bottom: 28px;
   }
   .proto-btn{
-    display:inline-flex;
+    display:flex;
+    width: 100%;
     align-items:center;
+    justify-content:center;
     gap: 10px;
     background: var(--edtech-fg);
     color: #fff;
@@ -365,19 +367,19 @@
 
     <section class="meta-grid">
       <div class="meta-card">
-        <p class="meta-label">INDUSTRY</p>
+        <p class="meta-label">Industry</p>
         <p class="meta-value">EdTech</p>
       </div>
       <div class="meta-card">
-        <p class="meta-label">ROLE</p>
+        <p class="meta-label">Role</p>
         <p class="meta-value">UX Designer</p>
       </div>
       <div class="meta-card">
-        <p class="meta-label">TEAM</p>
-        <p class="meta-value">2 Instructional Designers<br>2 Designers<br>1 Researcher</p>
+        <p class="meta-label">Team</p>
+        <p class="meta-value">2 Instructional Designers<br>2 UX Designers<br>1 Researcher</p>
       </div>
       <div class="meta-card">
-        <p class="meta-label">TIMEFRAME</p>
+        <p class="meta-label">Timeframe</p>
         <p class="meta-value">10 weeks</p>
       </div>
     </section>
@@ -397,14 +399,14 @@
 
       <div class="ticket-grid">
         <div class="box">
-          <p class="box-label">STUDENT SUPPORT TICKET #1</p>
+          <p class="box-label">Student support ticket #1</p>
           <p class="ticket-quote">“Hi, I'm on Module 1 and I've completed the lesson, but I don't know where I'm supposed to upload my assignment. Could someone point me to the right place? Idk which formats are allowed”</p>
           <hr class="ticket-divider">
           <p class="box-label" style="margin-bottom:6px;">INSIGHT</p>
           <p class="box-text">Users lacked a clear mental model of the course structure and expected interactions.</p>
         </div>
         <div class="box">
-          <p class="box-label">STUDENT SUPPORT TICKET #2</p>
+          <p class="box-label">Student support ticket #2</p>
           <p class="ticket-quote">“I wanted to start Module 2, but it's locked. I don't understand what I still need to complete before I can continue.”</p>
           <hr class="ticket-divider">
           <p class="box-label" style="margin-bottom:6px;">INSIGHT</p>
@@ -416,9 +418,9 @@
         <table class="data-table">
           <thead>
             <tr>
-              <th style="width:42%;">RESEARCH HYPOTHESIS</th>
-              <th style="width:38%;">VALIDATION METHOD</th>
-              <th>OUTCOME</th>
+              <th style="width:42%;">Research hypothesis</th>
+              <th style="width:38%;">Validation method</th>
+              <th>Outcome</th>
             </tr>
           </thead>
           <tbody>
@@ -442,38 +444,38 @@
       </div>
 
       <div class="box insight-box">
-        <p class="box-label">KEY INSIGHT</p>
+        <p class="box-label">Key insight</p>
         <p class="box-text">Users weren't struggling with the interface itself. They were struggling because they had to learn two things at once: the course content and platform functionality.</p>
       </div>
     </section>
 
     <section class="case-section">
       <h2>Problem Definition</h2>
-      <p>Students entering Module 1 were introduced to a new platform while also beginning their coursework. Navigating unfamiliar interactions, understanding the course structure, and learning new content simultaneously created unnecessary cognitive load, reducing confidence and making the first learning experience more challenging than it needed to be.</p>
+      <p>Students entering Module 1 were introduced to a new platform while also beginning their coursework. Navigating unfamiliar interactions, understanding the course structure, and learning new content simultaneously created <strong>unnecessary cognitive load</strong>, reducing confidence and making the <strong>first learning experience</strong> more challenging than it needed to be.</p>
     </section>
 
     <section class="case-section">
       <h2>Goals</h2>
       <div class="goals-grid">
         <div class="goal-card">
-          <div class="goal-col"><p class="meta-label">PRIMARY GOAL</p></div>
+          <div class="goal-col"><p class="meta-label">Primary goal</p></div>
           <div class="goal-col">
-            <p class="meta-label">USER GOALS</p>
+            <p class="meta-label">User goals</p>
             <p>Reduce cognitive load and time completion in Module 1.</p>
           </div>
           <div class="goal-col">
-            <p class="meta-label">BUSINESS GOALS</p>
+            <p class="meta-label">Business goals</p>
             <p>Reduce support tickets or student requests regarding navigation and interaction.</p>
           </div>
         </div>
         <div class="goal-card">
-          <div class="goal-col"><p class="meta-label">SECONDARY GOALS</p></div>
+          <div class="goal-col"><p class="meta-label">Secondary goals</p></div>
           <div class="goal-col">
-            <p class="meta-label">USER GOALS</p>
+            <p class="meta-label">User goals</p>
             <p>Increase user confidence and platform familiarity.</p>
           </div>
           <div class="goal-col">
-            <p class="meta-label">BUSINESS GOALS</p>
+            <p class="meta-label">Business goals</p>
             <p>Increase learning efficiency across all courses.</p>
           </div>
         </div>
@@ -485,7 +487,7 @@
       <p>To guide the ideation process, we framed the challenge around this key question.</p>
 
       <div class="box hmw-box">
-        <p class="box-label">HOW MIGHT WE...</p>
+        <p class="box-label">How might we...</p>
         <p class="box-text">Help students feel confident using the platform before they begin learning course content?</p>
       </div>
 
@@ -495,11 +497,11 @@
         <table class="data-table">
           <thead>
             <tr>
-              <th>OPTION</th>
-              <th>SOLUTION</th>
-              <th>PROS</th>
-              <th>CONS</th>
-              <th>DECISION</th>
+              <th>Option</th>
+              <th>Solution</th>
+              <th>Pros</th>
+              <th>Cons</th>
+              <th>Decision</th>
             </tr>
           </thead>
           <tbody>
@@ -529,7 +531,7 @@
       </div>
 
       <div class="box decision-box">
-        <p class="box-label">KEY DECISION</p>
+        <p class="box-label">Key decision</p>
         <p class="box-text">We ended up choosing Option C: Create a Training Module because students were trying to learn the platform and the course content at the same time. A training module lets them learn the platform first, making it easier to start the course.</p>
       </div>
     </section>
@@ -540,9 +542,9 @@
         <table class="data-table">
           <thead>
             <tr>
-              <th>FEATURE</th>
-              <th>UI PATTERN</th>
-              <th>OUTCOME</th>
+              <th>Feature</th>
+              <th>UI pattern</th>
+              <th>Outcome</th>
             </tr>
           </thead>
           <tbody>
@@ -607,7 +609,7 @@
       </ul>
 
       <div class="box">
-        <p class="box-label">LEARNING</p>
+        <p class="box-label">Learning</p>
         <p class="box-text">I learned that helping users feel confident at the start can have a measurable impact on their overall experience.</p>
       </div>
     </section>

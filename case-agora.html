@@ -14,19 +14,17 @@
     --line: #e7e6e2;
     --accent: #5b6ee8;
     --paper: #ffffff;
+    --card-bg: #fafafa;
     --edtech-bg: #fde2e4; --edtech-fg: #ee2737;
   }
 
   *{ box-sizing: border-box; }
-  html,body{ margin:0; padding:0; height:100%; }
+  html,body{ margin:0; padding:0; }
   body{
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: var(--ink);
     background: var(--paper);
     -webkit-font-smoothing: antialiased;
-    display:flex;
-    flex-direction:column;
-    min-height:100vh;
   }
   a{ color: inherit; text-decoration: none; }
 
@@ -34,9 +32,9 @@
     max-width: 980px;
     margin: 0 auto;
     padding: 0 40px;
-    width:100%;
   }
 
+  /* Header */
   header{ }
   .header-inner{
     display:flex;
@@ -64,18 +62,19 @@
     white-space: nowrap;
   }
 
-  main{
-    flex: 1;
+  /* Password gate */
+  .gate-main{
+    min-height: 60vh;
     display:flex;
     align-items:center;
     justify-content:center;
     padding: 40px 0;
   }
-
   .gate{
     width: 100%;
     max-width: 420px;
     text-align:center;
+    margin: 0 auto;
   }
   .gate-icon{
     width: 56px;
@@ -100,7 +99,6 @@
     color: var(--muted);
     margin: 0 0 28px;
   }
-
   .gate-form{
     display:flex;
     flex-direction: column;
@@ -117,9 +115,7 @@
     text-align: center;
     letter-spacing: 0.05em;
   }
-  .gate-input:focus{
-    border-color: var(--edtech-fg);
-  }
+  .gate-input:focus{ border-color: var(--edtech-fg); }
   .gate-input.error{
     border-color: var(--edtech-fg);
     animation: shake 0.35s ease;
@@ -143,7 +139,6 @@
     transition: opacity .2s ease;
   }
   .gate-submit:hover{ opacity: 0.88; }
-
   .error-msg{
     font-size: 13.5px;
     color: var(--edtech-fg);
@@ -151,24 +146,157 @@
     margin: 2px 0 0;
   }
 
-  .unlocked{
-    display:none;
-  }
-  .unlocked.show{
-    display:block;
-  }
-  .unlocked-icon{
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: #e2f4e7;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin: 0 auto 24px;
-  }
-  .unlocked-icon svg{ width:26px; height:26px; color: #23833f; }
+  #caseContent{ display:none; }
+  #caseContent.show{ display:block; }
 
+  /* Title */
+  .title-section{
+    padding: 50px 0 40px;
+  }
+  h1{
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.08;
+  }
+
+  /* Meta cards */
+  .meta-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding-bottom: 80px;
+  }
+  .meta-card{
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .meta-label{
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--muted);
+    margin: 0 0 5px;
+  }
+  .meta-value{
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* Cover image */
+  .cover{ padding-bottom: 80px; }
+  .cover img{
+    width: 100%;
+    display: block;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+  }
+
+  /* Case sections */
+  .case-section{ padding-bottom: 70px; }
+  .case-section h2{
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+  }
+  .case-section h3{
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+  .case-section p{
+    font-size: 15px;
+    line-height: 1.7;
+    color: #2b2e33;
+    margin: 0 0 20px;
+  }
+  .case-section p:last-child{ margin-bottom: 0; }
+
+  .bullet-list{
+    margin: 0 0 20px;
+    padding-left: 20px;
+  }
+  .bullet-list li{
+    font-size: 15px;
+    line-height: 1.7;
+    color: #2b2e33;
+    margin-bottom: 10px;
+  }
+  .bullet-list li:last-child{ margin-bottom: 0; }
+
+  code{
+    font-family: 'SF Mono', 'Courier New', monospace;
+    font-size: 13px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    color: var(--edtech-fg);
+    padding: 2px 7px;
+    border-radius: 5px;
+  }
+
+  .full-image{
+    margin: 4px 0 24px;
+  }
+  .full-image img{
+    width: 100%;
+    display: block;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+  }
+  .full-image.dark img{
+    background: #1c1d21;
+  }
+
+  .foundation-block{
+    margin-bottom: 40px;
+  }
+  .foundation-block:last-child{ margin-bottom: 0; }
+
+  .product-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 4px 0 24px;
+  }
+  .product-grid img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+  }
+
+  /* Learning box */
+  .box{
+    background: var(--edtech-bg);
+    border: 1px solid #f3c9c5;
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .box-label{
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--edtech-fg);
+    margin: 0 0 6px;
+  }
+  .box-text{
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  /* Footer */
   footer{
     padding: 28px 0;
     font-size: 13px;
@@ -176,9 +304,20 @@
     text-align:center;
   }
 
-  @media (max-width: 560px){
+  @media (max-width: 900px){
+    .meta-grid{ grid-template-columns: repeat(2, 1fr); }
+    h1{ font-size: 40px; }
     .wrap{ padding: 0 24px; }
+    .product-grid{ grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px){
+    .meta-grid{ grid-template-columns: 1fr; }
+    h1{ font-size: 32px; }
+    .title-section{ padding: 34px 0 30px; }
+    .back-link{ font-size: 14px; }
     .gate h1{ font-size: 22px; }
+    .product-grid img{ height: 180px; }
   }
 </style>
 </head>
@@ -195,26 +334,204 @@
   </header>
 
   <main class="wrap">
-    <div class="gate" id="gateLocked">
-      <div class="gate-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+
+    <div class="gate-main" id="gateLocked">
+      <div class="gate">
+        <div class="gate-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+        </div>
+        <h1>Agora Design System</h1>
+        <p>This case study is password protected. Enter the password to continue.</p>
+        <form class="gate-form" id="gateForm">
+          <input type="password" class="gate-input" id="gateInput" placeholder="Password" autocomplete="off">
+          <p class="error-msg" id="gateError"></p>
+          <button type="submit" class="gate-submit">Unlock</button>
+        </form>
       </div>
-      <h1>Agora Design System</h1>
-      <p>This case study is password protected. Enter the password to continue.</p>
-      <form class="gate-form" id="gateForm">
-        <input type="password" class="gate-input" id="gateInput" placeholder="Password" autocomplete="off">
-        <p class="error-msg" id="gateError"></p>
-        <button type="submit" class="gate-submit">Unlock</button>
-      </form>
     </div>
 
-    <div class="gate unlocked" id="gateUnlocked">
-      <div class="unlocked-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-      </div>
-      <h1>You're in!</h1>
-      <p>The full Agora Design System case study is coming soon — check back shortly.</p>
+    <div id="caseContent">
+
+      <section class="title-section">
+        <h1>Agora Design System</h1>
+      </section>
+
+      <section class="meta-grid">
+        <div class="meta-card">
+          <p class="meta-label">Industry</p>
+          <p class="meta-value">EdTech</p>
+        </div>
+        <div class="meta-card">
+          <p class="meta-label">Role</p>
+          <p class="meta-value">Product Designer · Design System Designer</p>
+        </div>
+        <div class="meta-card">
+          <p class="meta-label">Team</p>
+          <p class="meta-value">Individual Project</p>
+        </div>
+        <div class="meta-card">
+          <p class="meta-label">Timeframe</p>
+          <p class="meta-value">6 weeks</p>
+        </div>
+      </section>
+
+      <section class="cover">
+        <img src="agora-design-system.png" alt="Agora Design System overview">
+      </section>
+
+      <section class="case-section">
+        <h2>Overview</h2>
+        <p>EAE owns several digital products and experiences, including EAE Online, EAE Barcelona, EAE Madrid and EAE Corporate. As these products evolved independently, designers were solving similar problems in different ways. Components looked different, interactions behaved differently, and there were no shared rules defining how the interface should work. I designed Agora from scratch to create a shared foundation for the EAE ecosystem.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>The challenge</h2>
+        <p>Before Agora, there was no shared Design System connecting EAE's digital products. Designers were creating their own components and making individual decisions about visual styles, interaction states and component behavior. This created inconsistencies at different levels.</p>
+        <div class="product-grid">
+          <img src="agora-product-1.png" alt="EAE digital product screenshot">
+          <img src="agora-product-2.jpeg" alt="EAE digital product screenshot">
+          <img src="agora-product-3.png" alt="EAE digital product screenshot">
+          <img src="agora-product-4.jpeg" alt="EAE digital product screenshot">
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Understanding the ecosystem</h2>
+        <p>I already had a strong understanding of the EAE product ecosystem, so I used that knowledge as a starting point and complemented it with interviews with different designers. The objective was to identify:</p>
+        <ul class="bullet-list">
+          <li>What problems were repeated across products?</li>
+          <li>Which components were being recreated most often?</li>
+          <li>Which behaviors needed to become shared standards?</li>
+          <li>Which needs were genuinely specific to EAE?</li>
+          <li>Where could a shared system create value without restricting product teams?</li>
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>Foundations</h2>
+        <p>The brand guidelines provided by Marketing established the visual identity. My role was to translate that identity into a digital foundation that could support multiple products and interfaces.</p>
+
+        <div class="foundation-block">
+          <h3>Color</h3>
+          <p>The red palette is particularly important because red is central to EAE's visual identity. Rather than treating the brand red as the only red available in the interface, I created a broader scale that allows different values to be used according to context. This creates more flexibility for UI states, backgrounds or borders.</p>
+          <div class="full-image">
+            <img src="agora-color-palette.png" alt="Agora color palette and gradients">
+          </div>
+        </div>
+
+        <div class="foundation-block">
+          <h3>Typography</h3>
+          <p>The system uses Inter as its typeface. A structured hierarchy was established from H1 to H6, together with body text styles, creating consistent typographic relationships across products.</p>
+          <div class="full-image">
+            <img src="agora-typography.png" alt="Agora typography scale">
+          </div>
+        </div>
+
+        <div class="foundation-block">
+          <h3>Icons</h3>
+          <p>Agora includes a broad icon library organized into categories such as Arrow, Menu, Edit, Environment or Shape. The goal is to give designers a consistent visual vocabulary instead of recreating or sourcing icons independently.</p>
+          <div class="full-image">
+            <img src="agora-icons.png" alt="Agora icon library">
+          </div>
+        </div>
+
+        <div class="foundation-block">
+          <h3>Logo</h3>
+          <p>The system also includes the EAE logo ecosystem, including the relevant light, dark, red and other variations.</p>
+          <div class="full-image">
+            <img src="agora-logo.png" alt="Agora logo variations">
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Token architecture</h2>
+        <p>Agora uses a three-level token structure: Brand → Alias → Mapped</p>
+        <p><strong>Brand tokens:</strong> these represent the underlying brand values. For example: <code>red/100</code></p>
+        <p><strong>Alias tokens:</strong> these provide a contextual meaning to those values. For example: <code>primary/25</code>. Rather than directly connecting every component to a raw color value, aliases allow the system to communicate why a value is being used.</p>
+        <p><strong>Mapped tokens:</strong> the mapped layer connects those semantic decisions to the actual component usage. <code>icons/default</code></p>
+        <p>This creates a separation between: what the value is → what it means → where it is used. That separation makes the system easier to maintain and gives future changes a clear path through the architecture.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Components</h2>
+        <p>I prioritized components based on how frequently they appeared across the EAE ecosystem. I started with common building blocks such as:</p>
+        <ul class="bullet-list">
+          <li>Button</li>
+          <li>Label</li>
+          <li>Field</li>
+          <li>Input</li>
+          <li>Menu</li>
+          <li>Checkbox</li>
+          <li>Radio Button</li>
+          <li>Switch</li>
+          <li>Text Area</li>
+          <li>Tab Bar</li>
+          <li>Link</li>
+          <li>Breadcrumbs</li>
+          <li>Avatar</li>
+          <li>Tag</li>
+          <li>Loader</li>
+        </ul>
+        <p>An example of component properties includes: Status, Type, Icon Left, Icon Right, Label. This allows designers to create multiple component configurations without creating separate components for every variation.</p>
+        <div class="full-image dark">
+          <img src="agora-component-properties.png" alt="Agora component properties panel in Figma">
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Component example: Button</h2>
+        <p>The Button component was one of the areas where the need for standardization was particularly visible. Agora defines button types such as:</p>
+        <p><strong>Default · Outlined · Text</strong></p>
+        <p>and interaction states such as:</p>
+        <p><strong>Default · Hover · Focus · Disabled</strong></p>
+        <p>It also supports icon variations, mobile configurations and button groups. Instead of each product deciding independently how a button should behave, these decisions become part of the system.</p>
+        <div class="full-image">
+          <img src="agora-button-states.png" alt="Agora button types and states">
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Documentation &amp; Collaboration</h2>
+        <p>The Figma library contains the design foundations, tokens and components. I chose Zeroheight, with the intention of documenting not only what components look like, but also how and when they should be used. The documentation will cover areas such as:</p>
+        <ul class="bullet-list">
+          <li>Component purpose</li>
+          <li>Usage</li>
+          <li>Variants</li>
+          <li>States</li>
+          <li>Properties</li>
+          <li>Do's and don'ts</li>
+          <li>Examples</li>
+          <li>Design decisions</li>
+        </ul>
+        <p>This creates a bridge between the visual library and the knowledge required to use it correctly.</p>
+        <div class="full-image">
+          <img src="agora-zeroheight.png" alt="Agora documentation in Zeroheight">
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Outcomes and learnings</h2>
+        <p>The project has established:</p>
+        <ul class="bullet-list">
+          <li>A shared visual foundation</li>
+          <li>A structured token architecture</li>
+          <li>Reusable core components</li>
+          <li>Consistent component states and properties</li>
+          <li>EAE-specific components for educational workflows</li>
+          <li>A common approach to solving recurring interface problems</li>
+          <li>A foundation for future documentation and development</li>
+        </ul>
+        <p>More importantly, design decisions that were previously made independently can now be represented as shared system decisions.</p>
+
+        <div class="box">
+          <p class="box-label">Learning</p>
+          <p class="box-text">It was my first time building a Design System from scratch and having full ownership of the process. A Design System is much more than a component library.</p>
+        </div>
+      </section>
+
     </div>
+
   </main>
 
   <footer>
@@ -222,18 +539,18 @@
   </footer>
 
   <script>
-    var CORRECT_PASSWORD = "agora2026";
+    var CORRECT_PASSWORD = "agora123";
     var form = document.getElementById('gateForm');
     var input = document.getElementById('gateInput');
     var errorMsg = document.getElementById('gateError');
     var locked = document.getElementById('gateLocked');
-    var unlocked = document.getElementById('gateUnlocked');
+    var content = document.getElementById('caseContent');
 
     form.addEventListener('submit', function(e){
       e.preventDefault();
       if (input.value.trim() === CORRECT_PASSWORD) {
         locked.style.display = 'none';
-        unlocked.classList.add('show');
+        content.classList.add('show');
       } else {
         errorMsg.textContent = 'Incorrect password, please try again.';
         input.classList.remove('error');

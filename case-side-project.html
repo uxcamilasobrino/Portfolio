@@ -89,11 +89,11 @@
     padding: 20px 22px;
   }
   .meta-label{
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.01em;
     color: var(--muted);
-    margin: 0 0 10px;
+    margin: 0 0 5px;
   }
   .meta-value{
     font-size: 17px;
@@ -140,11 +140,11 @@
     padding: 22px 24px;
   }
   .box-label{
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.01em;
     color: var(--side-fg);
-    margin: 0 0 12px;
+    margin: 0 0 6px;
   }
   .box-text{
     font-size: 15px;
@@ -172,7 +172,7 @@
     background: var(--card-bg);
   }
   .goal-card .meta-label{ margin-bottom: 0; align-self: start; }
-  .goal-col .meta-label{ margin-bottom: 8px; }
+  .goal-col .meta-label{ margin-bottom: 5px; }
   .goal-col p{
     font-size: 15px;
     line-height: 1.6;
@@ -205,10 +205,26 @@
     padding: 22px 24px;
     background: var(--card-bg);
   }
+  .persona-header{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .persona-avatar{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .persona-avatar img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
   .persona-name{
     font-size: 17px;
     font-weight: 700;
-    margin: 0 0 18px;
+    margin: 0;
   }
   .persona-field{
     margin-bottom: 16px;
@@ -251,9 +267,9 @@
   }
   .data-table th{
     text-align: left;
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.01em;
     color: var(--muted);
     background: var(--card-bg);
     padding: 14px 18px;
@@ -272,8 +288,10 @@
 
   /* Prototype button */
   .proto-btn{
-    display:inline-flex;
+    display:flex;
+    width: 100%;
     align-items:center;
+    justify-content:center;
     gap: 10px;
     background: var(--side-fg);
     color: #fff;
@@ -339,6 +357,7 @@
     h1{ font-size: 32px; }
     .title-section{ padding: 44px 0 30px; }
     .back-link{ font-size: 14px; }
+    .persona-avatar{ width: 48px; height: 48px; }
   }
 </style>
 </head>
@@ -362,19 +381,19 @@
 
     <section class="meta-grid">
       <div class="meta-card">
-        <p class="meta-label">INDUSTRY</p>
+        <p class="meta-label">Industry</p>
         <p class="meta-value">HealthTech</p>
       </div>
       <div class="meta-card">
-        <p class="meta-label">ROLE</p>
+        <p class="meta-label">Role</p>
         <p class="meta-value">UX Designer & Researcher</p>
       </div>
       <div class="meta-card">
-        <p class="meta-label">TEAM</p>
+        <p class="meta-label">Team</p>
         <p class="meta-value">Individual Project</p>
       </div>
       <div class="meta-card">
-        <p class="meta-label">TIMEFRAME</p>
+        <p class="meta-label">Timeframe</p>
         <p class="meta-value">3 months</p>
       </div>
     </section>
@@ -391,10 +410,10 @@
 
     <section class="case-section">
       <h2>Problem Definition</h2>
-      <p>Users experience unconscious, mindless phone interactions because they often open apps without reflecting on their purpose. This habitual behavior leads to wasted time, distraction, and feelings of guilt or frustration, reducing focus and overall digital wellbeing.</p>
+      <p>Users experience unconscious, <strong>mindless phone interactions</strong> because they often open apps without reflecting on their purpose. This habitual behavior leads to wasted time, distraction, and feelings of guilt or frustration, reducing focus and overall <strong>digital wellbeing</strong>.</p>
 
       <div class="box hmw-box">
-        <p class="box-label">HOW MIGHT WE...</p>
+        <p class="box-label">How might we...</p>
         <p class="box-text">How might we help young adults and teenagers pause, reflect, and act intentionally every time they interact with their phone?</p>
       </div>
     </section>
@@ -403,24 +422,24 @@
       <h2>Goals</h2>
       <div class="goals-grid">
         <div class="goal-card">
-          <div class="goal-col"><p class="meta-label">PRIMARY GOAL</p></div>
+          <div class="goal-col"><p class="meta-label">Primary goal</p></div>
           <div class="goal-col">
-            <p class="meta-label">USER GOALS</p>
+            <p class="meta-label">User goals</p>
             <p>Help users engage with their phone intentionally, reducing mindless interaction and promoting digital wellbeing.</p>
           </div>
           <div class="goal-col">
-            <p class="meta-label">BUSINESS GOALS</p>
+            <p class="meta-label">Business goals</p>
             <p>Promote healthier digital habits to position the app as a trusted wellbeing tool.</p>
           </div>
         </div>
         <div class="goal-card">
-          <div class="goal-col"><p class="meta-label">SECONDARY GOALS</p></div>
+          <div class="goal-col"><p class="meta-label">Secondary goals</p></div>
           <div class="goal-col">
-            <p class="meta-label">USER GOALS</p>
+            <p class="meta-label">User goals</p>
             <p>Encourage users to pause and reflect before opening any app. Support users in clarifying their intention, making each phone interaction purposeful.</p>
           </div>
           <div class="goal-col">
-            <p class="meta-label">BUSINESS GOALS</p>
+            <p class="meta-label">Business goals</p>
             <p>Track habits over time to build mindful, sustainable phone use patterns. Provide quick feedback and gentle nudges to maintain awareness.</p>
           </div>
         </div>
@@ -443,65 +462,71 @@
       <h2>User Personas</h2>
       <div class="persona-grid">
         <div class="persona-card">
-          <p class="persona-name">Alex, High School Student</p>
+          <div class="persona-header">
+            <div class="persona-avatar"><img src="persona-alex.png" alt="Alex persona avatar"></div>
+            <p class="persona-name">Alex, High School Student</p>
+          </div>
           <div class="persona-field">
-            <p class="meta-label">AGE</p>
+            <p class="meta-label">Age</p>
             <p>18</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">BACKGROUND</p>
+            <p class="meta-label">Background</p>
             <p>Final-year high school student juggling classes, exams, and friendships</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">GOALS</p>
+            <p class="meta-label">Goals</p>
             <p>Stay focused on studying and hobbies without constant distraction</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">BEHAVIORS</p>
+            <p class="meta-label">Behaviors</p>
             <p>Opens phone automatically when bored or stressed; jumps between apps without intent</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">PAIN POINTS</p>
+            <p class="meta-label">Pain points</p>
             <p>Feels frustrated after long scrolling sessions; struggles to stop once started</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">MOTIVATIONS</p>
+            <p class="meta-label">Motivations</p>
             <p>Wants better concentration and less stress before exams</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">NEEDS</p>
+            <p class="meta-label">Needs</p>
             <p>Simple prompts that encourage pausing and thinking before opening apps</p>
           </div>
         </div>
 
         <div class="persona-card">
-          <p class="persona-name">Maya, University Graduate</p>
+          <div class="persona-header">
+            <div class="persona-avatar"><img src="persona-maya.png" alt="Maya persona avatar"></div>
+            <p class="persona-name">Maya, University Graduate</p>
+          </div>
           <div class="persona-field">
-            <p class="meta-label">AGE</p>
+            <p class="meta-label">Age</p>
             <p>24</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">BACKGROUND</p>
+            <p class="meta-label">Background</p>
             <p>Recently graduated, adjusting to independent life and work/study routines</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">GOALS</p>
+            <p class="meta-label">Goals</p>
             <p>Be more intentional with time and maintain healthy routines</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">BEHAVIORS</p>
+            <p class="meta-label">Behaviors</p>
             <p>Unlocks phone out of habit during breaks, often losing track of time</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">PAIN POINTS</p>
+            <p class="meta-label">Pain points</p>
             <p>Feels guilty when phone use interferes with productivity or sleep</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">MOTIVATIONS</p>
+            <p class="meta-label">Motivations</p>
             <p>Wants balance, mental clarity, and a sense of control over daily life</p>
           </div>
           <div class="persona-field">
-            <p class="meta-label">NEEDS</p>
+            <p class="meta-label">Needs</p>
             <p>A mindful system that helps reflect on intention without feeling restrictive</p>
           </div>
         </div>
@@ -532,9 +557,9 @@
         <table class="data-table">
           <thead>
             <tr>
-              <th>FEATURE</th>
-              <th>UI PATTERN</th>
-              <th>OUTCOME</th>
+              <th>Feature</th>
+              <th>UI pattern</th>
+              <th>Outcome</th>
             </tr>
           </thead>
           <tbody>
