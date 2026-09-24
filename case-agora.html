@@ -104,15 +104,18 @@
     flex-direction: column;
     gap: 12px;
   }
+  .gate-input-wrap{
+    position: relative;
+  }
   .gate-input{
     width: 100%;
     font-family: inherit;
     font-size: 15px;
-    padding: 14px 16px;
+    padding: 14px 44px 14px 16px;
     border-radius: 10px;
     border: 1px solid var(--line);
     outline: none;
-    text-align: center;
+    text-align: left;
     letter-spacing: 0.05em;
   }
   .gate-input:focus{ border-color: var(--edtech-fg); }
@@ -120,6 +123,27 @@
     border-color: var(--edtech-fg);
     animation: shake 0.35s ease;
   }
+  .gate-toggle{
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 0;
+  }
+  .gate-toggle:hover{ color: var(--ink); }
+  .gate-toggle svg{ width:19px; height:19px; }
+  .gate-toggle .eye-off{ display:none; }
+  .gate-toggle.showing .eye{ display:none; }
+  .gate-toggle.showing .eye-off{ display:block; }
   @keyframes shake{
     0%, 100%{ transform: translateX(0); }
     25%{ transform: translateX(-6px); }
@@ -343,7 +367,13 @@
         <h1>Agora Design System</h1>
         <p>This case study is password protected. Enter the password to continue.</p>
         <form class="gate-form" id="gateForm">
-          <input type="password" class="gate-input" id="gateInput" placeholder="Password" autocomplete="off">
+          <div class="gate-input-wrap">
+            <input type="password" class="gate-input" id="gateInput" placeholder="Password" autocomplete="off">
+            <button type="button" class="gate-toggle" id="gateToggle" aria-label="Show password">
+              <svg class="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.94 10.94 0 0112 19c-7 0-11-7-11-7a18.6 18.6 0 015.06-5.94M9.9 4.24A10.4 10.4 0 0112 4c7 0 11 7 11 7a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><path d="M1 1l22 22"/></svg>
+            </button>
+          </div>
           <p class="error-msg" id="gateError"></p>
           <button type="submit" class="gate-submit">Unlock</button>
         </form>
@@ -545,6 +575,13 @@
     var errorMsg = document.getElementById('gateError');
     var locked = document.getElementById('gateLocked');
     var content = document.getElementById('caseContent');
+    var toggle = document.getElementById('gateToggle');
+
+    toggle.addEventListener('click', function(){
+      var showing = toggle.classList.toggle('showing');
+      input.type = showing ? 'text' : 'password';
+      toggle.setAttribute('aria-label', showing ? 'Hide password' : 'Show password');
+    });
 
     form.addEventListener('submit', function(e){
       e.preventDefault();
