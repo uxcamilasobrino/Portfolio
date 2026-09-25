@@ -83,37 +83,54 @@
 
   /* Hero */
   .hero{
-    padding: 90px 0 10px;
-  }
-  .hero-heading{
-    display:flex;
+    display:grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 56px;
     align-items:center;
-    gap: 24px;
-    margin-bottom: 26px;
+    padding: 80px 0 70px;
   }
-  .hero-avatar{
-    width: 84px;
-    height: 84px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-  .hero-avatar img{
-    width:100%; height:100%; object-fit:cover; display:block;
-  }
-  .hero h1{
-    font-size: 52px;
+  .hero-text h1{
+    font-size: 56px;
     font-weight: 800;
     letter-spacing: -0.02em;
-    margin: 0 0 10px;
+    margin: 0 0 14px;
     line-height: 1.08;
   }
   .role{
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 600;
-    letter-spacing: 0.14em;
     color: var(--accent);
-    margin: 0;
+    margin: 0 0 24px;
+  }
+  .hero-photo-wrap{
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    justify-self: end;
+  }
+  .hero-photo-wrap::before{
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0.14;
+    border-radius: 28px;
+    z-index: 0;
+  }
+  .hero-photo{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .hero-photo img{
+    width:100%; height:100%; object-fit:cover; display:block;
   }
   .bio{
     width: 100%;
@@ -237,7 +254,9 @@
 
   @media (max-width: 900px){
     .work-grid{ grid-template-columns: 1fr; }
-    .hero h1{ font-size: 40px; }
+    .hero{ grid-template-columns: 1fr; padding: 60px 0 50px; gap: 40px; }
+    .hero-text h1{ font-size: 40px; }
+    .hero-photo-wrap{ justify-self: center; max-width: 300px; order: -1; }
     .wrap{ padding: 0 24px; }
   }
 
@@ -263,10 +282,9 @@
   }
 
   @media (max-width: 560px){
-    .hero{ padding-top: 60px; }
-    .hero h1{ font-size: 32px; }
-    .hero-heading{ gap: 16px; margin-bottom: 20px; }
-    .hero-avatar{ width: 60px; height: 60px; }
+    .hero{ padding-top: 44px; }
+    .hero-text h1{ font-size: 32px; }
+    .hero-photo-wrap{ max-width: 240px; }
     .role{ font-size: 15px; }
     .bio{ font-size: 16px; }
     .wrap{ padding: 0 18px; }
@@ -303,21 +321,23 @@
   <main class="wrap">
 
     <section class="hero" id="about">
-      <div class="hero-heading">
-        <div class="hero-avatar"><img src="profile.jpg" alt="Camila Sobrino"></div>
-        <div>
-          <h1>Hello, I'm Camila</h1>
-          <p class="role">PRODUCT DESIGNER BASED IN BARCELONA</p>
+      <div class="hero-text">
+        <h1>Hello, I'm Camila</h1>
+        <p class="role">Product Designer based in Barcelona</p>
+        <p class="bio">
+          Digital native Product Designer with a strong interest in human behavior and
+          learning processes. I hold a Master’s degree in Usability, Interaction Design, and User
+          Experience. I’m currently working on creating intuitive interfaces and accessible user
+          experiences for higher education courses. My work focuses on optimizing interactions,
+          crafting user journeys, and prioritizing usability to ensure smooth and effective
+          learning experiences.
+        </p>
+      </div>
+      <div class="hero-photo-wrap">
+        <div class="hero-photo">
+          <img src="profile.jpg" alt="Camila Sobrino">
         </div>
       </div>
-      <p class="bio">
-        Digital native Product Designer with a strong interest in human behavior and
-        learning processes. I hold a Master’s degree in Usability, Interaction Design, and User
-        Experience. I’m currently working on creating intuitive interfaces and accessible user
-        experiences for higher education courses. My work focuses on optimizing interactions,
-        crafting user journeys, and prioritizing usability to ensure smooth and effective
-        learning experiences.
-      </p>
     </section>
 
     <section class="skills">
