@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Camila Sobrino</title>
+<meta name="description" content="Camila Sobrino — Product Designer based in Barcelona, focused on usability, interaction design and design systems.">
+<meta property="og:title" content="Camila Sobrino — Product Designer">
+<meta property="og:description" content="Product Designer based in Barcelona, focused on usability, interaction design and design systems.">
+<meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -12,7 +16,7 @@
     --ink: #14161a;
     --muted: #5b616b;
     --line: #e7e6e2;
-    --accent: #5b6ee8;
+    --accent: #14161a;
     --paper: #ffffff;
     --chip-bg: #f4f3f1;
     --edtech-bg: #fde2e4; --edtech-fg: #ee2737;
@@ -30,6 +34,14 @@
     -webkit-font-smoothing: antialiased;
   }
   a{ color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; }
+  }
 
   .wrap{
     max-width: 980px;
@@ -76,8 +88,13 @@
     padding: 8px 16px;
     font-size: 14px;
     font-weight: 500;
-    color: var(--accent);
+    color: var(--ink);
     white-space: nowrap;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .pill:hover{
+    border-color: var(--ink);
+    background: var(--chip-bg);
   }
   .pill svg{ width:15px; height:15px; flex-shrink:0; }
 
@@ -116,8 +133,8 @@
   }
   .role{
     font-size: 19px;
-    font-weight: 600;
-    color: var(--accent);
+    font-weight: 500;
+    color: var(--muted);
     margin: 0;
   }
   .bio{
@@ -176,7 +193,7 @@
     white-space: nowrap;
     flex-shrink: 0;
   }
-  .chip svg{ width:17px; height:17px; color: var(--accent); flex-shrink:0; }
+  .chip svg{ width:17px; height:17px; color: var(--muted); flex-shrink:0; }
 
   /* Work */
   .work{
@@ -191,11 +208,18 @@
     border: 1px solid var(--line);
     border-radius: 14px;
     overflow: hidden;
-    transition: transform .25s ease, box-shadow .25s ease;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
   .card:hover{
     transform: translateY(-3px);
     box-shadow: 0 12px 28px rgba(20,22,26,0.08);
+    border-color: #d6d4cf;
+  }
+  .card-body h3{
+    transition: opacity .2s ease;
+  }
+  .card:hover .card-body h3{
+    opacity: 0.68;
   }
   .thumb{
     height: 240px;
@@ -287,6 +311,94 @@
     .card-body{ padding: 18px 18px 22px; }
     .thumb{ height: 200px; }
   }
+  /* ---- Motion ---- */
+
+  /* Cursor ring (desktop pointer only) */
+  .cursor-ring{
+    position: fixed;
+    top: 0; left: 0;
+    width: 26px; height: 26px;
+    border: 1.5px solid rgba(20,22,26,0.35);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transform: translate3d(-50px,-50px,0);
+    transition: width .22s ease, height .22s ease,
+                border-color .22s ease, background .22s ease, opacity .22s ease;
+    will-change: transform;
+  }
+  .cursor-ring.is-active{ opacity: 1; }
+  .cursor-ring.is-hover{
+    width: 46px; height: 46px;
+    border-color: rgba(20,22,26,0.18);
+    background: rgba(20,22,26,0.05);
+  }
+
+  /* Entrance: staggered fade-up */
+  @keyframes fade-up{
+    from{ opacity: 0; transform: translateY(16px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+  .anim-in{
+    opacity: 0;
+    animation: fade-up .7s cubic-bezier(.22,.8,.3,1) forwards;
+  }
+  .anim-in.d1{ animation-delay: .05s; }
+  .anim-in.d2{ animation-delay: .10s; }
+  .anim-in.d3{ animation-delay: .15s; }
+  .anim-in.d4{ animation-delay: .20s; }
+
+  /* Scroll reveal */
+  .reveal{
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .7s cubic-bezier(.22,.8,.3,1),
+                transform .7s cubic-bezier(.22,.8,.3,1);
+  }
+  .reveal.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal.r1{ transition-delay: .06s; }
+  .reveal.r2{ transition-delay: .14s; }
+  .reveal.r3{ transition-delay: .22s; }
+
+  /* Hero photo subtle life */
+  .hero-photo img{
+    transition: transform .6s cubic-bezier(.22,.8,.3,1);
+  }
+  .hero-photo:hover img{ transform: scale(1.04); }
+
+  /* Card thumb zoom already present; add title arrow cue */
+  .card-body h3{
+    display:flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .card-arrow{
+    display:inline-block;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity .25s ease, transform .25s ease;
+    font-weight: 600;
+  }
+  .card:hover .card-arrow{
+    opacity: .7;
+    transform: translateX(0);
+  }
+
+  @media (hover: none){
+    .cursor-ring{ display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .anim-in{ animation: none; opacity: 1; }
+    .reveal{ opacity: 1; transform: none; transition: none; }
+    .cursor-ring{ display: none; }
+    .hero-photo:hover img{ transform: none; }
+  }
+
 </style>
 </head>
 <body>
@@ -297,15 +409,15 @@
         <span class="brand-name">CS.</span>
       </div>
       <div class="header-right">
-        <a class="pill pill-cv" href="Camila_Sobrino_resume.pdf" download>
+        <a class="pill pill-cv" href="Camila_Sobrino_resume.pdf" download aria-label="Download CV">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
           <span class="pill-text">Download CV</span>
         </a>
-        <a class="pill" href="mailto:camilasobrinov@icloud.com">
+        <a class="pill" href="mailto:camilasobrinov@icloud.com" aria-label="Email camilasobrinov@icloud.com">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>
           <span class="pill-text">camilasobrinov@icloud.com</span>
         </a>
-        <a class="pill" href="https://www.linkedin.com/in/camilasobrino/" target="_blank" rel="noopener">
+        <a class="pill" href="https://www.linkedin.com/in/camilasobrino/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9h4v2c1-1.5 2.5-2.3 4.5-2.3 3.5 0 5.5 2.3 5.5 6.6V21h-4v-5.2c0-2-0.8-3.3-2.5-3.3-1.7 0-2.8 1.2-3.3 2.4-0.2.4-0.2.9-0.2 1.5V21h-4V9z"/></svg>
           <span class="pill-text">LinkedIn</span>
         </a>
@@ -317,15 +429,15 @@
 
     <section class="hero" id="about">
       <div class="hero-top">
-        <div class="hero-photo-wrap">
+        <div class="hero-photo-wrap anim-in d1">
           <div class="hero-photo">
             <img src="profile.jpg" alt="Camila Sobrino">
           </div>
         </div>
-        <h1>Hello, I'm Camila</h1>
-        <p class="role">Product Designer based in Barcelona</p>
+        <h1 class="anim-in d2">Hello, I'm Camila</h1>
+        <p class="role anim-in d3">Product Designer based in Barcelona</p>
       </div>
-      <p class="bio">
+      <p class="bio anim-in d4">
         Digital native Product Designer with a strong interest in human behavior and
         learning processes. I hold a Master’s degree in Usability, Interaction Design, and User
         Experience. I’m currently working on creating intuitive interfaces and accessible user
@@ -336,37 +448,37 @@
     </section>
 
     <section class="work" id="work">
-      <p class="section-title">Relevant work</p>
+      <p class="section-title reveal">Relevant work</p>
       <div class="work-grid">
 
-        <a class="card" href="case-agora.html">
+        <a class="card reveal r1" href="case-agora.html">
           <div class="thumb">
             <img src="agora-design-system.png" alt="Agora Design System — EAE case study">
           </div>
           <div class="card-body">
-            <h3>Agora Design System</h3>
+            <h3>Agora Design System <span class="card-arrow" aria-hidden="true">→</span></h3>
             <p class="card-desc">Defines the foundations of user interfaces across EAE Business School ecosystem of products & services.</p>
             <span class="tag edtech">EAE</span>
           </div>
         </a>
 
-        <a class="card" href="case-eae.html">
+        <a class="card reveal r2" href="case-eae.html">
           <div class="thumb">
             <img src="eae.png" alt="Improving the onboarding experience — EAE case study">
           </div>
           <div class="card-body">
-            <h3>Improving the onboarding experience</h3>
+            <h3>Improving the onboarding experience <span class="card-arrow" aria-hidden="true">→</span></h3>
             <p class="card-desc">Reducing cognitive load for new students learning a platform and coursework at the same time.</p>
             <span class="tag edtech">EAE</span>
           </div>
         </a>
 
-        <a class="card" href="case-side-project.html">
+        <a class="card reveal r3" href="case-side-project.html">
           <div class="thumb">
             <img src="side_project.png" alt="Increasing user agency through intentional app — Side Project case study">
           </div>
           <div class="card-body">
-            <h3>Increasing user agency through intentional app</h3>
+            <h3>Increasing user agency through intentional app <span class="card-arrow" aria-hidden="true">→</span></h3>
             <p class="card-desc">Designing a mindful interaction flow that helps users pause and set intention before opening apps.</p>
             <span class="tag health">Side Project</span>
           </div>
@@ -412,6 +524,68 @@
   <footer>
     © 2026 Camila Sobrino. All rights reserved.
   </footer>
+
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <script>
+  (function(){
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    /* ---- Cursor ring ---- */
+    if (finePointer && !reduced) {
+      var ring = document.getElementById('cursorRing');
+      var rx = 0, ry = 0, tx = 0, ty = 0, started = false;
+
+      document.addEventListener('mousemove', function(e){
+        tx = e.clientX;
+        ty = e.clientY;
+        if (!started) {
+          started = true;
+          rx = tx; ry = ty;
+          ring.classList.add('is-active');
+        }
+      });
+
+      document.addEventListener('mouseleave', function(){
+        ring.classList.remove('is-active');
+      });
+      document.addEventListener('mouseenter', function(){
+        if (started) ring.classList.add('is-active');
+      });
+
+      (function loop(){
+        rx += (tx - rx) * 0.18;
+        ry += (ty - ry) * 0.18;
+        ring.style.transform = 'translate3d(' + (rx - 13) + 'px,' + (ry - 13) + 'px,0)';
+        requestAnimationFrame(loop);
+      })();
+
+      var hoverables = document.querySelectorAll('a, button, .card, .chip');
+      hoverables.forEach(function(el){
+        el.addEventListener('mouseenter', function(){ ring.classList.add('is-hover'); });
+        el.addEventListener('mouseleave', function(){ ring.classList.remove('is-hover'); });
+      });
+    }
+
+    /* ---- Scroll reveal ---- */
+    var revealEls = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) {
+      revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+      revealEls.forEach(function(el){ io.observe(el); });
+    }
+  })();
+  </script>
 
 </body>
 </html>
