@@ -255,6 +255,24 @@
   }
   .bullet-list li:last-child{ margin-bottom: 0; }
 
+  .proto-btn{
+    display:flex;
+    width: 100%;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    background: var(--edtech-fg);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 24px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    transition: opacity .2s ease;
+  }
+  .proto-btn:hover{ opacity: 0.88; }
+  .proto-btn svg{ width:17px; height:17px; flex-shrink:0; }
+
   code{
     font-family: 'SF Mono', 'Courier New', monospace;
     font-size: 13px;
@@ -554,9 +572,10 @@
       <section class="case-section">
         <h2>Documentation</h2>
         <p>The Figma library holds the foundations, tokens and components, while Zeroheight documents how and when to use them (purpose, variants, states, do's and don'ts), bridging the visual library with the knowledge needed to use it correctly.</p>
-        <div class="full-image">
-          <img src="agora-zeroheight.png" alt="Agora documentation in Zeroheight">
-        </div>
+        <a class="proto-btn" href="https://zeroheight.com/2494ce398/p/980e1d-agora-design-system" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+          View documentation on Zeroheight
+        </a>
       </section>
 
       <section class="case-section">
