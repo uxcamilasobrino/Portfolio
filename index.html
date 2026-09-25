@@ -83,29 +83,18 @@
 
   /* Hero */
   .hero{
-    display:grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 56px;
+    padding: 80px 0 30px;
+  }
+  .hero-top{
+    display:flex;
+    flex-direction: column;
     align-items:center;
-    padding: 80px 0 70px;
-  }
-  .hero-text h1{
-    font-size: 56px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin: 0 0 14px;
-    line-height: 1.08;
-  }
-  .role{
-    font-size: 19px;
-    font-weight: 600;
-    color: var(--accent);
-    margin: 0 0 24px;
+    text-align:center;
+    margin-bottom: 40px;
   }
   .hero-photo-wrap{
-    width: 100%;
-    max-width: 340px;
-    justify-self: end;
+    width: 200px;
+    margin-bottom: 28px;
   }
   .hero-photo{
     width: 100%;
@@ -118,8 +107,22 @@
   .hero-photo img{
     width:100%; height:100%; object-fit:cover; display:block;
   }
+  .hero-top h1{
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    line-height: 1.1;
+  }
+  .role{
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0;
+  }
   .bio{
     width: 100%;
+    text-align: left;
     font-size: 17px;
     line-height: 1.65;
     color: #2b2e33;
@@ -134,8 +137,14 @@
     color: var(--ink);
     margin-bottom: 22px;
   }
+  .section-title{
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px;
+  }
   .skills{
-    padding: 30px 0 60px;
+    padding: 10px 0 70px;
   }
   .marquee{
     overflow: hidden;
@@ -171,7 +180,7 @@
 
   /* Work */
   .work{
-    padding-bottom: 100px;
+    padding: 20px 0 60px;
   }
   .work-grid{
     display:grid;
@@ -240,9 +249,9 @@
 
   @media (max-width: 900px){
     .work-grid{ grid-template-columns: 1fr; }
-    .hero{ grid-template-columns: 1fr; padding: 60px 0 50px; gap: 40px; }
-    .hero-text h1{ font-size: 40px; }
-    .hero-photo-wrap{ justify-self: center; max-width: 300px; order: -1; }
+    .hero{ padding: 60px 0 50px; }
+    .hero-top h1{ font-size: 40px; }
+    .hero-photo-wrap{ width: 170px; }
     .wrap{ padding: 0 24px; }
   }
 
@@ -269,8 +278,8 @@
 
   @media (max-width: 560px){
     .hero{ padding-top: 44px; }
-    .hero-text h1{ font-size: 32px; }
-    .hero-photo-wrap{ max-width: 240px; }
+    .hero-top h1{ font-size: 30px; }
+    .hero-photo-wrap{ width: 140px; margin-bottom: 22px; }
     .role{ font-size: 15px; }
     .bio{ font-size: 16px; }
     .wrap{ padding: 0 18px; }
@@ -307,58 +316,27 @@
   <main class="wrap">
 
     <section class="hero" id="about">
-      <div class="hero-text">
+      <div class="hero-top">
+        <div class="hero-photo-wrap">
+          <div class="hero-photo">
+            <img src="profile.jpg" alt="Camila Sobrino">
+          </div>
+        </div>
         <h1>Hello, I'm Camila</h1>
         <p class="role">Product Designer based in Barcelona</p>
-        <p class="bio">
-          Digital native Product Designer with a strong interest in human behavior and
-          learning processes. I hold a Master’s degree in Usability, Interaction Design, and User
-          Experience. I’m currently working on creating intuitive interfaces and accessible user
-          experiences for higher education courses. My work focuses on optimizing interactions,
-          crafting user journeys, and prioritizing usability to ensure smooth and effective
-          learning experiences.
-        </p>
       </div>
-      <div class="hero-photo-wrap">
-        <div class="hero-photo">
-          <img src="profile.jpg" alt="Camila Sobrino">
-        </div>
-      </div>
-    </section>
-
-    <section class="skills">
-      <div class="marquee">
-        <div class="marquee-track">
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>UX Research</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Design Systems</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>User Interface Design</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>Accessibility Standards</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>Prototyping</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6M15 12h6M9 6v12M15 6v12"/></svg>Information Architecture</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="18" cy="8" r="2.5"/><path d="M15 21c0-2.8 1.8-5 4.2-5"/></svg>User-centered Design</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/><circle cx="12" cy="12" r="4"/></svg>User Behavior</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></svg>Design Thinking</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5c-4 2-4 12 0 14M16 5c4 2 4 12 0 14"/></svg>Interaction Design</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>Front-end</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>DesignOps</div>
-
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>UX Research</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Design Systems</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>User Interface Design</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>Accessibility Standards</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>Prototyping</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6M15 12h6M9 6v12M15 6v12"/></svg>Information Architecture</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="18" cy="8" r="2.5"/><path d="M15 21c0-2.8 1.8-5 4.2-5"/></svg>User-centered Design</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/><circle cx="12" cy="12" r="4"/></svg>User Behavior</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></svg>Design Thinking</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5c-4 2-4 12 0 14M16 5c4 2 4 12 0 14"/></svg>Interaction Design</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>Front-end</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>DesignOps</div>
-        </div>
-      </div>
+      <p class="bio">
+        Digital native Product Designer with a strong interest in human behavior and
+        learning processes. I hold a Master’s degree in Usability, Interaction Design, and User
+        Experience. I’m currently working on creating intuitive interfaces and accessible user
+        experiences for higher education courses. My work focuses on optimizing interactions,
+        crafting user journeys, and prioritizing usability to ensure smooth and effective
+        learning experiences.
+      </p>
     </section>
 
     <section class="work" id="work">
+      <p class="section-title">Relevant work</p>
       <div class="work-grid">
 
         <a class="card" href="case-agora.html">
@@ -394,6 +372,38 @@
           </div>
         </a>
 
+      </div>
+    </section>
+
+    <section class="skills">
+      <div class="marquee">
+        <div class="marquee-track">
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>UX Research</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Design Systems</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>User Interface Design</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>Accessibility Standards</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>Prototyping</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6M15 12h6M9 6v12M15 6v12"/></svg>Information Architecture</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="18" cy="8" r="2.5"/><path d="M15 21c0-2.8 1.8-5 4.2-5"/></svg>User-centered Design</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/><circle cx="12" cy="12" r="4"/></svg>User Behavior</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></svg>Design Thinking</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5c-4 2-4 12 0 14M16 5c4 2 4 12 0 14"/></svg>Interaction Design</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>Front-end</div>
+          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>DesignOps</div>
+
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>UX Research</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Design Systems</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>User Interface Design</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>Accessibility Standards</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>Prototyping</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6M15 12h6M9 6v12M15 6v12"/></svg>Information Architecture</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="18" cy="8" r="2.5"/><path d="M15 21c0-2.8 1.8-5 4.2-5"/></svg>User-centered Design</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/><circle cx="12" cy="12" r="4"/></svg>User Behavior</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></svg>Design Thinking</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5c-4 2-4 12 0 14M16 5c4 2 4 12 0 14"/></svg>Interaction Design</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>Front-end</div>
+          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>DesignOps</div>
+        </div>
       </div>
     </section>
 
