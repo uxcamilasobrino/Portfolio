@@ -169,15 +169,25 @@
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
   }
+  .marquee + .marquee{
+    margin-top: 12px;
+  }
   .marquee-track{
     display:flex;
     width: max-content;
     gap: 12px;
     animation: marquee-scroll 32s linear infinite;
   }
+  .marquee-track.reverse{
+    animation: marquee-scroll-reverse 28s linear infinite;
+  }
   @keyframes marquee-scroll{
     from{ transform: translateX(0); }
     to{ transform: translateX(-50%); }
+  }
+  @keyframes marquee-scroll-reverse{
+    from{ transform: translateX(-50%); }
+    to{ transform: translateX(0); }
   }
   @media (prefers-reduced-motion: reduce){
     .marquee-track{ animation: none; }
@@ -194,6 +204,10 @@
     flex-shrink: 0;
   }
   .chip svg{ width:17px; height:17px; color: var(--muted); flex-shrink:0; }
+  .chip.tool{
+    background: transparent;
+    border: 1px solid var(--line);
+  }
 
   /* Work */
   .work{
@@ -438,12 +452,13 @@
         <p class="role anim-in d3">Product Designer based in Barcelona</p>
       </div>
       <p class="bio anim-in d4">
-        Digital native Product Designer with a strong interest in human behavior and
-        learning processes. I hold a Master’s degree in Usability, Interaction Design, and User
-        Experience. I’m currently working on creating intuitive interfaces and accessible user
-        experiences for higher education courses. My work focuses on optimizing interactions,
-        crafting user journeys, and prioritizing usability to ensure smooth and effective
-        learning experiences.
+        Product Designer working across design systems, accessibility and learning
+        experiences. I hold a Master’s degree in Usability, Interaction Design and User
+        Experience, and I currently design for higher education at EAE Business School,
+        where I built Agora, the design system behind their digital ecosystem. AI is part
+        of how I work day to day: I use it to move faster through research synthesis,
+        documentation and early exploration, so more of my time goes into the decisions
+        that actually shape the product.
       </p>
     </section>
 
@@ -515,6 +530,42 @@
           <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5c-4 2-4 12 0 14M16 5c4 2 4 12 0 14"/></svg>Interaction Design</div>
           <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>Front-end</div>
           <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>DesignOps</div>
+        </div>
+      </div>
+
+      <div class="marquee">
+        <div class="marquee-track reverse">
+          <div class="chip tool">Figma</div>
+          <div class="chip tool">Zeroheight</div>
+          <div class="chip tool">Claude</div>
+          <div class="chip tool">GitHub</div>
+          <div class="chip tool">Notion</div>
+          <div class="chip tool">Hotjar</div>
+          <div class="chip tool">Jira</div>
+
+          <div class="chip tool" aria-hidden="true">Figma</div>
+          <div class="chip tool" aria-hidden="true">Zeroheight</div>
+          <div class="chip tool" aria-hidden="true">Claude</div>
+          <div class="chip tool" aria-hidden="true">GitHub</div>
+          <div class="chip tool" aria-hidden="true">Notion</div>
+          <div class="chip tool" aria-hidden="true">Hotjar</div>
+          <div class="chip tool" aria-hidden="true">Jira</div>
+
+          <div class="chip tool" aria-hidden="true">Figma</div>
+          <div class="chip tool" aria-hidden="true">Zeroheight</div>
+          <div class="chip tool" aria-hidden="true">Claude</div>
+          <div class="chip tool" aria-hidden="true">GitHub</div>
+          <div class="chip tool" aria-hidden="true">Notion</div>
+          <div class="chip tool" aria-hidden="true">Hotjar</div>
+          <div class="chip tool" aria-hidden="true">Jira</div>
+
+          <div class="chip tool" aria-hidden="true">Figma</div>
+          <div class="chip tool" aria-hidden="true">Zeroheight</div>
+          <div class="chip tool" aria-hidden="true">Claude</div>
+          <div class="chip tool" aria-hidden="true">GitHub</div>
+          <div class="chip tool" aria-hidden="true">Notion</div>
+          <div class="chip tool" aria-hidden="true">Hotjar</div>
+          <div class="chip tool" aria-hidden="true">Jira</div>
         </div>
       </div>
     </section>
