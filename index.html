@@ -125,17 +125,6 @@
   .hero-photo img{
     width:100%; height:100%; object-fit:cover; display:block;
   }
-  .hero-photo .photo-hover{
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity .5s ease;
-  }
-  .hero-photo:hover .photo-hover{ opacity: 1; }
-  .hero-photo:hover .photo-base{ opacity: 0; }
-  .hero-photo .photo-base{
-    transition: opacity .5s ease;
-  }
   .hero-top h1{
     font-size: 48px;
     font-weight: 800;
@@ -144,10 +133,12 @@
     line-height: 1.1;
   }
   .role{
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 500;
+    line-height: 1.45;
     color: var(--muted);
-    margin: 0;
+    max-width: 560px;
+    margin: 0 auto;
   }
   .bio{
     width: 100%;
@@ -184,8 +175,8 @@
   .marquee-track{
     display:flex;
     width: max-content;
-    gap: 12px;
-    animation: marquee-scroll 32s linear infinite;
+    gap: 26px;
+    animation: marquee-scroll 34s linear infinite;
   }
   @keyframes marquee-scroll{
     from{ transform: translateX(0); }
@@ -194,18 +185,28 @@
   @media (prefers-reduced-motion: reduce){
     .marquee-track{ animation: none; }
   }
-  .chip{
-    display:flex; align-items:center; gap:9px;
-    background: var(--chip-bg);
-    border-radius: 10px;
-    padding: 12px 18px;
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--ink);
-    white-space: nowrap;
+  .logo-item{
+    display:flex;
+    align-items:center;
+    justify-content:center;
     flex-shrink: 0;
+    width: 92px;
+    height: 56px;
+    opacity: .75;
+    filter: grayscale(100%);
+    transition: opacity .3s ease, filter .3s ease;
   }
-  .chip svg{ width:17px; height:17px; color: var(--muted); flex-shrink:0; }
+  .logo-item img{
+    max-width: 34px;
+    max-height: 34px;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+  .marquee:hover .logo-item{
+    opacity: 1;
+    filter: grayscale(0%);
+  }
 
   /* Work */
   .work{
@@ -319,7 +320,7 @@
     .role{ font-size: 15px; }
     .bio{ font-size: 16px; }
     .wrap{ padding: 0 18px; }
-    .chip{ font-size: 13.5px; padding: 10px 14px; }
+    .logo-item{ width: 76px; height: 48px; }
     .card-body{ padding: 18px 18px 22px; }
     .thumb{ height: 200px; }
   }
@@ -409,8 +410,6 @@
     .reveal{ opacity: 1; transform: none; transition: none; }
     .cursor-ring{ display: none; }
     .hero-photo:hover img{ transform: none; }
-    .hero-photo .photo-hover,
-    .hero-photo .photo-base{ transition: none; }
   }
 
 </style>
@@ -445,12 +444,11 @@
       <div class="hero-top">
         <div class="hero-photo-wrap anim-in d1">
           <div class="hero-photo">
-            <img class="photo-base" src="profile.jpg" alt="Camila Sobrino">
-            <img class="photo-hover" src="profile-hover.jpg" alt="" aria-hidden="true">
+            <img src="profile.jpg" alt="Camila Sobrino">
           </div>
         </div>
         <h1 class="anim-in d2">Hello, I'm Camila</h1>
-        <p class="role anim-in d3">Product Designer based in Barcelona</p>
+        <p class="role anim-in d3">I design systems that make products consistent, accessible and easier to build on.</p>
       </div>
       <p class="bio anim-in d4">
         I work across design systems, accessibility and learning experiences, and hold a
@@ -505,31 +503,37 @@
     <section class="skills">
       <div class="marquee">
         <div class="marquee-track">
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>UX Research</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Design Systems</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>User Interface Design</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>Accessibility Standards</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>Prototyping</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6M15 12h6M9 6v12M15 6v12"/></svg>Information Architecture</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="18" cy="8" r="2.5"/><path d="M15 21c0-2.8 1.8-5 4.2-5"/></svg>User-centered Design</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/><circle cx="12" cy="12" r="4"/></svg>User Behavior</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></svg>Design Thinking</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5c-4 2-4 12 0 14M16 5c4 2 4 12 0 14"/></svg>Interaction Design</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>Front-end</div>
-          <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>DesignOps</div>
+          <div class="logo-item"><img src="logo-figma.svg" alt="Figma"></div>
+          <div class="logo-item"><img src="logo-claude.svg" alt="Claude"></div>
+          <div class="logo-item"><img src="logo-notion.svg" alt="Notion"></div>
+          <div class="logo-item"><img src="logo-github.svg" alt="GitHub"></div>
+          <div class="logo-item"><img src="logo-jira.svg" alt="Jira"></div>
+          <div class="logo-item"><img src="logo-hotjar.svg" alt="Hotjar"></div>
+          <div class="logo-item"><img src="logo-zeroheight.svg" alt="Zeroheight"></div>
 
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>UX Research</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Design Systems</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>User Interface Design</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>Accessibility Standards</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>Prototyping</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6M15 12h6M9 6v12M15 6v12"/></svg>Information Architecture</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="18" cy="8" r="2.5"/><path d="M15 21c0-2.8 1.8-5 4.2-5"/></svg>User-centered Design</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/><circle cx="12" cy="12" r="4"/></svg>User Behavior</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></svg>Design Thinking</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5c-4 2-4 12 0 14M16 5c4 2 4 12 0 14"/></svg>Interaction Design</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>Front-end</div>
-          <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>DesignOps</div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-figma.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-claude.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-notion.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-github.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-jira.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-hotjar.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-zeroheight.svg" alt=""></div>
+
+          <div class="logo-item" aria-hidden="true"><img src="logo-figma.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-claude.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-notion.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-github.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-jira.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-hotjar.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-zeroheight.svg" alt=""></div>
+
+          <div class="logo-item" aria-hidden="true"><img src="logo-figma.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-claude.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-notion.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-github.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-jira.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-hotjar.svg" alt=""></div>
+          <div class="logo-item" aria-hidden="true"><img src="logo-zeroheight.svg" alt=""></div>
         </div>
       </div>
     </section>
@@ -570,13 +574,13 @@
       });
 
       (function loop(){
-        rx += (tx - rx) * 0.18;
-        ry += (ty - ry) * 0.18;
+        rx += (tx - rx) * 0.45;
+        ry += (ty - ry) * 0.45;
         ring.style.transform = 'translate3d(' + (rx - 13) + 'px,' + (ry - 13) + 'px,0)';
         requestAnimationFrame(loop);
       })();
 
-      var hoverables = document.querySelectorAll('a, button, .card, .chip');
+      var hoverables = document.querySelectorAll('a, button, .card');
       hoverables.forEach(function(el){
         el.addEventListener('mouseenter', function(){ ring.classList.add('is-hover'); });
         el.addEventListener('mouseleave', function(){ ring.classList.remove('is-hover'); });
