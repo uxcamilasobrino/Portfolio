@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulating aesthetic treatment results — Camila Sobrino</title>
+<title>Simulating aesthetic treatment results | Camila Sobrino</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -15,7 +16,7 @@
     --accent: #5b6ee8;
     --paper: #ffffff;
     --card-bg: #fafafa;
-    --elara-bg: #ede8fd; --elara-fg: #6d4af3;
+    --elara-bg: #ede8fd; --elara-fg: #6d4af3; --elara-line: #d9cefa;
   }
 
   *{ box-sizing: border-box; }
@@ -35,7 +36,6 @@
   }
 
   /* Header */
-  header{ }
   .header-inner{
     display:flex;
     align-items:center;
@@ -50,11 +50,16 @@
   }
   .back-link:hover{ color: var(--muted); }
   .back-link svg{ width:18px; height:18px; }
+  .read-time{
+    display:flex; align-items:center; gap:7px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .read-time svg{ width:16px; height:16px; }
 
   /* Title */
-  .title-section{
-    padding: 70px 0 40px;
-  }
+  .title-section{ padding: 70px 0 40px; }
   h1{
     font-size: 52px;
     font-weight: 800;
@@ -68,7 +73,7 @@
     display:grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
-    padding-bottom: 80px;
+    padding-bottom: 60px;
   }
   .meta-card{
     background: var(--card-bg);
@@ -90,28 +95,30 @@
     line-height: 1.4;
     margin: 0;
   }
-  .meta-value.tools-value{
+  .meta-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .meta-list li{
+    position: relative;
+    padding-left: 16px;
     font-size: 14.5px;
-    line-height: 1.55;
+    font-weight: 600;
+    line-height: 1.65;
+    color: var(--ink);
   }
-
-  @media (max-width: 900px){
-    .meta-grid{ grid-template-columns: repeat(2, 1fr); }
-    h1{ font-size: 40px; }
-    .wrap{ padding: 0 24px; }
-  }
-
-  @media (max-width: 560px){
-    .meta-grid{ grid-template-columns: 1fr; }
-    h1{ font-size: 32px; }
-    .title-section{ padding: 44px 0 30px; }
-    .back-link{ font-size: 14px; }
+  .meta-list li::before{
+    content: "";
+    position: absolute;
+    left: 0; top: 0.72em;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--elara-fg);
   }
 
   /* Cover image */
-  .cover{
-    padding-bottom: 80px;
-  }
+  .cover{ padding-bottom: 80px; }
   .cover img{
     width: 100%;
     display: block;
@@ -120,27 +127,112 @@
   }
 
   /* Case sections */
-  .case-section{
-    padding-bottom: 70px;
-  }
+  .case-section{ padding-bottom: 80px; }
   .case-section h2{
     font-size: 28px;
     font-weight: 700;
     letter-spacing: -0.01em;
     margin: 0 0 20px;
   }
+  .case-section h3{
+    font-size: 18px;
+    font-weight: 700;
+    margin: 36px 0 14px;
+  }
   .case-section p{
     font-size: 15px;
     line-height: 1.7;
     color: #2b2e33;
     margin: 0 0 20px;
+    max-width: 720px;
   }
   .case-section p:last-child{ margin-bottom: 0; }
+  .case-section p strong, .case-section li strong{ color: var(--ink); font-weight: 700; }
+  .text-link{
+    color: var(--elara-fg);
+    font-weight: 600;
+    border-bottom: 1.5px solid var(--elara-line);
+    transition: border-color .2s ease;
+  }
+  .text-link:hover{ border-color: var(--elara-fg); }
 
-  /* Highlight box (purple theme) */
+  /* Image slots: drop a file with this name next to the HTML and it appears */
+  .shot{
+    margin: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--elara-bg);
+    border: 1px solid var(--elara-line);
+  }
+  .shot img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .shot.missing{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 18px;
+    border: 1.5px dashed #bfaef7;
+    color: var(--elara-fg);
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+  .shot.missing::before{
+    content: attr(data-label) "\A" attr(data-file);
+    white-space: pre-line;
+  }
+  .shot.wide{ aspect-ratio: 16 / 7; margin-top: 28px; }
+  .shot.screen{ aspect-ratio: 4 / 5; }
+  .shot.box43{ aspect-ratio: 4 / 3; }
+
+  /* Insight cards */
+  .insights{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 28px 0 24px;
+  }
+  .insight{
+    border: 1px solid var(--line);
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .insight .num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--elara-bg);
+    color: var(--elara-fg);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .insight h4{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 8px;
+  }
+  .insight p{
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: var(--muted) !important;
+    margin: 0 !important;
+  }
+
+  /* Highlight box */
   .box{
     background: var(--elara-bg);
-    border: 1px solid #d9cefa;
+    border: 1px solid var(--elara-line);
     border-radius: 12px;
     padding: 22px 24px;
   }
@@ -151,115 +243,273 @@
     color: var(--elara-fg);
     margin: 0 0 2px;
   }
-  .box-text{
+  .case-section .box-text, .box-text{
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--ink);
     margin: 0;
+    max-width: none;
   }
-  .box + .box{ margin-top: 20px; }
-
-  /* Data tables */
-  .table-scroll{
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 28px;
-    border-radius: 12px;
-  }
-  .data-table{
-    width: 100%;
-    min-width: 620px;
-    border-collapse: collapse;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .data-table th{
-    text-align: left;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    color: var(--muted);
-    background: var(--card-bg);
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--line);
-  }
-  .data-table td{
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--ink);
-    padding: 16px 18px;
-    border-bottom: 1px solid var(--line);
-    vertical-align: top;
-  }
-  .data-table tr:last-child td{ border-bottom: none; }
-  .data-table tr:nth-child(even) td{ background: #fbfbfa; }
 
   /* Goals */
-  .goals-grid{
-    display:flex;
-    flex-direction: column;
+  .goals{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
     gap: 18px;
   }
-  .goal-card{
-    display:grid;
-    grid-template-columns: 0.7fr 1fr 1fr;
-    gap: 24px;
+  .goal-panel{
     border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 20px 24px;
+    border-radius: 14px;
+    padding: 26px;
     background: var(--card-bg);
   }
-  .goal-card .meta-label{ margin-bottom: 0; align-self: start; }
-  .goal-col .meta-label{ margin-bottom: 5px; }
-  .goal-col p{
+  .goal-panel.primary{
+    background: var(--elara-bg);
+    border-color: var(--elara-line);
+  }
+  .goal-tag{
+    display:inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .goal-panel.primary .goal-tag{ color: var(--elara-fg); }
+  .goal-panel ul{
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .goal-panel li{
+    position: relative;
+    padding-left: 26px;
     font-size: 15px;
     line-height: 1.6;
     color: var(--ink);
-    margin: 0;
-  }
-
-  /* Lists */
-  .bullet-list{
-    margin: 0 0 20px;
-    padding-left: 20px;
-  }
-  .bullet-list li{
-    font-size: 15px;
-    line-height: 1.7;
-    color: #2b2e33;
-    margin-bottom: 10px;
-  }
-  .bullet-list li:last-child{ margin-bottom: 0; }
-
-  .outcomes-list{
-    margin: 0 0 28px;
-    padding-left: 20px;
-  }
-  .outcomes-list li{
-    font-size: 15px;
-    line-height: 1.7;
-    color: #2b2e33;
     margin-bottom: 14px;
   }
-  .outcomes-list li:last-child{ margin-bottom: 0; }
+  .goal-panel li:last-child{ margin-bottom: 0; }
+  .goal-panel li::before{
+    content:"";
+    position:absolute;
+    left:0; top: 0.5em;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--elara-fg);
+  }
+  .goal-panel.primary li::before{ background: var(--elara-fg); }
 
-  code{
-    font-family: 'SF Mono', 'Courier New', monospace;
+  /* Consultation flow */
+  .steps{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .step{
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px 14px 20px;
+    background: #fff;
+  }
+  .step .shot{ margin-bottom: 16px; }
+  .step-head{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    padding: 0 6px;
+    margin-bottom: 6px;
+  }
+  .step-num{
+    flex-shrink:0;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--elara-fg);
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .step h4{
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .step p{
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    color: var(--muted) !important;
+    margin: 0 0 10px !important;
+    padding: 0 6px;
+  }
+  .step .why{
+    display:inline-block;
+    margin: 0 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--elara-fg);
+    background: var(--elara-bg);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+  .after-title{
     font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin: 40px 0 14px !important;
+  }
+  .after-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .after-card{
+    background: var(--elara-bg);
+    border: 1px solid var(--elara-line);
+    border-radius: 14px;
+    padding: 20px 22px;
+  }
+  .after-card h4{
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--elara-fg);
+    margin: 0 0 6px;
+  }
+  .after-card p{
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    color: var(--ink) !important;
+    margin: 0 !important;
+  }
+
+  /* Key design decisions */
+  .decision{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items:center;
+    margin-bottom: 56px;
+  }
+  .decision.flip .decision-text{ order: 2; }
+  .decision-num{
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--elara-fg);
+    margin: 0 0 8px !important;
+  }
+  .decision h3{ margin: 0 0 12px; font-size: 22px; letter-spacing: -0.01em; }
+  .decision p{ margin-bottom: 14px !important; }
+  .decision p.why{
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0 !important;
+  }
+  .decision p.why strong{ color: var(--elara-fg); }
+  .scope{
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 26px;
+    background: var(--card-bg);
+  }
+  .scope h3{ margin: 0 0 8px; font-size: 18px; }
+  .scope p{ margin-bottom: 16px !important; }
+  .chips{ display:flex; flex-wrap:wrap; gap: 8px; }
+  .chip{
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+  }
+  .chip.cut{ color: var(--muted); text-decoration: line-through; text-decoration-color: #b9bcc2; }
+  .iter-note{
+    margin-top: 22px !important;
+    font-size: 14px !important;
+    color: var(--muted) !important;
+  }
+
+  /* Architecture */
+  .flow{
+    display:flex;
+    align-items:stretch;
+    gap: 14px;
+    margin: 26px 0 14px;
+  }
+  .flow-box{
+    flex:1;
     background: var(--card-bg);
     border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .flow-box h4{
+    font-size: 15px;
+    font-weight: 700;
     color: var(--elara-fg);
-    padding: 2px 7px;
-    border-radius: 5px;
+    margin: 0 0 6px;
+  }
+  .flow-box p{
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    color: var(--muted) !important;
+    margin: 0 !important;
+  }
+  .flow-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--muted);
+    font-size: 20px;
+    flex-shrink:0;
+  }
+  .eu-strip{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    flex-wrap: wrap;
+    border: 1px dashed var(--elara-line);
+    border-radius: 12px;
+    padding: 14px 18px;
+    background: #fbfaff;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .eu-strip .chip{ border-color: var(--elara-line); }
+  .eu-label{
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--elara-fg);
+  }
+  .privacy{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .privacy-card{
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+    background: #fff;
+  }
+  .privacy-card h4{
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .privacy-card p{
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: var(--muted) !important;
+    margin: 0 !important;
   }
 
-  /* Prototype / live app button */
-  .proto-buttons{
-    display:flex;
-    gap: 16px;
-    margin-bottom: 8px;
-  }
+  /* Outcomes */
+  .proto-buttons{ display:flex; gap:16px; margin-bottom: 20px; }
   .proto-btn{
     display:flex;
     width: 100%;
@@ -276,10 +526,31 @@
   }
   .proto-btn:hover{ opacity: 0.88; }
   .proto-btn svg{ width:17px; height:17px; flex-shrink:0; }
-
-  @media (max-width: 700px){
-    .goal-card{ grid-template-columns: 1fr; gap: 12px; }
-    .proto-buttons{ flex-direction: column; }
+  .stats{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat{
+    border: 1px solid var(--line);
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .stat strong{
+    display:block;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--elara-fg);
+    margin-bottom: 8px;
+  }
+  .stat p{
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: var(--muted) !important;
+    margin: 0 !important;
   }
 
   /* Footer */
@@ -289,6 +560,45 @@
     font-size: 13px;
     color: var(--muted);
     text-align:center;
+  }
+
+  @media (max-width: 900px){
+    .meta-grid{ grid-template-columns: repeat(2, 1fr); }
+    h1{ font-size: 40px; }
+    .wrap{ padding: 0 24px; }
+    .steps{ grid-template-columns: repeat(2, 1fr); }
+    .decision{ grid-template-columns: 1fr; gap: 22px; }
+    .decision.flip .decision-text{ order: 0; }
+  }
+
+  @media (max-width: 700px){
+    .insights, .after-grid, .stats, .goals, .privacy{ grid-template-columns: 1fr; }
+    .flow{ flex-direction: column; }
+    .flow-arrow{ transform: rotate(90deg); padding: 2px 0; }
+    .proto-buttons{ flex-direction: column; }
+    /* flow steps become a swipeable row */
+    .steps{
+      display:flex;
+      overflow-x:auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 14px;
+      margin-right: -24px;
+      padding-right: 24px;
+      padding-bottom: 8px;
+    }
+    .step{ flex: 0 0 78%; scroll-snap-align: start; }
+    .shot.wide{ aspect-ratio: 4 / 3; }
+  }
+
+  @media (max-width: 560px){
+    .meta-grid{ grid-template-columns: 1fr; }
+    h1{ font-size: 32px; }
+    .title-section{ padding: 44px 0 30px; }
+    .back-link{ font-size: 14px; }
+    .read-time{ font-size: 13px; }
+    .case-section{ padding-bottom: 60px; }
+    .case-section h2{ font-size: 24px; }
   }
 </style>
 </head>
@@ -300,6 +610,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Go back
       </a>
+      <span class="read-time">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span id="readTime">4 min read</span>
+      </span>
     </div>
   </header>
 
@@ -320,159 +634,265 @@
       </div>
       <div class="meta-card">
         <p class="meta-label">Tools</p>
-        <p class="meta-value tools-value">Claude Code, Next.js, TypeScript<br>Vercel, Neon Postgres, Vercel Blob<br>Google Gemini API (Nano Banana)<br>GitHub, pdf-lib, Google AI Studio</p>
+        <ul class="meta-list">
+          <li>Claude Code</li>
+          <li>Next.js</li>
+          <li>Vercel</li>
+          <li>Nano Banana (Gemini)</li>
+        </ul>
       </div>
       <div class="meta-card">
         <p class="meta-label">Timeframe</p>
-        <p class="meta-value">10 days<br>4–13 October</p>
+        <p class="meta-value">3 weeks</p>
       </div>
     </section>
 
     <section class="cover">
-      <img src="elara-overview.png" alt="Elara — overview of key screens: patient list, login, treatment selection, before and after comparison, filters and statistics">
+      <img src="elara-overview.png" alt="Overview of Elara screens: patient list, login, treatment selection, before and after comparison, filters and statistics">
     </section>
 
     <section class="case-section">
       <h2>Overview</h2>
-      <p>Elara is a mobile web app for aesthetic clinics that shows patients a realistic AI simulation of a treatment's result on their own face, during the consultation itself. Beyond the simulation, it keeps each patient's before, simulation and real-result photos as a GDPR-conscious clinical record. It's built for aesthetic doctors and clinic staff, working on a phone with the patient present — not a marketing tool, with no sharing and no lead capture.</p>
+      <p>Elara is a mobile web app for aesthetic clinics. During the consultation, it shows the patient a <strong>realistic AI simulation of the treatment on their own face</strong>, and it keeps every patient's photos as an organized, <strong>GDPR-conscious clinical record</strong>.</p>
+      <p>It started with <strong>field research</strong>. I visited <a class="text-link" href="https://www.sunsolfigueres.es/es/centro-de-estetica-figueres" target="_blank" rel="noopener">Sunsolfigueres - Centre d'estètica</a> and observed their processes on site. Two things stayed with me. First, <strong>patients almost always ask to see a final result in the first appointment</strong>, but the doctor can't show photos of other patients because of privacy. Second, the doctor kept <strong>every photo on her own phone</strong> and struggled to find a specific one when she needed it.</p>
+      <p>Elara answers both. The patient sees a <strong>credible preview on their own face</strong>, and every photo is stored <strong>per patient and per treatment</strong>, ready to find when needed.</p>
+
+      <figure class="shot wide missing" data-label="Field research: notes, sketches or a photo from the clinic visit (no patient faces)" data-file="elara-research.jpg">
+        <img src="elara-research.jpg" alt="Notes and observations from the clinic visit" onerror="this.parentNode.classList.add('missing');this.remove()">
+      </figure>
     </section>
 
     <section class="case-section">
-      <h2>Problem Definition</h2>
-      <p>In aesthetic consultations, patients struggle to picture the outcome of a treatment — neuromodulators, dermal fillers, skin treatments — when it's only described in words, through generic before/after galleries or hand sketches. That made it harder to form <strong>realistic expectations</strong> or feel confident in a decision. Clinics also needed <strong>consistent clinical photos</strong> to document results, with those photos counting as health data under the GDPR.</p>
-    </section>
+      <h2>Problem definition</h2>
+      <p>In an aesthetic consultation, the outcome is explained with words. Patients <strong>can't picture how a treatment will look on them</strong>, and the usual aids (generic before and after galleries, sketches, photos of other patients) either <strong>don't look like them</strong> or <strong>can't be shown at all</strong>. The result is <strong>unrealistic expectations</strong> and hesitant decisions.</p>
 
-    <section class="case-section">
-      <h2>Role and process</h2>
-      <p>I led product definition, the approved clickable prototype, the Healthtec design system (v0.1), clinical copy and terminology, and every product decision and design review — mostly validated on a real phone. Claude Code acted as an AI engineering partner: I directed scope, priorities and every design decision, while it wrote and tested the code, explained trade-offs, and documented decisions in a living project brief. I set up the infrastructure myself — GitHub, Vercel, Neon and Google AI Studio billing — guided step by step.</p>
-      <ul class="bullet-list">
-        <li><strong>Brief as source of truth.</strong> One living document covering product, users, language rules, design system, architecture, privacy rules, the validated AI prompt and build phases, updated as decisions were made.</li>
-        <li><strong>Six build phases, each reviewed before the next:</strong> setup → port the prototype → persistence → guided camera → AI simulation → pilot hardening.</li>
-        <li><strong>Design iteration on a real phone</strong> after each phase, with rounds of feedback on navigation, consent, statistics, the treatment screen and the camera.</li>
-        <li><strong>Closed beta</strong> with friends and test users — the current stage.</li>
-      </ul>
+      <div class="insights">
+        <div class="insight">
+          <span class="num">1</span>
+          <h4>Patients can't picture the result</h4>
+          <p>Words, sketches and generic galleries don't show their own face.</p>
+        </div>
+        <div class="insight">
+          <span class="num">2</span>
+          <h4>Doctors can't show real examples</h4>
+          <p>Photos of other patients can't be shared for privacy reasons.</p>
+        </div>
+        <div class="insight">
+          <span class="num">3</span>
+          <h4>Clinical photos are hard to manage</h4>
+          <p>They sit in a phone gallery, inconsistent and hard to search, and they count as <strong>health data under GDPR</strong>.</p>
+        </div>
+      </div>
+
       <div class="box">
-        <p class="box-label">From prototype to pilot-ready MVP</p>
-        <p class="box-text">10 days, 4–13 October: from an approved prototype to a pilot-ready MVP deployed in the EU — 30 saved versions, about 7,300 lines of TypeScript across 84 source files.</p>
+        <p class="box-label">How might we</p>
+        <p class="box-text">Show patients a credible result on their own face, while keeping every photo organized and private?</p>
       </div>
     </section>
 
     <section class="case-section">
       <h2>Goals</h2>
-      <div class="goals-grid">
-        <div class="goal-card">
-          <div class="goal-col"><p class="meta-label">Goal</p></div>
-          <div class="goal-col">
-            <p class="meta-label">User goals</p>
-            <p>Help patients see a credible preview of their treatment before committing to it, in the moment of the consultation.</p>
-          </div>
-          <div class="goal-col">
-            <p class="meta-label">Business goals</p>
-            <p>Give clinics a consultation and record-keeping tool that supports the conversation without ever overpromising a result.</p>
-          </div>
+      <div class="goals">
+        <div class="goal-panel primary">
+          <span class="goal-tag">Primary goals</span>
+          <ul>
+            <li>Let patients see a <strong>credible preview</strong> of their treatment, on their own face, during the consultation.</li>
+            <li>Give the doctor <strong>one place</strong> where every patient's photos are organized and easy to find.</li>
+          </ul>
+        </div>
+        <div class="goal-panel">
+          <span class="goal-tag">Secondary goals</span>
+          <ul>
+            <li>Capture <strong>consistent clinical photos</strong>: same pose, light and expression.</li>
+            <li>Protect patient data from day one: consent, EU hosting, automatic deletion.</li>
+            <li>Support the conversation <strong>without overpromising</strong>: results are labeled as estimates.</li>
+          </ul>
         </div>
       </div>
     </section>
 
     <section class="case-section">
       <h2>The consultation flow</h2>
-      <p>The core of Elara is a guided six-step flow — covering 30 treatments across 11 facial zones and 10 clinical photo types — that takes the clinician from patient intake to a simulated result, with consent and a validated photo protocol built in along the way.</p>
-      <div class="table-scroll">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Step</th>
-              <th>What happens</th>
-              <th>Why it matters</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Patient data</td>
-              <td>Name, surname and clinic code are captured first</td>
-              <td>Every consultation is tied to a verifiable patient record</td>
-            </tr>
-            <tr>
-              <td>Treatment area</td>
-              <td>The clinician selects the zone on an anatomical face map</td>
-              <td>Keeps clinical input precise instead of free text</td>
-            </tr>
-            <tr>
-              <td>Treatment</td>
-              <td>Treatment, and brand for neuromodulators, is selected per zone</td>
-              <td>Different brands produce different expected results</td>
-            </tr>
-            <tr>
-              <td>Consent</td>
-              <td>Full consent text, three required clauses plus a signature pad</td>
-              <td>No photo is taken before consent is signed</td>
-            </tr>
-            <tr>
-              <td>Guided photography</td>
-              <td>A live 3:4 camera with a face-oval guide checks framing, level and lighting</td>
-              <td>The simulation is only as accurate as the input photo</td>
-            </tr>
-            <tr>
-              <td>Estimated result</td>
-              <td>A draggable before/after slider shows the simulation, clearly labeled as AI-generated</td>
-              <td>Sets expectations without presenting the preview as guaranteed</td>
-            </tr>
-          </tbody>
-        </table>
+      <p>A guided flow of six steps takes the doctor from patient data to an estimated result, on a phone, with the patient present.</p>
+
+      <div class="steps">
+        <div class="step">
+          <figure class="shot screen missing" data-label="Screen: Patient data" data-file="elara-step-1-patient.png">
+            <img src="elara-step-1-patient.png" alt="Patient data screen" onerror="this.parentNode.classList.add('missing');this.remove()">
+          </figure>
+          <div class="step-head"><span class="step-num">1</span><h4>Patient data</h4></div>
+          <p>Name, surname and clinic code.</p>
+          <span class="why">One record per patient</span>
+        </div>
+        <div class="step">
+          <figure class="shot screen missing" data-label="Screen: Treatment area" data-file="elara-step-2-area.png">
+            <img src="elara-step-2-area.png" alt="Treatment area screen with the face map" onerror="this.parentNode.classList.add('missing');this.remove()">
+          </figure>
+          <div class="step-head"><span class="step-num">2</span><h4>Treatment area</h4></div>
+          <p>Tap the zone on an anatomical face map.</p>
+          <span class="why">Precise, no free text</span>
+        </div>
+        <div class="step">
+          <figure class="shot screen missing" data-label="Screen: Treatment" data-file="elara-step-3-treatment.png">
+            <img src="elara-step-3-treatment.png" alt="Treatment selection screen" onerror="this.parentNode.classList.add('missing');this.remove()">
+          </figure>
+          <div class="step-head"><span class="step-num">3</span><h4>Treatment</h4></div>
+          <p>Choose the treatment per zone, and the brand for neuromodulators.</p>
+          <span class="why">Brands give different results</span>
+        </div>
+        <div class="step">
+          <figure class="shot screen missing" data-label="Screen: Consent" data-file="elara-step-4-consent.png">
+            <img src="elara-step-4-consent.png" alt="Consent screen with signature" onerror="this.parentNode.classList.add('missing');this.remove()">
+          </figure>
+          <div class="step-head"><span class="step-num">4</span><h4>Consent</h4></div>
+          <p>Three clauses and a signature.</p>
+          <span class="why">No photo before consent</span>
+        </div>
+        <div class="step">
+          <figure class="shot screen missing" data-label="Screen: Guided camera" data-file="elara-step-5-camera.png">
+            <img src="elara-step-5-camera.png" alt="Guided camera with face guide" onerror="this.parentNode.classList.add('missing');this.remove()">
+          </figure>
+          <div class="step-head"><span class="step-num">5</span><h4>Guided photo</h4></div>
+          <p>Live camera with a face guide and checks for level and light.</p>
+          <span class="why">Better photo, better simulation</span>
+        </div>
+        <div class="step">
+          <figure class="shot screen missing" data-label="Screen: Estimated result" data-file="elara-step-6-result.png">
+            <img src="elara-step-6-result.png" alt="Estimated result with before and after slider" onerror="this.parentNode.classList.add('missing');this.remove()">
+          </figure>
+          <div class="step-head"><span class="step-num">6</span><h4>Estimated result</h4></div>
+          <p>A draggable before and after slider, labeled as an AI estimate.</p>
+          <span class="why">Sets expectations</span>
+        </div>
       </div>
-      <p>Each patient also keeps a clinical record of before, simulation and real-result photos per treatment, with zoom, swipe, download and side-by-side comparison, plus clinical notes (product, dose, lot) and the signed consent PDF. A statistics view tracks patients and treatments over time, a face map of treated areas, and ranked treatments per clinic.</p>
+
+      <p class="after-title">AFTER THE CONSULTATION</p>
+      <div class="after-grid">
+        <div class="after-card">
+          <h4>Clinical record</h4>
+          <p>Before, simulation and real result per treatment, with zoom and side by side comparison.</p>
+        </div>
+        <div class="after-card">
+          <h4>Notes and consent</h4>
+          <p>Product, dose and lot per treatment, plus the signed consent as a PDF.</p>
+        </div>
+        <div class="after-card">
+          <h4>Statistics</h4>
+          <p>Patients and treatments over time, a face map of treated areas and top treatments.</p>
+        </div>
+      </div>
     </section>
 
     <section class="case-section">
-      <h2>Key decisions and why</h2>
-      <ul class="bullet-list">
-        <li><strong>The photo must match the prompt.</strong> An early test paired a raised-eyebrow photo with a "frown" instruction, and the AI changed the patient's expression instead of just the treated area. Every treatment now requires a specific photo type, and the server refuses mismatches.</li>
-        <li><strong>The AI prompt is built server-side from IDs</strong>, never sent by the phone, so it can't be tampered with — protected by a unit test on the validated prompt.</li>
-        <li><strong>Scope cut for the MVP.</strong> Brand-specific simulations, presentation mode, the evolution view and offline saving were removed and kept as future possibilities.</li>
-        <li><strong>Online only.</strong> Offline saving was built and removed the same day after its complexity caused a bug — without a connection, a full-screen notice covers the app and nothing is lost.</li>
-        <li><strong>Consent reuse with versioning.</strong> A signature stays valid for 2 years, only for the current consent text; the app explains clearly when and why it asks again.</li>
-      </ul>
+      <h2>Key design decisions</h2>
+
+      <div class="decision">
+        <div class="decision-text">
+          <p class="decision-num">DECISION 1</p>
+          <h3>Guide the photo, don't trust it</h3>
+          <p>The camera shows a face oval, checks that the phone is level and the light is even, and for follow-ups overlays the original photo as a translucent ghost.</p>
+          <p class="why"><strong>Why:</strong> the simulation is only as good as the photo, and consistent photos are also the clinical record.</p>
+        </div>
+        <figure class="shot box43 missing" data-label="Screen: guided camera with face oval and live checks" data-file="elara-decision-camera.png">
+          <img src="elara-decision-camera.png" alt="Guided camera with face oval, live checks and ghost overlay" onerror="this.parentNode.classList.add('missing');this.remove()">
+        </figure>
+      </div>
+
+      <div class="decision flip">
+        <div class="decision-text">
+          <p class="decision-num">DECISION 2</p>
+          <h3>One treatment, one photo type</h3>
+          <p>Every treatment asks for the specific pose its effect needs, and the app only accepts the matching photo.</p>
+          <p class="why"><strong>Why:</strong> in an early test, a raised eyebrow photo sent with a frown instruction made the AI change the patient's expression instead of the treated area.</p>
+        </div>
+        <figure class="shot box43 missing" data-label="Screen: photo preparation, or a before and after of the early test" data-file="elara-decision-photo-type.png">
+          <img src="elara-decision-photo-type.png" alt="Photo preparation screen showing the required pose" onerror="this.parentNode.classList.add('missing');this.remove()">
+        </figure>
+      </div>
+
+      <div class="decision">
+        <div class="decision-text">
+          <p class="decision-num">DECISION 3</p>
+          <h3>Trust built into the flow</h3>
+          <p>Consent comes before any photo. A signature stays valid for 2 years, and the app explains when and why it asks again. The result is always labeled as an AI estimate, with no sharing and no marketing features.</p>
+          <p class="why"><strong>Why:</strong> doctors and patients should never feel the tool is selling something.</p>
+        </div>
+        <figure class="shot box43 missing" data-label="Screen: result with the AI estimate disclaimer and slider" data-file="elara-decision-trust.png">
+          <img src="elara-decision-trust.png" alt="Result screen with the AI estimate disclaimer" onerror="this.parentNode.classList.add('missing');this.remove()">
+        </figure>
+      </div>
+
+      <div class="decision flip">
+        <div class="decision-text">
+          <p class="decision-num">DECISION 4</p>
+          <h3>Less on screen, actions where they apply</h3>
+          <p>I removed the home title, hint texts and menu descriptions, and moved each photo's actions onto the photo screen. Navigation follows the app hierarchy, including the iPhone swipe back gesture.</p>
+          <p class="why"><strong>Why:</strong> the doctor is talking to a patient, so every screen has to be understood at a glance.</p>
+        </div>
+        <figure class="shot box43 missing" data-label="Screen: patient file or photo screen" data-file="elara-decision-simplicity.png">
+          <img src="elara-decision-simplicity.png" alt="Patient file and photo screen" onerror="this.parentNode.classList.add('missing');this.remove()">
+        </figure>
+      </div>
+
+      <div class="scope">
+        <h3>Decision 5: cut what isn't essential</h3>
+        <p>The MVP focuses on the consultation. Offline saving was built and removed the same day because it added complexity and caused a bug. Without a connection, a full screen notice covers the app and nothing is lost.</p>
+        <div class="chips">
+          <span class="chip cut">Brand specific simulations</span>
+          <span class="chip cut">Presentation mode</span>
+          <span class="chip cut">Evolution view</span>
+          <span class="chip cut">Offline saving</span>
+        </div>
+      </div>
+      <p class="iter-note">After each build phase I tested the app on a real phone and iterated on navigation, consent, statistics, the treatment screen and the camera.</p>
     </section>
 
     <section class="case-section">
       <h2>Technical approach</h2>
-      <p>This project doubled as an exercise in building production-ready software end to end with Claude Code, from architecture decisions through to implementation and deployment.</p>
-      <ul class="bullet-list">
-        <li><strong>Next.js (App Router) + TypeScript</strong>, one repository for the frontend and API routes</li>
-        <li>Deployed on <strong>Vercel</strong> (Frankfurt), with serverless functions pinned to an EU region, since patient photos count as health data under GDPR</li>
-        <li>Patients, consultations and clinical data persisted in <strong>Neon Postgres</strong>, with photos stored in <strong>Vercel Blob</strong>, both EU-based</li>
-        <li>Each simulation is generated server-side through <strong>Google Gemini's Nano Banana 2 Lite</strong> model, about $0.04 per simulation, with the prompt built from a shared frame (keep identity and expression, edit only the treated area, stay photorealistic and clinically plausible) plus one line per treatment with its effect and intensity</li>
-        <li>Generation temperature lowered for consistency, with automatic colour correction after each result, since the model sometimes returned greyer images</li>
-        <li>Consent PDFs generated with <strong>pdf-lib</strong>; code written and tested by Claude Code, infrastructure on GitHub, Vercel and Google AI Studio</li>
-      </ul>
+      <p>I built Elara end to end with Claude Code as my engineering partner. I directed scope and every design decision, Claude Code wrote and tested the code, and I set up GitHub, Vercel, the database and the AI billing myself.</p>
 
-      <div class="box">
-        <p class="box-label">Prompt lesson</p>
-        <p class="box-text">A prompt describing a frown, sent together with a photo of raised eyebrows, made the model change the patient's expression entirely instead of just the treatment area. Every simulation now has to match its photo to its intended expression before it's sent, encoded as a fixed photo protocol per treatment. Next step: per-treatment prompt tuning with a small, consented test set.</p>
+      <div class="flow">
+        <div class="flow-box">
+          <h4>Phone (PWA)</h4>
+          <p>Next.js and TypeScript. Installable, with camera access.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">
+          <h4>Server in Frankfurt</h4>
+          <p>Builds the AI prompt from IDs. The phone never sends prompt text.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">
+          <h4>Nano Banana 2 Lite</h4>
+          <p>Google's image model, about $0.04 per simulation.</p>
+        </div>
       </div>
-    </section>
+      <div class="eu-strip">
+        <span class="eu-label">STORED IN THE EU</span>
+        <span class="chip">Neon Postgres for records</span>
+        <span class="chip">Vercel Blob for private photos</span>
+      </div>
 
-    <section class="case-section">
-      <h2>Privacy and security</h2>
-      <p>Patient photos are health data under the GDPR, so privacy was a design constraint from day one, not an afterthought.</p>
-      <ul class="bullet-list">
-        <li>Servers, database and photo storage all hosted in Frankfurt (EU); private photo storage, no public links</li>
-        <li>No photo is taken before consent; consent text is versioned and re-requested when it changes</li>
-        <li>Logs never contain photos, names or notes; a separate access log records who viewed or changed each record</li>
-        <li>Automatic deletion after 2 years, full deletion of a patient and every related photo, and a nightly sweep removing stray uploads</li>
-        <li>Individual hashed-password accounts, login lockout after repeated failures, and limits on AI simulations for cost control</li>
-        <li>AI runs on the paid tier only, so data isn't used for training; still pending before real patients: data processing agreements, legal review, and a possible move to Vertex AI for guaranteed EU processing</li>
-      </ul>
-    </section>
-
-    <section class="case-section">
-      <h2>Challenges and how they were solved</h2>
-      <ul class="bullet-list">
-        <li><strong>iPhone constraints:</strong> the camera and share sheet only open from a direct tap, a fixed button drifted while scrolling, and one CSS feature wasn't supported on some iPhones — each led to a specific, documented fix.</li>
-        <li><strong>AI access:</strong> Google's free tier had zero quota for the image model, so billing had to be set up before the simulation step could work at all.</li>
-        <li><strong>A saving bug</strong> in new code was caught during my own testing; the affected treatment was recovered and "test the full save path" became a standing rule.</li>
-        <li><strong>Deployment issues</strong> — a blocked first deploy over author identity, and a missed automatic deploy — were both diagnosed and fixed.</li>
-      </ul>
+      <h3>Privacy and security</h3>
+      <div class="privacy">
+        <div class="privacy-card">
+          <h4>EU hosting</h4>
+          <p>Servers, database and photo storage in Frankfurt. Photos are private, with no public links.</p>
+        </div>
+        <div class="privacy-card">
+          <h4>Consent first</h4>
+          <p>No photo before consent, and the consent text is versioned.</p>
+        </div>
+        <div class="privacy-card">
+          <h4>Minimal traces</h4>
+          <p>Logs never contain photos, names or notes. A separate access log records who viewed what.</p>
+        </div>
+        <div class="privacy-card">
+          <h4>Automatic deletion</h4>
+          <p>Photos are deleted after 2 years, and a patient can be deleted completely, photos included.</p>
+        </div>
+      </div>
+      <p style="margin-top:20px;">Before real patients use it, the next steps are data processing agreements and a legal review.</p>
     </section>
 
     <section class="case-section">
@@ -483,16 +903,25 @@
           View live app
         </a>
       </div>
-      <ul class="outcomes-list">
-        <li>A working, installable app live at <code>elara-ochre.vercel.app</code>, running entirely on EU infrastructure.</li>
-        <li>Pilot-ready hardening: per-clinic account separation, an access log, simulation limits, retention and deletion rules, and a separate test database with automatic updates on deploy.</li>
-        <li>A validated AI prompt structure and photo protocol for the first treatments, documented for extending to new ones.</li>
-        <li>Currently in closed beta with friends and test users; no usage metrics yet, with feedback collection just starting before moving toward real patients, data processing agreements and legal review.</li>
-      </ul>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>Live</strong>
+          <p>An installable app running on EU infrastructure.</p>
+        </div>
+        <div class="stat">
+          <strong>Pilot ready</strong>
+          <p>Separate clinic accounts, access log, simulation limits and deletion rules.</p>
+        </div>
+        <div class="stat">
+          <strong>In closed beta</strong>
+          <p>Testing the flow and the simulation quality with friends and test users.</p>
+        </div>
+      </div>
 
       <div class="box">
         <p class="box-label">Learning</p>
-        <p class="box-text">Designing for an AI model you don't fully control means designing its constraints as carefully as its interface — the photo protocol mattered as much as any screen I drew. Building the product end-to-end with Claude Code as an engineering partner also shifted where my time went: review discipline and clear decisions mattered more than implementation speed.</p>
+        <p class="box-text">This was my first project built entirely with Claude, and the first time I took a product all the way to production. Until now my work ended at the handoff. Here, decisions I would normally pass to engineers, like what happens offline, what gets deleted and when, or how an error is explained, became mine to make. I learned that designing with an AI means designing its limits as carefully as the interface, and that clear decisions and careful review matter more than speed. It also taught me when to cut: I built offline saving and removed it the same day.</p>
       </div>
     </section>
 
@@ -501,6 +930,16 @@
   <footer>
     © 2026 Camila Sobrino. All rights reserved.
   </footer>
+
+  <script>
+    (function(){
+      var main = document.querySelector('main');
+      var el = document.getElementById('readTime');
+      if (!main || !el) return;
+      var words = (main.innerText || '').trim().split(/\s+/).length;
+      el.textContent = Math.max(1, Math.round(words / 200)) + ' min read';
+    })();
+  </script>
 
 </body>
 </html>

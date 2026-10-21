@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Improving the onboarding experience — Camila Sobrino</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -61,6 +62,14 @@
     background: var(--edtech-bg);
     color: var(--edtech-fg);
   }
+
+  .read-time{
+    display:flex; align-items:center; gap:7px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .read-time svg{ width:16px; height:16px; }
 
   /* Title */
   .title-section{
@@ -294,34 +303,19 @@
   .proto-btn:hover{ opacity: 0.88; }
   .proto-btn svg{ width:17px; height:17px; flex-shrink:0; }
 
-  /* Image marquee */
-  .img-marquee{
-    overflow: hidden;
+  /* Final prototype image (static) */
+  .final-shot{
     width: 100%;
     border-radius: 16px;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    background: #fff;
   }
-  .img-marquee-track{
-    display:flex;
-    width: max-content;
-    animation: img-marquee-scroll 28s linear infinite;
-  }
-  .img-marquee-track img{
-    height: 260px;
-    width: auto;
-    display: block;
-    flex-shrink: 0;
-  }
-  @keyframes img-marquee-scroll{
-    from{ transform: translateX(0); }
-    to{ transform: translateX(-50%); }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .img-marquee-track{ animation: none; }
-  }
-  @media (max-width: 560px){
-    .img-marquee-track img{ height: 180px; }
+  .final-shot img{ display:block; width:100%; height:auto; }
+  @media (max-width: 700px){
+    /* the strip is very wide: keep it legible and let it be swiped, no animation */
+    .final-shot{ overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .final-shot img{ width:auto; height: 190px; max-width:none; }
   }
 
   /* Outcomes list */
@@ -355,6 +349,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Go back
       </a>
+      <span class="read-time">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span id="readTime">3 min read</span>
+      </span>
     </div>
   </header>
 
@@ -591,11 +589,8 @@
         </a>
       </div>
 
-      <div class="img-marquee">
-        <div class="img-marquee-track">
-          <img src="eae-screens.png" alt="EAE onboarding app screens">
-          <img src="eae-screens.png" alt="" aria-hidden="true">
-        </div>
+      <div class="final-shot">
+        <img src="eae-screens.png" alt="EAE onboarding app screens">
       </div>
     </section>
 
@@ -618,6 +613,16 @@
   <footer>
     © 2026 Camila Sobrino. All rights reserved.
   </footer>
+
+  <script>
+    (function(){
+      var main = document.querySelector('main');
+      var el = document.getElementById('readTime');
+      if (!main || !el) return;
+      var words = (main.innerText || '').trim().split(/\s+/).length;
+      el.textContent = Math.max(1, Math.round(words / 200)) + ' min read';
+    })();
+  </script>
 
 </body>
 </html>

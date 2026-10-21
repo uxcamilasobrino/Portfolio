@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agora Design System — Camila Sobrino</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -62,20 +63,32 @@
     white-space: nowrap;
   }
 
-  /* Password gate */
-  .gate-main{
-    min-height: 60vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding: 40px 0;
+  /* Password modal */
+  .modal{
+    position: fixed; inset: 0; z-index: 100;
+    display:none;
+    align-items:center; justify-content:center;
+    padding: 20px;
   }
-  .gate{
-    width: 100%;
-    max-width: 420px;
+  .modal.show{ display:flex; animation: fade .2s ease; }
+  .modal-backdrop{ position:absolute; inset:0; background: rgba(20,22,26,.45); backdrop-filter: blur(3px); }
+  .modal-card{
+    position: relative;
+    width: 100%; max-width: 400px;
+    background:#fff; border-radius: 18px;
+    padding: 36px 30px 30px;
     text-align:center;
-    margin: 0 auto;
+    box-shadow: 0 24px 60px rgba(20,22,26,.25);
   }
+  .modal-close{
+    position:absolute; top:12px; right:12px;
+    width:34px; height:34px; border:none; background:none; cursor:pointer;
+    color: var(--muted); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .modal-close:hover{ background: var(--card-bg, #f4f4f2); color: var(--ink); }
+  .modal-close svg{ width:18px; height:18px; }
+  @keyframes fade{ from{opacity:0} to{opacity:1} }
   .gate-icon{
     width: 56px;
     height: 56px;
@@ -87,8 +100,8 @@
     margin: 0 auto 24px;
   }
   .gate-icon svg{ width:24px; height:24px; color: var(--edtech-fg); }
-  .gate h1{
-    font-size: 26px;
+  .gate-title{
+    font-size: 22px;
     font-weight: 800;
     letter-spacing: -0.01em;
     margin: 0 0 10px;
@@ -170,8 +183,14 @@
     margin: 2px 0 0;
   }
 
-  #caseContent{ display:none; }
-  #caseContent.show{ display:block; }
+
+  .read-time{
+    display:flex; align-items:center; gap:7px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .read-time svg{ width:16px; height:16px; }
 
   /* Title */
   .title-section{
@@ -402,7 +421,6 @@
     h1{ font-size: 32px; }
     .title-section{ padding: 34px 0 30px; }
     .back-link{ font-size: 14px; }
-    .gate h1{ font-size: 22px; }
     .product-grid img{ height: 180px; }
     .token-flow{ flex-direction: column; }
     .token-arrow{ transform: rotate(90deg); padding: 2px 0; }
@@ -417,31 +435,14 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Go back
       </a>
+      <span class="read-time">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span id="readTime">4 min read</span>
+      </span>
     </div>
   </header>
 
   <main class="wrap">
-
-    <div class="gate-main" id="gateLocked">
-      <div class="gate">
-        <div class="gate-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
-        </div>
-        <h1>Agora Design System</h1>
-        <p>This case study is password protected. Enter the password to continue.</p>
-        <form class="gate-form" id="gateForm">
-          <div class="gate-input-wrap">
-            <input type="password" class="gate-input" id="gateInput" placeholder="Password" autocomplete="off">
-            <button type="button" class="gate-toggle" id="gateToggle" aria-label="Show password">
-              <svg class="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
-              <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.94 10.94 0 0112 19c-7 0-11-7-11-7a18.6 18.6 0 015.06-5.94M9.9 4.24A10.4 10.4 0 0112 4c7 0 11 7 11 7a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><path d="M1 1l22 22"/></svg>
-            </button>
-          </div>
-          <p class="error-msg" id="gateError"></p>
-          <button type="submit" class="gate-submit">Continue</button>
-        </form>
-      </div>
-    </div>
 
     <div id="caseContent">
 
@@ -571,7 +572,7 @@
       <section class="case-section">
         <h2>Documentation</h2>
         <p>The Figma library holds the foundations, tokens and components, while Zeroheight documents how and when to use them (purpose, variants, states, do's and don'ts), bridging the visual library with the knowledge needed to use it correctly.</p>
-        <a class="proto-btn" href="https://zeroheight.com/2494ce398/p/980e1d-agora-design-system" target="_blank" rel="noopener">
+        <a class="proto-btn" id="zhLink" href="#documentation" role="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
           View documentation on Zeroheight
         </a>
@@ -596,18 +597,58 @@
 
   </main>
 
+  <div class="modal" id="pwModal" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
+    <div class="modal-backdrop" id="pwBackdrop"></div>
+    <div class="gate modal-card">
+      <button type="button" class="modal-close" id="pwClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="gate-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+      </div>
+      <h2 class="gate-title" id="pwTitle">Documentation is protected</h2>
+      <p>Enter the password to open the Zeroheight documentation.</p>
+      <form class="gate-form" id="gateForm">
+        <div class="gate-input-wrap">
+          <input type="password" class="gate-input" id="gateInput" placeholder="Password" autocomplete="off">
+          <button type="button" class="gate-toggle" id="gateToggle" aria-label="Show password">
+            <svg class="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.94 10.94 0 0112 19c-7 0-11-7-11-7a18.6 18.6 0 015.06-5.94M9.9 4.24A10.4 10.4 0 0112 4c7 0 11 7 11 7a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><path d="M1 1l22 22"/></svg>
+          </button>
+        </div>
+        <p class="error-msg" id="gateError"></p>
+        <button type="submit" class="gate-submit">Open documentation</button>
+      </form>
+    </div>
+  </div>
+
   <footer>
     © 2026 Camila Sobrino. All rights reserved.
   </footer>
 
   <script>
     var CORRECT_PASSWORD = "agora123";
+    var DOC_URL = "https://zeroheight.com/2494ce398/p/980e1d-agora-design-system";
+    var modal = document.getElementById('pwModal');
     var form = document.getElementById('gateForm');
     var input = document.getElementById('gateInput');
     var errorMsg = document.getElementById('gateError');
-    var locked = document.getElementById('gateLocked');
-    var content = document.getElementById('caseContent');
     var toggle = document.getElementById('gateToggle');
+
+    function openModal(){
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function(){ input.focus(); }, 50);
+    }
+    function closeModal(){
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+      input.value = ''; errorMsg.textContent = '';
+    }
+    document.getElementById('zhLink').addEventListener('click', function(e){ e.preventDefault(); openModal(); });
+    document.getElementById('pwClose').addEventListener('click', closeModal);
+    document.getElementById('pwBackdrop').addEventListener('click', closeModal);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('show')) closeModal(); });
 
     toggle.addEventListener('click', function(){
       var showing = toggle.classList.toggle('showing');
@@ -618,8 +659,8 @@
     form.addEventListener('submit', function(e){
       e.preventDefault();
       if (input.value.trim() === CORRECT_PASSWORD) {
-        locked.style.display = 'none';
-        content.classList.add('show');
+        window.open(DOC_URL, '_blank', 'noopener');
+        closeModal();
       } else {
         errorMsg.textContent = 'Incorrect password, please try again.';
         input.classList.remove('error');
@@ -628,6 +669,15 @@
         input.value = '';
       }
     });
+  </script>
+  <script>
+    (function(){
+      var main = document.querySelector('main');
+      var el = document.getElementById('readTime');
+      if (!main || !el) return;
+      var words = (main.innerText || '').trim().split(/\s+/).length;
+      el.textContent = Math.max(1, Math.round(words / 200)) + ' min read';
+    })();
   </script>
 
 </body>
