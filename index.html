@@ -434,8 +434,8 @@
   /* ---- About ---- */
   .about{ padding: 0 0 70px; }
   .about-bio{ max-width: none; margin: 0 0 28px; }
-  .about-chips{ margin-bottom: 64px; }
-  .about-actions{ display:flex; gap: 12px; margin-top: 32px; }
+  .about-chips{ margin-bottom: 32px; }
+  .about-actions{ display:flex; gap: 12px; margin-bottom: 64px; }
   .btn-primary, .btn-ghost{
     display:inline-flex; align-items:center; gap:8px;
     font-size: 15px; font-weight: 600;
@@ -479,42 +479,21 @@
   .legend .dot:first-child{ margin-left:0; }
   .legend .dot.is-work{ background: var(--ink); }
 
-  .lang-hint{ margin: -8px 0 18px; font-size: 13.5px; color: var(--muted); }
-  .langs{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .lang{
-    font: inherit; color: inherit; text-align: left; cursor: pointer;
-    border: 0; background: none; padding: 0;
-    display:flex; flex-direction: column; align-items: stretch; gap: 4px;
-  }
-  .bubble{
-    position: relative;
-    background: var(--ink); color: #fff;
-    border-radius: 18px 18px 18px 4px;
-    padding: 22px 22px 24px; margin-bottom: 14px;
-    min-height: 92px; display:flex; align-items:center;
-    transition: transform .25s ease;
-  }
-  .bubble::after{
-    content:""; position:absolute; left: 0; bottom: -10px;
-    border-style: solid; border-width: 10px 12px 0 0;
-    border-color: var(--ink) transparent transparent transparent;
-  }
-  .lang:hover .bubble{ transform: translateY(-3px); }
-  .phrase{ font-size: 26px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; transition: opacity .2s ease, transform .2s ease; display:block; }
-  .phrase.swap{ opacity: 0; transform: translateY(6px); }
-  .lang-name{ font-size: 15px; font-weight: 700; }
-  .meter{ display:flex; gap: 4px; margin: 4px 0 2px; }
-  .meter i{ width: 22px; height: 6px; border-radius: 999px; background: var(--line); display:block; }
-  .meter i.on{ background: var(--ink); }
-  .lang-lvl{ font-size: 13px; color: var(--muted); }
+  .langs{ display:grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .lang{ padding: 22px 24px 22px 0; border-bottom: 1px solid var(--line); }
+  .lang + .lang{ padding-left: 24px; border-left: 1px solid var(--line); }
+  .phrase{ position: relative; display:block; height: 40px; font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .phrase span{ position:absolute; left:0; top:0; white-space: nowrap; transition: opacity .3s ease, transform .3s ease; }
+  .phrase .p2{ opacity: 0; transform: translateY(10px); font-size: 24px; line-height: 40px; color: var(--muted); font-weight: 600; }
+  .lang:hover .p1{ opacity: 0; transform: translateY(-10px); }
+  .lang:hover .p2{ opacity: 1; transform: none; }
+  .lang-meta{ font-size: 14.5px; font-weight: 600; }
+  .lang-meta em{ font-style: normal; font-weight: 500; color: var(--muted); margin-left: 6px; }
 
-  .facts{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .fact{
-    border: 1px dashed #cfcdc7; border-radius: 14px; padding: 18px 20px;
-    display:flex; flex-direction:column; gap: 6px; background: #fff;
-  }
-  .fact-k{ font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-  .fact-v{ font-size: 15.5px; font-weight: 600; line-height: 1.4; }
+  .path-box{ background: var(--chip-bg); border-radius: 18px; padding: 28px 32px 34px; }
+  .path-head{ display:flex; align-items:center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+  .path-head .about-h, .path-head .legend{ margin: 0; }
+  .path-box .timeline::before{ background: #d6d4cf; }
 
   .chips{ display:flex; flex-wrap:wrap; gap: 10px; }
   .chip{
@@ -526,7 +505,9 @@
   .about .skills{ padding: 0; margin-bottom: 0; }
 
   @media (max-width: 700px){
-    .langs, .facts{ grid-template-columns: 1fr; }
+    .langs{ grid-template-columns: 1fr; }
+    .lang, .lang + .lang{ padding: 18px 0; border-left: 0; }
+    .path-box{ padding: 22px 20px 26px; }
   }
   @media (max-width: 560px){
     .about-block{ margin-bottom: 52px; }
@@ -628,96 +609,77 @@
     <section class="panel about" id="panel-about" role="tabpanel" aria-labelledby="tab-about" hidden>
 
       <p class="bio about-bio">
-        I work across design systems, accessibility and learning experiences, and hold a
-        Master’s degree in Usability, Interaction Design and User Experience. Right now I
-        design for higher education at Grupo Planeta. AI is part of how I work day to
-        day: I use it to prototype and validate ideas quickly, and to turn research into
-        summaries and documentation the team can act on, keeping my own focus on the
-        decisions that shape the product.
+        Product Designer with focus on design systems, accessibility, and learning experiences.
+        I combine user research, interaction design, and AI to create intuitive products that
+        deliver results. I hold a Master’s degree in Usability, Interaction Design and User
+        Experience.
       </p>
 
       <div class="chips about-chips reveal">
-        <span class="chip">Interaction Design</span><span class="chip">Design Systems</span><span class="chip">Usability Research</span><span class="chip">Design Thinking</span><span class="chip">User Centered Design</span><span class="chip">Prototyping</span><span class="chip">Information Architecture</span><span class="chip">DesignOps</span><span class="chip">Accessibility</span><span class="chip">WCAG</span><span class="chip">Design Tokens</span><span class="chip">Component Libraries</span><span class="chip">User Flows</span><span class="chip">Wireframing</span><span class="chip">Usability Testing</span><span class="chip">UX Research</span><span class="chip">Visual Design</span><span class="chip">Documentation</span><span class="chip">Developer Handoff</span><span class="chip">AI-assisted Design</span>
+        <span class="chip">Design Systems</span><span class="chip">Accessibility</span><span class="chip">Interaction Design</span><span class="chip">Usability Research</span><span class="chip">User Centered Design</span><span class="chip">Prototyping</span><span class="chip">Information Architecture</span><span class="chip">Design Tokens</span><span class="chip">DesignOps</span><span class="chip">AI-assisted Design</span>
       </div>
 
-      <div class="about-block reveal">
-        <p class="about-h">My path</p>
+      <div class="about-actions reveal">
+        <a class="btn-primary" href="Camila_Sobrino_resume.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download CV
+        </a>
+      </div>
+
+      <div class="about-block path-box reveal">
+        <div class="path-head">
+          <p class="about-h">My path</p>
+          <p class="legend"><span class="dot"></span>Study <span class="dot is-work"></span>Work</p>
+        </div>
         <ol class="timeline">
-          <li class="tl is-study">
-            <span class="tl-date">2018 to 2022</span>
-            <h4>Audiovisual Media</h4>
-            <p>Rey Juan Carlos University, Madrid. Where I learned to tell stories with images.</p>
-          </li>
-          <li class="tl is-study">
-            <span class="tl-date">2021</span>
-            <h4>Erasmus+ in Rome</h4>
-            <p>Sapienza University. Design, multimedia and visual communication in Italian.</p>
-          </li>
-          <li class="tl is-work">
-            <span class="tl-date">2022 to 2023</span>
-            <h4>Visual Designer</h4>
-            <p>ENGSO Youth</p>
-          </li>
-          <li class="tl is-study">
-            <span class="tl-date">2023 to 2024</span>
-            <h4>Master’s in Usability, Interaction Design and UX</h4>
-            <p>Pompeu Fabra University, Barcelona.</p>
+          <li class="tl is-work current">
+            <span class="tl-date">Sep 2024 to now</span>
+            <h4>User Experience Designer</h4>
+            <p>Grupo Planeta</p>
           </li>
           <li class="tl is-work">
             <span class="tl-date">Sep 2023 to Aug 2024</span>
             <h4>User Experience Designer</h4>
             <p>Viscata</p>
           </li>
-          <li class="tl is-work current">
-            <span class="tl-date">Sep 2024 to now</span>
-            <h4>User Experience Designer</h4>
-            <p>Grupo Planeta</p>
+          <li class="tl is-study">
+            <span class="tl-date">2023 to 2024</span>
+            <h4>Master’s in Usability, Interaction Design and UX</h4>
+            <p>Pompeu Fabra University, Barcelona</p>
+          </li>
+          <li class="tl is-work">
+            <span class="tl-date">Sep 2022 to Sep 2023</span>
+            <h4>Visual Designer</h4>
+            <p>ENGSO Youth</p>
+          </li>
+          <li class="tl is-study">
+            <span class="tl-date">2021</span>
+            <h4>Erasmus+ in Rome</h4>
+            <p>Sapienza University. Design, multimedia and visual communication.</p>
+          </li>
+          <li class="tl is-study">
+            <span class="tl-date">2018 to 2022</span>
+            <h4>Audiovisual Media</h4>
+            <p>Rey Juan Carlos University, Madrid</p>
           </li>
         </ol>
-        <p class="legend"><span class="dot"></span>Study <span class="dot is-work"></span>Work</p>
-        <div class="about-actions">
-          <a class="btn-primary" href="Camila_Sobrino_resume.pdf" download>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
-            Download CV
-          </a>
-        </div>
       </div>
 
       <div class="about-block reveal">
         <p class="about-h">Languages</p>
-        <p class="lang-hint">Tap a bubble to hear me say it another way.</p>
         <div class="langs">
-          <button type="button" class="lang" data-phrases="Hola|¿Qué tal?|¡Buenos días!">
-            <span class="bubble"><span class="phrase">Hola</span></span>
-            <span class="lang-name">Spanish</span>
-            <span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
-            <span class="lang-lvl">Native</span>
-          </button>
-          <button type="button" class="lang" data-phrases="Hello|How are you?|Nice to meet you">
-            <span class="bubble"><span class="phrase">Hello</span></span>
-            <span class="lang-name">English</span>
-            <span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
-            <span class="lang-lvl">C1</span>
-          </button>
-          <button type="button" class="lang" data-phrases="Ciao|Come stai?|Piacere!">
-            <span class="bubble"><span class="phrase">Ciao</span></span>
-            <span class="lang-name">Italian</span>
-            <span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
-            <span class="lang-lvl">C1</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Placeholder facts: replace the values with your own -->
-      <div class="about-block reveal">
-        <p class="about-h">Off the clock</p>
-        <div class="facts">
-          <div class="fact"><span class="fact-k">Fuel</span><span class="fact-v">Cortado, always</span></div>
-          <div class="fact"><span class="fact-k">Reading</span><span class="fact-v">Your next book here</span></div>
-          <div class="fact"><span class="fact-k">On repeat</span><span class="fact-v">Your playlist here</span></div>
-          <div class="fact"><span class="fact-k">Favorite corner</span><span class="fact-v">A café in Barcelona</span></div>
-          <div class="fact"><span class="fact-k">Side project</span><span class="fact-v">Elara, built with Claude</span></div>
-          <div class="fact"><span class="fact-k">Fun fact</span><span class="fact-v">I learned Italian on Erasmus in Rome</span></div>
+          <div class="lang">
+            <span class="phrase"><span class="p1">Hola</span><span class="p2">¿Qué tal?</span></span>
+            <span class="lang-meta">Spanish <em>Native</em></span>
+          </div>
+          <div class="lang">
+            <span class="phrase"><span class="p1">Hello</span><span class="p2">How are you?</span></span>
+            <span class="lang-meta">English <em>C1</em></span>
+          </div>
+          <div class="lang">
+            <span class="phrase"><span class="p1">Ciao</span><span class="p2">Come stai?</span></span>
+            <span class="lang-meta">Italian <em>C1</em></span>
+          </div>
         </div>
       </div>
 
@@ -862,23 +824,6 @@
     window.addEventListener('hashchange', fromHash);
     fromHash();
 
-    /* ---- Language bubbles ---- */
-    document.querySelectorAll('.lang').forEach(function(btn){
-      var list = btn.getAttribute('data-phrases').split('|');
-      var el = btn.querySelector('.phrase'), n = 0;
-      function next(){
-        el.classList.add('swap');
-        setTimeout(function(){
-          n = (n + 1) % list.length;
-          el.textContent = list[n];
-          el.classList.remove('swap');
-        }, reduced ? 0 : 200);
-      }
-      btn.addEventListener('click', next);
-      if (!reduced) {
-        setInterval(function(){ if (!btn.closest('.panel').hidden) next(); }, 4000 + Math.random() * 1500);
-      }
-    });
   })();
   </script>
 

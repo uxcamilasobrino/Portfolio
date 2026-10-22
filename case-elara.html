@@ -675,13 +675,13 @@
 
     <section class="case-section">
       <h2>Overview</h2>
-      <p>Elara is a mobile web app for aesthetic clinics. During the consultation, it shows the patient a <strong>realistic AI simulation of the treatment on their own face</strong>, and it keeps every patient's photos as an organized, <strong>GDPR-conscious clinical record</strong>.</p>
-      <p>It started with <strong>field research</strong>. I visited <a class="text-link" href="https://www.sunsolfigueres.es/es/centro-de-estetica-figueres" target="_blank" rel="noopener">Sunsolfigueres - Centre d'estètica</a> and observed their processes on site. Two things stayed with me:</p>
+      <p>Elara is a mobile web app for aesthetic clinics. It shows patients a <strong>realistic AI preview of their treatment on their own face</strong> and keeps every photo as an organized, <strong>GDPR-conscious record</strong>.</p>
+      <p>I started with <strong>field research</strong> at <a class="text-link" href="https://www.sunsolfigueres.es/es/centro-de-estetica-figueres" target="_blank" rel="noopener">Sunsolfigueres - Centre d'estètica</a>, observing their processes on site. Two things stood out:</p>
       <ul class="bullet-list">
-        <li><strong>Patients almost always ask to see a final result in the first appointment</strong>, but the doctor can't show photos of other patients because of privacy.</li>
-        <li>The doctor kept <strong>every photo on her own phone</strong> and struggled to find a specific one when she needed it.</li>
+        <li><strong>Patients ask for a final result at the first appointment</strong>, but the doctor can't show other patients' photos for privacy reasons.</li>
+        <li>The doctor keeps <strong>all photos on her phone</strong> and struggles to find a specific one.</li>
       </ul>
-      <p>Elara answers both. The patient sees a <strong>credible preview on their own face</strong>, and every photo is stored <strong>per patient and per treatment</strong>, ready to find when needed.</p>
+      <p>Elara answers both: a <strong>preview on the patient's own face</strong>, and photos organized <strong>per patient and treatment</strong>.</p>
     </section>
 
     <section class="case-section">
@@ -865,17 +865,17 @@
 
     <section class="case-section">
       <h2>Technical approach</h2>
-      <p>I built Elara end to end with Claude Code as my engineering partner. I directed scope and every design decision, Claude Code wrote and tested the code, and I set up GitHub, Vercel, the database and the AI billing myself.</p>
+      <p>I built Elara end to end with <strong>Claude Code</strong>. I owned scope and design decisions, Claude Code wrote and tested the code, and I set up GitHub, Vercel, the database and AI billing.</p>
 
       <div class="flow">
         <div class="flow-box">
           <h4>Phone (PWA)</h4>
-          <p>Next.js and TypeScript. Installable, with camera access.</p>
+          <p>Next.js, installable, with camera access.</p>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-box">
           <h4>Server in Frankfurt</h4>
-          <p>Builds the AI prompt from IDs. The phone never sends prompt text.</p>
+          <p>Builds the AI prompt from IDs, never from phone text.</p>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-box">
@@ -893,22 +893,22 @@
       <div class="privacy">
         <div class="privacy-card">
           <h4>EU hosting</h4>
-          <p>Servers, database and photo storage in Frankfurt. Photos are private, with no public links.</p>
+          <p>Servers, database and private photo storage in Frankfurt.</p>
         </div>
         <div class="privacy-card">
           <h4>Consent first</h4>
-          <p>No photo before consent, and the consent text is versioned.</p>
+          <p>No photo before consent. The consent text is versioned.</p>
         </div>
         <div class="privacy-card">
           <h4>Minimal traces</h4>
-          <p>Logs never contain photos, names or notes. A separate access log records who viewed what.</p>
+          <p>Logs hold no photos, names or notes. An access log records who viewed what.</p>
         </div>
         <div class="privacy-card">
           <h4>Automatic deletion</h4>
-          <p>Photos are deleted after 2 years, and a patient can be deleted completely, photos included.</p>
+          <p>Photos are deleted after 2 years, or with the patient record on request.</p>
         </div>
       </div>
-      <p style="margin-top:20px;">Before real patients use it, the next steps are data processing agreements and a legal review.</p>
+      <p style="margin-top:20px;">Next: data processing agreements and a legal review before real patients use it.</p>
     </section>
 
     <section class="case-section">
