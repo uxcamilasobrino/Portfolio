@@ -331,11 +331,12 @@
     margin-top: 28px;
   }
   .step{
-    border: 1px solid var(--line);
+    border: 1px solid var(--elara-line);
     border-radius: 16px;
     padding: 14px 14px 20px;
-    background: #fff;
+    background: var(--elara-bg);
   }
+  .step .shot{ background:#fff; }
   .step .shot{ margin-bottom: 16px; }
   .step-head{
     display:flex;
@@ -372,7 +373,7 @@
     font-size: 12.5px;
     font-weight: 600;
     color: var(--elara-fg);
-    background: var(--elara-bg);
+    background: #fff;
     padding: 5px 11px;
     border-radius: 999px;
   }
@@ -531,6 +532,11 @@
     margin: 0 !important;
   }
 
+  .extra-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .extra-grid .after-card{ padding: 14px 14px 18px; }
+  .extra-grid .after-card h4{ padding: 0 4px; }
+  .extra-grid .after-card p{ padding: 0 4px; }
+
   /* Observations */
   .obs{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 4px 0 24px; }
   .obs-card{
@@ -538,14 +544,14 @@
     background: var(--elara-bg);
     border: 1px solid var(--elara-line);
     border-radius: 18px 18px 18px 4px;
-    padding: 22px 24px 24px;
+    padding: 18px 22px 20px;
   }
   .obs-tag{
     display:inline-block; font-size: 12px; font-weight: 700; letter-spacing: .04em;
     text-transform: uppercase; color: var(--elara-fg);
-    background:#fff; padding: 5px 12px; border-radius: 999px; margin-bottom: 14px;
+    background:#fff; padding: 5px 12px; border-radius: 999px; margin-bottom: 10px;
   }
-  .case-section .obs-card p{ font-size: 16px; line-height: 1.55; color: var(--ink); margin: 0; max-width: none; }
+  .case-section .obs-card p{ font-size: 15.5px; line-height: 1.5; font-weight: 500; color: var(--ink); margin: 0; max-width: none; }
 
   /* Design decisions */
   .dd-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -649,6 +655,7 @@
 
   @media (max-width: 700px){
     .insights, .after-grid, .stats, .goals, .obs, .dd-grid, .checks{ grid-template-columns: 1fr; }
+    .extra-grid{ grid-template-columns: 1fr 1fr; }
     .flow{ flex-direction: column; }
     .flow-arrow{ transform: rotate(90deg); padding: 2px 0; }
     .proto-buttons{ flex-direction: column; }
@@ -733,11 +740,11 @@
       <div class="obs">
         <div class="obs-card">
           <span class="obs-tag">Patients ask</span>
-          <p><strong>"What will it look like?"</strong> They want a final result at the first appointment, but the doctor can't show other patients' photos for privacy reasons.</p>
+          <p>For the final result at the first visit. Privacy rules out other patients' photos.</p>
         </div>
         <div class="obs-card">
           <span class="obs-tag">The doctor keeps</span>
-          <p><strong>Every photo on her phone</strong>, and struggles to find a specific one when she needs it.</p>
+          <p>Every photo on her phone, hard to search.</p>
         </div>
       </div>
       <p>Elara answers both: a <strong>preview on the patient's own face</strong>, and photos organized <strong>per patient and treatment</strong>.</p>
@@ -867,6 +874,30 @@
           <p>Patients and treatments over time, a face map of treated areas and top treatments.</p>
         </div>
       </div>
+
+      <p class="after-title">FIND ANYTHING, SET UP THE CLINIC</p>
+      <div class="extra-grid">
+        <div class="after-card">
+          <figure class="shot screen"><img src="elara-extra-login.png" alt="Sign in screen" onerror="this.parentNode.classList.add('missing');this.remove()"></figure>
+          <h4>Sign in</h4>
+          <p>One private account per clinic.</p>
+        </div>
+        <div class="after-card">
+          <figure class="shot screen"><img src="elara-extra-patients.png" alt="All patients list" onerror="this.parentNode.classList.add('missing');this.remove()"></figure>
+          <h4>All patients</h4>
+          <p>Search by name or code, and see which results are pending.</p>
+        </div>
+        <div class="after-card">
+          <figure class="shot screen"><img src="elara-extra-filters.png" alt="Filters sheet" onerror="this.parentNode.classList.add('missing');this.remove()"></figure>
+          <h4>Filters</h4>
+          <p>By period, treatment type or final result pending.</p>
+        </div>
+        <div class="after-card">
+          <figure class="shot screen"><img src="elara-extra-treatments.png" alt="Treatments setup" onerror="this.parentNode.classList.add('missing');this.remove()"></figure>
+          <h4>Treatments</h4>
+          <p>The clinic chooses which treatments appear.</p>
+        </div>
+      </div>
     </section>
 
     <section class="case-section">
@@ -910,7 +941,7 @@
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-box">
-          <h4>Server in Frankfurt</h4>
+          <h4>Server in the EU</h4>
           <p>Builds the AI prompt from IDs, never from phone text.</p>
         </div>
         <div class="flow-arrow">→</div>
@@ -923,10 +954,9 @@
       <div class="privacy-box">
         <div class="privacy-top">
           <h3>Privacy and security</h3>
-          <span class="eu-pill">Stored in the EU</span>
         </div>
         <ul class="checks">
-          <li>Private photos, hosted in Frankfurt</li>
+          <li>Private photos, hosted in the EU</li>
           <li>Consent before any photo</li>
           <li>Logs without photos, names or notes</li>
           <li>Photos deleted after 2 years or on request</li>
