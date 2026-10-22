@@ -532,7 +532,7 @@
     margin: 0 !important;
   }
 
-  .extra-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .extra-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .extra-grid .after-card{ padding: 14px 14px 18px; }
   .extra-grid .after-card h4{ padding: 0 4px; }
   .extra-grid .after-card p{ padding: 0 4px; }
@@ -544,7 +544,7 @@
     background: var(--elara-bg);
     border: 1px solid var(--elara-line);
     border-radius: 18px 18px 18px 4px;
-    padding: 18px 22px 20px;
+    padding: 20px 24px;
   }
   .obs-tag{
     display:inline-block; font-size: 12px; font-weight: 700; letter-spacing: .04em;
@@ -655,7 +655,7 @@
 
   @media (max-width: 700px){
     .insights, .after-grid, .stats, .goals, .obs, .dd-grid, .checks{ grid-template-columns: 1fr; }
-    .extra-grid{ grid-template-columns: 1fr 1fr; }
+    .extra-grid{ grid-template-columns: 1fr; }
     .flow{ flex-direction: column; }
     .flow-arrow{ transform: rotate(90deg); padding: 2px 0; }
     .proto-buttons{ flex-direction: column; }
@@ -738,14 +738,8 @@
       <h2>Overview</h2>
       <p>Elara is a mobile web app for aesthetic clinics. It shows patients a <strong>realistic AI preview of their treatment on their own face</strong> and keeps every photo as an organized, <strong>GDPR-conscious record</strong>. I started with <strong>field research</strong> at <a class="text-link" href="https://www.sunsolfigueres.es/es/centro-de-estetica-figueres" target="_blank" rel="noopener">Sunsolfigueres - Centre d'estètica</a>, observing their processes on site. Two things stood out:</p>
       <div class="obs">
-        <div class="obs-card">
-          <span class="obs-tag">Patients ask</span>
-          <p>For the final result at the first visit. Privacy rules out other patients' photos.</p>
-        </div>
-        <div class="obs-card">
-          <span class="obs-tag">The doctor keeps</span>
-          <p>Every photo on her phone, hard to search.</p>
-        </div>
+        <div class="obs-card"><p><strong>Patients ask</strong> for the final result at the first visit. Privacy rules out other patients' photos.</p></div>
+        <div class="obs-card"><p><strong>The doctor keeps</strong> every photo on her phone, hard to search.</p></div>
       </div>
       <p>Elara answers both: a <strong>preview on the patient's own face</strong>, and photos organized <strong>per patient and treatment</strong>.</p>
     </section>
@@ -875,13 +869,8 @@
         </div>
       </div>
 
-      <p class="after-title">FIND ANYTHING, SET UP THE CLINIC</p>
+      <p class="after-title">MANAGING THE CLINIC</p>
       <div class="extra-grid">
-        <div class="after-card">
-          <figure class="shot screen"><img src="elara-extra-login.png" alt="Sign in screen" onerror="this.parentNode.classList.add('missing');this.remove()"></figure>
-          <h4>Sign in</h4>
-          <p>One private account per clinic.</p>
-        </div>
         <div class="after-card">
           <figure class="shot screen"><img src="elara-extra-patients.png" alt="All patients list" onerror="this.parentNode.classList.add('missing');this.remove()"></figure>
           <h4>All patients</h4>
@@ -905,27 +894,27 @@
       <div class="dd-grid">
         <div class="dd-card">
           <span class="dd-n">1</span>
-          <h3>Guide the photo, don't trust it</h3>
-          <p>The camera shows a face oval, checks level and light, and overlays the original photo as a ghost for follow-ups.</p>
-          <span class="dd-why">Better photo, better simulation</span>
+          <h3>Guided capture</h3>
+          <p>Live camera with a face guide per photo type. Checks phone level, light and light symmetry. Follow-ups overlay the original photo as a ghost.</p>
+          <span class="dd-why">3:4 frame · live checks</span>
         </div>
         <div class="dd-card">
           <span class="dd-n">2</span>
-          <h3>One treatment, one photo type</h3>
-          <p>Each treatment asks for the pose its effect needs, and only that photo is accepted.</p>
-          <span class="dd-why">The AI treats the right area</span>
+          <h3>Consent gate</h3>
+          <p>No photo before a signed consent. The consent text is versioned and the signature is valid for 2 years, with an explanation when it asks again.</p>
+          <span class="dd-why">Versioned · 2 years</span>
         </div>
         <div class="dd-card">
           <span class="dd-n">3</span>
-          <h3>Trust built into the flow</h3>
-          <p>Consent comes before any photo, and every result is labeled as an AI estimate. No sharing, no marketing features.</p>
-          <span class="dd-why">It never feels like a sales tool</span>
+          <h3>Anatomical face map</h3>
+          <p>Zones are selected on a face map instead of free text. Multi-select, mapped to the treatments available per zone.</p>
+          <span class="dd-why">11 zones · 30 treatments</span>
         </div>
         <div class="dd-card">
           <span class="dd-n">4</span>
-          <h3>Less on screen</h3>
-          <p>No hint texts or menu descriptions, and each photo's actions live on the photo screen.</p>
-          <span class="dd-why">Understood at a glance, mid-conversation</span>
+          <h3>Treatment to photo mapping</h3>
+          <p>Each treatment requires a specific photo type and the server rejects mismatches. Found when a raised-eyebrow photo with a frown prompt changed the expression.</p>
+          <span class="dd-why">10 photo types</span>
         </div>
       </div>
     </section>

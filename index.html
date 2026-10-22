@@ -433,9 +433,8 @@
 
   /* ---- About ---- */
   .about{ padding: 0 0 70px; }
-  .about-bio{ max-width: none; margin: 0 0 28px; }
-  .about-chips{ margin-bottom: 32px; }
-  .about-actions{ display:flex; gap: 12px; margin-bottom: 64px; }
+  .about-bio{ max-width: none; margin: 0 0 56px; }
+  .about-actions{ display:flex; gap: 12px; margin-top: 36px; }
   .btn-primary, .btn-ghost{
     display:inline-flex; align-items:center; gap:8px;
     font-size: 15px; font-weight: 600;
@@ -454,46 +453,54 @@
     color: var(--muted); margin: 0 0 20px;
   }
 
-  .timeline{ list-style:none; margin:0; padding: 0 0 0 28px; position: relative; }
-  .timeline::before{
-    content:""; position:absolute; left: 6px; top: 8px; bottom: 8px; width: 1.5px; background: var(--line);
+  /* Path: study on the left, work on the right, one spine */
+  .path{
+    position: relative;
+    display:grid;
+    grid-template-columns: 1fr 56px 1fr;
+    row-gap: 18px;
+    padding-top: 36px;
   }
-  .tl{ position: relative; padding-bottom: 26px; }
-  .tl:last-child{ padding-bottom: 0; }
-  .tl::before{
-    content:""; position:absolute; left: -28px; top: 5px;
-    width: 14px; height: 14px; border-radius: 50%;
-    background:#fff; border: 2px solid var(--ink);
+  .path::before{
+    content:""; position:absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px;
+    background: linear-gradient(to bottom, var(--ink), #d6d4cf);
   }
-  .tl.is-work::before{ background: var(--ink); }
-  .tl.current::after{
-    content:""; position:absolute; left: -28px; top: 5px; width:14px; height:14px; border-radius:50%;
-    border: 2px solid var(--ink); animation: pulse 2s ease-out infinite;
+  .path-cols{
+    position:absolute; top: 0; left:0; right:0; display:grid; grid-template-columns: 1fr 56px 1fr;
+    font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
   }
-  @keyframes pulse{ from{ transform: scale(1); opacity:.6; } to{ transform: scale(2.4); opacity:0; } }
-  .tl-date{ display:block; font-size: 12.5px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
-  .tl h4{ margin: 0 0 4px; font-size: 16.5px; font-weight: 700; }
-  .tl p{ margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--muted); max-width: 600px; }
-  .legend{ display:flex; align-items:center; gap: 8px; margin: 24px 0 0; font-size: 12.5px; color: var(--muted); }
-  .legend .dot{ width:10px; height:10px; border-radius:50%; border:2px solid var(--ink); display:inline-block; margin-left: 8px; }
-  .legend .dot:first-child{ margin-left:0; }
-  .legend .dot.is-work{ background: var(--ink); }
+  .path-cols span:first-child{ text-align:right; padding-right: 4px; }
+  .path-cols span:last-child{ grid-column: 3; padding-left: 4px; }
+  .pitem{ align-self: start; position: relative; border-radius: 16px; padding: 16px 20px 18px; grid-row: var(--r); }
+  .pitem.study{ grid-column: 1; border: 1.5px solid var(--ink); background:#fff; }
+  .pitem.work{ grid-column: 3; background: var(--ink); color:#fff; }
+  .pitem::before{ content:""; position:absolute; top: 24px; width: 28px; height: 1.5px; background: var(--ink); }
+  .pitem.study::before{ left: 100%; }
+  .pitem.work::before{ right: 100%; }
+  .pitem::after{
+    content:""; position:absolute; top: 18px; width: 13px; height: 13px; border-radius: 50%;
+    border: 2px solid var(--ink); background:#fff; z-index: 1;
+  }
+  .pitem.study::after{ left: calc(100% + 28px - 6.5px + 0px); }
+  .pitem.work::after{ right: calc(100% + 28px - 6.5px); background: var(--ink); }
+  .pdate{ display:flex; align-items:center; gap: 8px; font-size: 12.5px; font-weight: 600; opacity: .65; margin-bottom: 6px; }
+  .pitem h4{ margin: 0 0 4px; font-size: 16.5px; font-weight: 700; line-height: 1.3; }
+  .pitem p{ margin: 0; font-size: 14px; line-height: 1.5; opacity: .75; }
+  .live{
+    font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    background:#fff; color: var(--ink); padding: 2px 8px; border-radius: 999px; opacity: 1;
+    position: relative;
+  }
+  .pitem.now::after{ box-shadow: 0 0 0 0 rgba(20,22,26,.45); animation: ring 2.2s ease-out infinite; }
+  @keyframes ring{ to{ box-shadow: 0 0 0 12px rgba(20,22,26,0); } }
 
   .langs{ display:grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
   .lang{ padding: 22px 24px 22px 0; border-bottom: 1px solid var(--line); }
   .lang + .lang{ padding-left: 24px; border-left: 1px solid var(--line); }
-  .phrase{ position: relative; display:block; height: 40px; font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
-  .phrase span{ position:absolute; left:0; top:0; white-space: nowrap; transition: opacity .3s ease, transform .3s ease; }
-  .phrase .p2{ opacity: 0; transform: translateY(10px); font-size: 24px; line-height: 40px; color: var(--muted); font-weight: 600; }
-  .lang:hover .p1{ opacity: 0; transform: translateY(-10px); }
-  .lang:hover .p2{ opacity: 1; transform: none; }
+  .phrase{ display:block; font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
   .lang-meta{ font-size: 14.5px; font-weight: 600; }
   .lang-meta em{ font-style: normal; font-weight: 500; color: var(--muted); margin-left: 6px; }
 
-  .path-box{ background: var(--chip-bg); border-radius: 18px; padding: 28px 32px 34px; }
-  .path-head{ display:flex; align-items:center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
-  .path-head .about-h, .path-head .legend{ margin: 0; }
-  .path-box .timeline::before{ background: #d6d4cf; }
 
   .chips{ display:flex; flex-wrap:wrap; gap: 10px; }
   .chip{
@@ -507,14 +514,21 @@
   @media (max-width: 700px){
     .langs{ grid-template-columns: 1fr; }
     .lang, .lang + .lang{ padding: 18px 0; border-left: 0; }
-    .path-box{ padding: 22px 20px 26px; }
   }
   @media (max-width: 560px){
     .about-block{ margin-bottom: 52px; }
     .tab{ min-width: 100px; padding: 9px 20px; font-size: 14px; }
   }
+  @media (max-width: 700px){
+    .path{ grid-template-columns: 1fr; padding: 0 0 0 32px; }
+    .path::before{ left: 6px; }
+    .path-cols{ display:none; }
+    .pitem, .pitem.study, .pitem.work{ grid-column: 1; grid-row: auto; }
+    .pitem::before, .pitem.study::before, .pitem.work::before{ left: auto; right: 100%; width: 26px; }
+    .pitem::after, .pitem.study::after, .pitem.work::after{ left: auto; right: calc(100% + 26px - 6.5px); }
+  }
   @media (prefers-reduced-motion: reduce){
-    .tl.current::after{ animation: none; }
+    .pitem.now::after{ animation: none; }
     .panel.is-active{ animation: none; }
   }
 
@@ -615,65 +629,62 @@
         Experience.
       </p>
 
-      <div class="about-actions reveal">
-        <a class="btn-primary" href="Camila_Sobrino_resume.pdf" download>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
-          Download CV
-        </a>
-      </div>
-
-      <div class="about-block path-box reveal">
-        <div class="path-head">
-          <p class="about-h">My path</p>
-          <p class="legend"><span class="dot"></span>Study <span class="dot is-work"></span>Work</p>
-        </div>
-        <ol class="timeline">
-          <li class="tl is-work current">
-            <span class="tl-date">Sep 2024 to now</span>
+      <div class="about-block reveal">
+        <p class="about-h">My path</p>
+        <div class="path">
+          <div class="path-cols" aria-hidden="true"><span>Study</span><span>Work</span></div>
+          <div class="pitem work now" style="--r:1">
+            <span class="pdate">Sep 2024 to now <i class="live">Now</i></span>
             <h4>User Experience Designer</h4>
             <p>Grupo Planeta</p>
-          </li>
-          <li class="tl is-work">
-            <span class="tl-date">Sep 2023 to Aug 2024</span>
+          </div>
+          <div class="pitem work" style="--r:2">
+            <span class="pdate">Sep 2023 to Aug 2024</span>
             <h4>User Experience Designer</h4>
             <p>Viscata</p>
-          </li>
-          <li class="tl is-study">
-            <span class="tl-date">2023 to 2024</span>
+          </div>
+          <div class="pitem study" style="--r:2">
+            <span class="pdate">2023 to 2024</span>
             <h4>Master’s in Usability, Interaction Design and UX</h4>
             <p>Pompeu Fabra University, Barcelona</p>
-          </li>
-          <li class="tl is-work">
-            <span class="tl-date">Sep 2022 to Sep 2023</span>
+          </div>
+          <div class="pitem work" style="--r:3">
+            <span class="pdate">Sep 2022 to Sep 2023</span>
             <h4>Visual Designer</h4>
             <p>ENGSO Youth</p>
-          </li>
-          <li class="tl is-study">
-            <span class="tl-date">2021</span>
+          </div>
+          <div class="pitem study" style="--r:4">
+            <span class="pdate">2021</span>
             <h4>Erasmus+ in Rome</h4>
             <p>Sapienza University. Design, multimedia and visual communication.</p>
-          </li>
-          <li class="tl is-study">
-            <span class="tl-date">2018 to 2022</span>
+          </div>
+          <div class="pitem study" style="--r:5">
+            <span class="pdate">2018 to 2022</span>
             <h4>Audiovisual Media</h4>
             <p>Rey Juan Carlos University, Madrid</p>
-          </li>
-        </ol>
+          </div>
+        </div>
+        <div class="about-actions">
+          <a class="btn-primary" href="Camila_Sobrino_resume.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download CV
+          </a>
+        </div>
       </div>
 
       <div class="about-block reveal">
         <p class="about-h">Languages</p>
         <div class="langs">
           <div class="lang">
-            <span class="phrase"><span class="p1">Hola</span><span class="p2">¿Qué tal?</span></span>
+            <span class="phrase">Hola</span>
             <span class="lang-meta">Spanish <em>Native</em></span>
           </div>
           <div class="lang">
-            <span class="phrase"><span class="p1">Hello</span><span class="p2">How are you?</span></span>
+            <span class="phrase">Hello</span>
             <span class="lang-meta">English <em>C1</em></span>
           </div>
           <div class="lang">
-            <span class="phrase"><span class="p1">Ciao</span><span class="p2">Come stai?</span></span>
+            <span class="phrase">Ciao</span>
             <span class="lang-meta">Italian <em>C1</em></span>
           </div>
         </div>
