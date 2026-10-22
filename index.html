@@ -434,7 +434,9 @@
   /* ---- About ---- */
   .about{ padding: 0 0 70px; }
   .about-bio{ max-width: none; margin: 0 0 56px; }
-  .about-actions{ display:flex; gap: 12px; margin-top: 36px; }
+  .about-actions{ position: relative; display:flex; justify-content:center; margin-top: 30px; }
+  .about-actions::before{ content:""; position:absolute; left:50%; top:-30px; height: 30px; width:1px; margin-left:-.5px; background:#d6d4cf; }
+  .about-actions .btn-primary{ position: relative; }
   .btn-primary, .btn-ghost{
     display:inline-flex; align-items:center; gap:8px;
     font-size: 15px; font-weight: 600;
@@ -511,6 +513,8 @@
   }
   @media (max-width: 700px){
     .path{ grid-template-columns: 1fr; padding-left: 28px; row-gap: 24px; }
+    .about-actions{ justify-content: flex-start; }
+    .about-actions::before{ display:none; }
     .path::before{ left: 4px; }
     .pitem, .pitem.p-study, .pitem.p-work{ grid-column: 1; grid-row: auto; text-align: left; }
     .pitem.p-study .pdate{ justify-content: flex-start; }
@@ -619,7 +623,6 @@
       </p>
 
       <div class="about-block reveal">
-        <p class="about-h">My path</p>
         <div class="path">
           <div class="pitem p-work now" style="--r:1">
             <span class="pdate">Sep 2024 to now <i class="live">Now</i></span>
