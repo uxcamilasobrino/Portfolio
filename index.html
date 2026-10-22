@@ -453,46 +453,36 @@
     color: var(--muted); margin: 0 0 20px;
   }
 
-  /* Path: study on the left, work on the right, one spine */
+  /* Path: study on the left, work on the right, one thin spine */
   .path{
     position: relative;
     display:grid;
-    grid-template-columns: 1fr 56px 1fr;
-    row-gap: 18px;
-    padding-top: 36px;
+    grid-template-columns: 1fr 48px 1fr;
+    row-gap: 30px;
   }
   .path::before{
-    content:""; position:absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px;
-    background: linear-gradient(to bottom, var(--ink), #d6d4cf);
+    content:""; position:absolute; left: 50%; top: 6px; bottom: 6px; width: 1px; margin-left: -.5px;
+    background: #d6d4cf;
   }
-  .path-cols{
-    position:absolute; top: 0; left:0; right:0; display:grid; grid-template-columns: 1fr 56px 1fr;
-    font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
-  }
-  .path-cols span:first-child{ text-align:right; padding-right: 4px; }
-  .path-cols span:last-child{ grid-column: 3; padding-left: 4px; }
-  .pitem{ align-self: start; position: relative; border-radius: 16px; padding: 16px 20px 18px; grid-row: var(--r); }
-  .pitem.study{ grid-column: 1; border: 1.5px solid var(--ink); background:#fff; }
-  .pitem.work{ grid-column: 3; background: var(--ink); color:#fff; }
-  .pitem::before{ content:""; position:absolute; top: 24px; width: 28px; height: 1.5px; background: var(--ink); }
-  .pitem.study::before{ left: 100%; }
-  .pitem.work::before{ right: 100%; }
+  .pitem{ position: relative; align-self: start; grid-row: var(--r); }
+  .pitem.p-study{ grid-column: 1; text-align: right; }
+  .pitem.p-work{ grid-column: 3; }
   .pitem::after{
-    content:""; position:absolute; top: 18px; width: 13px; height: 13px; border-radius: 50%;
-    border: 2px solid var(--ink); background:#fff; z-index: 1;
+    content:""; position:absolute; top: 3px; width: 9px; height: 9px; border-radius: 50%;
+    border: 1.5px solid var(--ink); background:#fff;
   }
-  .pitem.study::after{ left: calc(100% + 28px - 6.5px + 0px); }
-  .pitem.work::after{ right: calc(100% + 28px - 6.5px); background: var(--ink); }
-  .pdate{ display:flex; align-items:center; gap: 8px; font-size: 12.5px; font-weight: 600; opacity: .65; margin-bottom: 6px; }
-  .pitem h4{ margin: 0 0 4px; font-size: 16.5px; font-weight: 700; line-height: 1.3; }
-  .pitem p{ margin: 0; font-size: 14px; line-height: 1.5; opacity: .75; }
+  .pitem.p-study::after{ left: calc(100% + 24px - 4.5px); }
+  .pitem.p-work::after{ right: calc(100% + 24px - 4.5px); background: var(--ink); }
+  .pdate{ display:flex; align-items:center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--muted); margin-bottom: 5px; }
+  .pitem.p-study .pdate{ justify-content: flex-end; }
+  .pitem h4{ margin: 0 0 3px; font-size: 16px; font-weight: 700; line-height: 1.35; }
+  .pitem p{ margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
   .live{
-    font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-    background:#fff; color: var(--ink); padding: 2px 8px; border-radius: 999px; opacity: 1;
-    position: relative;
+    font-style: normal; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    background: var(--ink); color:#fff; padding: 2px 8px; border-radius: 999px;
   }
   .pitem.now::after{ box-shadow: 0 0 0 0 rgba(20,22,26,.45); animation: ring 2.2s ease-out infinite; }
-  @keyframes ring{ to{ box-shadow: 0 0 0 12px rgba(20,22,26,0); } }
+  @keyframes ring{ to{ box-shadow: 0 0 0 10px rgba(20,22,26,0); } }
 
   .langs{ display:grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
   .lang{ padding: 22px 24px 22px 0; border-bottom: 1px solid var(--line); }
@@ -520,12 +510,11 @@
     .tab{ min-width: 100px; padding: 9px 20px; font-size: 14px; }
   }
   @media (max-width: 700px){
-    .path{ grid-template-columns: 1fr; padding: 0 0 0 32px; }
-    .path::before{ left: 6px; }
-    .path-cols{ display:none; }
-    .pitem, .pitem.study, .pitem.work{ grid-column: 1; grid-row: auto; }
-    .pitem::before, .pitem.study::before, .pitem.work::before{ left: auto; right: 100%; width: 26px; }
-    .pitem::after, .pitem.study::after, .pitem.work::after{ left: auto; right: calc(100% + 26px - 6.5px); }
+    .path{ grid-template-columns: 1fr; padding-left: 28px; row-gap: 24px; }
+    .path::before{ left: 4px; }
+    .pitem, .pitem.p-study, .pitem.p-work{ grid-column: 1; grid-row: auto; text-align: left; }
+    .pitem.p-study .pdate{ justify-content: flex-start; }
+    .pitem::after, .pitem.p-study::after, .pitem.p-work::after{ left: -28px; right: auto; }
   }
   @media (prefers-reduced-motion: reduce){
     .pitem.now::after{ animation: none; }
@@ -632,40 +621,39 @@
       <div class="about-block reveal">
         <p class="about-h">My path</p>
         <div class="path">
-          <div class="path-cols" aria-hidden="true"><span>Study</span><span>Work</span></div>
-          <div class="pitem work now" style="--r:1">
+          <div class="pitem p-work now" style="--r:1">
             <span class="pdate">Sep 2024 to now <i class="live">Now</i></span>
             <h4>User Experience Designer</h4>
             <p>Grupo Planeta</p>
           </div>
-          <div class="pitem work" style="--r:2">
+          <div class="pitem p-work" style="--r:2">
             <span class="pdate">Sep 2023 to Aug 2024</span>
             <h4>User Experience Designer</h4>
             <p>Viscata</p>
           </div>
-          <div class="pitem study" style="--r:2">
+          <div class="pitem p-study" style="--r:3">
             <span class="pdate">2023 to 2024</span>
             <h4>Master’s in Usability, Interaction Design and UX</h4>
             <p>Pompeu Fabra University, Barcelona</p>
           </div>
-          <div class="pitem work" style="--r:3">
-            <span class="pdate">Sep 2022 to Sep 2023</span>
+          <div class="pitem p-work" style="--r:4">
+            <span class="pdate">Sep 2022 to Aug 2023</span>
             <h4>Visual Designer</h4>
             <p>ENGSO Youth</p>
           </div>
-          <div class="pitem study" style="--r:4">
+          <div class="pitem p-study" style="--r:5">
             <span class="pdate">2021</span>
-            <h4>Erasmus+ in Rome</h4>
-            <p>Sapienza University. Design, multimedia and visual communication.</p>
+            <h4>Erasmus+ in Design, Multimedia and Visual Communication</h4>
+            <p>Sapienza University, Rome</p>
           </div>
-          <div class="pitem study" style="--r:5">
+          <div class="pitem p-study" style="--r:6">
             <span class="pdate">2018 to 2022</span>
             <h4>Audiovisual Media</h4>
             <p>Rey Juan Carlos University, Madrid</p>
           </div>
         </div>
         <div class="about-actions">
-          <a class="btn-primary" href="Camila_Sobrino_resume.pdf" download>
+          <a class="btn-primary" href="Camila_Sobrino_CV.pdf" download>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
             Download CV
           </a>
